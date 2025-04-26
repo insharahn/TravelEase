@@ -12,3 +12,14 @@ for u guys, here's what ive done so far
 - location is inserted like city (country) based on existing location ids -> i do plan on adding more
 - in the nationality dropdown, typing the city actually brings that result to the top
 - really ugly formatting im sorry guys i cant make the form any longer its not letting me and i have no space
+
+## Hotel
+### Both Login and Signup 
+- Enter required info and insertions handled in table accordingly
+- Destination is dropdown: destination name, city (does autofill if you type in the first few characters but kinda wonky)
+- Entry is first added to ServiceProvider table then to Hotel table
+- ProviderID picked from the Service Provider and inserted automatically, HotelID assigned here
+- Validation checks for everything: email, password, numRooms, AvgPrices
+- If you just signed up, you can't actually login after that (admin hasn't approved you yet)
+
+
