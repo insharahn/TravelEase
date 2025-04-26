@@ -149,9 +149,15 @@ namespace dbfinalproject_interfaces
 
                 cmd.ExecuteNonQuery();
 
+                //fetch the TravelerID
+                string getTravelerIdQuery = "SELECT TOP 1 TravelerID FROM Traveler ORDER BY TravelerID DESC";
+                SqlCommand getIdCmd = new SqlCommand(getTravelerIdQuery, con);
+                int travelerID = (int)getIdCmd.ExecuteScalar(); //get the last inserted TravelerID
+
                 MessageBox.Show("Registered successfully", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
                 travelerHome home = new travelerHome();
+                home.TravelerID = Convert.ToInt32(travelerID); //set the TravelerID
                 home.Show();
 
             }
