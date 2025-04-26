@@ -87,9 +87,22 @@ namespace Hotel_and_Transport
                 if (dt.Rows.Count > 0)
                 {
                     MessageBox.Show("Login successful!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // get the ID of the user
+                    string query2 = "SELECT ProviderID FROM ServiceProvider WHERE Email = @email AND Password = @password AND ProviderType = 1 AND SpStatus = 'Approved'";
+                    SqlCommand cmd2 = new SqlCommand(query2, con);
+                    cmd2.Parameters.AddWithValue("@email", email);
+                    cmd2.Parameters.AddWithValue("@password", password);
+
                     // Navigate to dashboard (replace 'HotelDashboardForm' with your form name, e.g., 'home')
-                    //dashboard.Show();
-                    //this.Hide();
+                    object result = cmd2.ExecuteScalar();
+                    if (result != null)
+                    {   // pass the login ID aagay to the home/dashboard
+                        int providerId = Convert.ToInt32(result);
+                        HotelDashboard dashboard = new HotelDashboard(providerId);
+                        dashboard.Show();
+                        this.Hide();
+                    }
                 }
                 else
                 {
