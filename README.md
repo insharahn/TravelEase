@@ -22,4 +22,9 @@ for u guys, here's what ive done so far
 - Validation checks for everything: email, password, numRooms, AvgPrices
 - If you just signed up, you can't actually login after that (admin hasn't approved you yet)
 
+Thought I'd add images too, let me know if anything needs to be changed
+![image](https://github.com/user-attachments/assets/b37c3d61-0668-4a13-89ff-6f421ab36203)
+![image](https://github.com/user-attachments/assets/5485c5a6-266f-4bd3-9ca3-7a3c4e51201d)
+
+
 
