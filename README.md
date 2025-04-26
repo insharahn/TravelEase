@@ -4,7 +4,7 @@ Database Systems final project files.
 ## Traveler
 for u guys, here's what ive done so far
 
-# sign up form
+### sign up form & login
 - enter all info AND inserts in table so be careful
 - age is now DOB
 - validation checks for email format, password length, username uniqueness, contact number all digits [all of our ddl commands]
@@ -12,6 +12,12 @@ for u guys, here's what ive done so far
 - location is inserted like city (country) based on existing location ids -> i do plan on adding more
 - in the nationality dropdown, typing the city actually brings that result to the top
 - really ugly formatting im sorry guys i cant make the form any longer its not letting me and i have no space
+- added features like password show/hide
+
+### home
+- displays 10 packages at a time
+- i will have to figure out the pages thing
+- adds to wishlist when u click wishlist (if u logged in), but you cant see the wislist seperately yet
 
 ## Hotel & Transport
 ### Both Login and Signup is done 
