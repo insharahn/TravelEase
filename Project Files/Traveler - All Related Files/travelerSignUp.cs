@@ -41,7 +41,9 @@ namespace dbfinalproject_interfaces
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            travelerLogin login = new travelerLogin();
+            login.Show();
+            this.Hide();
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
@@ -148,6 +150,9 @@ namespace dbfinalproject_interfaces
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show("Registered successfully", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Hide();
+                travelerHome home = new travelerHome();
+                home.Show();
 
             }
             catch (SqlException ex)
@@ -182,5 +187,31 @@ namespace dbfinalproject_interfaces
         {
 
         }
+
+        //unhide password hehe
+        private bool passwordVisible = false;
+        private void btnShowPwd_Click(object sender, EventArgs e)
+        {
+            if (passwordVisible)
+            {
+                //hide
+                txtPassword.PasswordChar = '*';
+                btnShowPwd.Text = "Show";
+                passwordVisible = false;
+            }
+            else
+            {
+                //show
+                txtPassword.PasswordChar = '\0'; //no masking character
+                btnShowPwd.Text = "Hide";
+                passwordVisible = true;
+            }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+

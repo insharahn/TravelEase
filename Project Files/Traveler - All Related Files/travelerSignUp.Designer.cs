@@ -50,12 +50,13 @@
             this.label11 = new System.Windows.Forms.Label();
             this.clbPreferences = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnShowPwd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(79, 288);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(185, 31);
             this.txtEmail.TabIndex = 0;
@@ -84,7 +85,7 @@
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(79, 410);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(182, 31);
             this.txtUsername.TabIndex = 2;
@@ -102,8 +103,9 @@
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(79, 528);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(185, 31);
             this.txtPassword.TabIndex = 4;
             // 
@@ -111,7 +113,7 @@
             // 
             this.buttonRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
             this.buttonRegister.Location = new System.Drawing.Point(390, 1145);
-            this.buttonRegister.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonRegister.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRegister.Name = "buttonRegister";
             this.buttonRegister.Size = new System.Drawing.Size(139, 58);
             this.buttonRegister.TabIndex = 6;
@@ -132,7 +134,7 @@
             // txtContact
             // 
             this.txtContact.Location = new System.Drawing.Point(79, 664);
-            this.txtContact.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtContact.Margin = new System.Windows.Forms.Padding(4);
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(185, 31);
             this.txtContact.TabIndex = 13;
@@ -150,7 +152,7 @@
             // txtLName
             // 
             this.txtLName.Location = new System.Drawing.Point(343, 162);
-            this.txtLName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLName.Margin = new System.Windows.Forms.Padding(4);
             this.txtLName.Name = "txtLName";
             this.txtLName.Size = new System.Drawing.Size(185, 31);
             this.txtLName.TabIndex = 11;
@@ -170,7 +172,7 @@
             // txtFName
             // 
             this.txtFName.Location = new System.Drawing.Point(77, 162);
-            this.txtFName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFName.Name = "txtFName";
             this.txtFName.Size = new System.Drawing.Size(185, 31);
             this.txtFName.TabIndex = 9;
@@ -211,7 +213,7 @@
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(79, 785);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(185, 31);
             this.dateTimePicker1.TabIndex = 21;
@@ -220,7 +222,7 @@
             // 
             this.cmbNationality.FormattingEnabled = true;
             this.cmbNationality.Location = new System.Drawing.Point(79, 901);
-            this.cmbNationality.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbNationality.Margin = new System.Windows.Forms.Padding(4);
             this.cmbNationality.Name = "cmbNationality";
             this.cmbNationality.Size = new System.Drawing.Size(428, 32);
             this.cmbNationality.TabIndex = 22;
@@ -251,6 +253,7 @@
             this.label11.Size = new System.Drawing.Size(214, 42);
             this.label11.TabIndex = 27;
             this.label11.Text = "Sign Up";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // clbPreferences
             // 
@@ -268,7 +271,7 @@
             "Nature",
             "Tech"});
             this.clbPreferences.Location = new System.Drawing.Point(79, 1008);
-            this.clbPreferences.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clbPreferences.Margin = new System.Windows.Forms.Padding(4);
             this.clbPreferences.Name = "clbPreferences";
             this.clbPreferences.ScrollAlwaysVisible = true;
             this.clbPreferences.Size = new System.Drawing.Size(490, 112);
@@ -282,7 +285,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(991, 828);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -292,6 +295,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(494, 414);
             this.tableLayoutPanel1.TabIndex = 29;
             // 
+            // btnShowPwd
+            // 
+            this.btnShowPwd.Font = new System.Drawing.Font("Microsoft JhengHei", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowPwd.ForeColor = System.Drawing.Color.CadetBlue;
+            this.btnShowPwd.Location = new System.Drawing.Point(282, 527);
+            this.btnShowPwd.Name = "btnShowPwd";
+            this.btnShowPwd.Size = new System.Drawing.Size(65, 32);
+            this.btnShowPwd.TabIndex = 30;
+            this.btnShowPwd.Text = "Show";
+            this.btnShowPwd.UseVisualStyleBackColor = true;
+            this.btnShowPwd.Click += new System.EventHandler(this.btnShowPwd_Click);
+            // 
             // travelerSignUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -299,6 +314,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
             this.ClientSize = new System.Drawing.Size(966, 1050);
+            this.Controls.Add(this.btnShowPwd);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.clbPreferences);
             this.Controls.Add(this.label11);
@@ -323,7 +339,7 @@
             this.Controls.Add(this.txtEmail);
             this.Font = new System.Drawing.Font("Maiandra GD", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.CadetBlue;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "travelerSignUp";
             this.Text = "TravelerSignUp";
             this.ResumeLayout(false);
@@ -355,6 +371,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckedListBox clbPreferences;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button btnShowPwd;
     }
 }
 
