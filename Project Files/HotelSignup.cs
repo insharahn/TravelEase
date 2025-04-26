@@ -197,7 +197,7 @@ namespace Hotel_and_Transport
 
                 cmdHotel.ExecuteNonQuery();
 
-                MessageBox.Show("Hotel registered successfully!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Hotel registered successfully! Please wait for Admin to approve account.", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException ex)
             {
