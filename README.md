@@ -13,8 +13,8 @@ for u guys, here's what ive done so far
 - in the nationality dropdown, typing the city actually brings that result to the top
 - really ugly formatting im sorry guys i cant make the form any longer its not letting me and i have no space
 
-## Hotel
-### Both Login and Signup 
+## Hotel & Transport
+### Both Login and Signup is done 
 - Enter required info and insertions handled in table accordingly
 - Destination is dropdown: destination name, city (does autofill if you type in the first few characters but kinda wonky)
 - Entry is first added to ServiceProvider table then to Hotel table
@@ -23,8 +23,7 @@ for u guys, here's what ive done so far
 - If you just signed up, you can't actually login after that (admin hasn't approved you yet)
 
 Thought I'd add images too, let me know if anything needs to be changed
-![image](https://github.com/user-attachments/assets/b37c3d61-0668-4a13-89ff-6f421ab36203)
-![image](https://github.com/user-attachments/assets/5485c5a6-266f-4bd3-9ca3-7a3c4e51201d)
+
 
 
 
