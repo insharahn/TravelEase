@@ -1,12 +1,9 @@
 use [Project Data]
 
-select * from Traveler
-select distinct preferences from traveler
-select * from Location
-where CountryName = 'Pakistan'
-
 sp_help Traveler
 
+
+----------------------------------------------------------------------------------
 -- DOB instead of Age in traveler
 ALTER TABLE Traveler ADD DateOfBirth DATE;
 UPDATE Traveler
@@ -14,12 +11,13 @@ SET DateOfBirth = DATEADD(YEAR, -Age, GETDATE())
 WHERE Age IS NOT NULL;
 ALTER TABLE Traveler DROP CK__Traveler__Age__55009F39 --drop dependency first
 ALTER TABLE Traveler DROP COLUMN Age;
+----------------------------------------------------------------------------------
 
--- Modified the Review table, just drop the old one 
 
 
-DROP table Review
-
+----------------------------------------------------------------------------------
+-- new reviews table
+drop table review
 CREATE TABLE Review (
     ReviewID INT IDENTITY(1,1) PRIMARY KEY,
     TravelerID INT NOT NULL,
@@ -43,7 +41,6 @@ CREATE TABLE Review (
         (AccommodationID IS NULL AND OperatorID IS NULL AND GuideID IS NULL AND RideID IS NOT NULL)
     )
 );
-Select * from Review
 INSERT INTO Review (TravelerID, AccommodationID, OperatorID, GuideID, RideID, Rating, Comment, ReviewDate, ModerationStatus) VALUES
 -- Accommodation Reviews (15 rows)
 (1, 1, NULL, NULL, NULL, 5, 'Excellent hotel stay, very comfortable!', '2024-01-10 09:00:00', 'Approved'),
@@ -72,7 +69,7 @@ INSERT INTO Review (TravelerID, AccommodationID, OperatorID, GuideID, RideID, Ra
 (22, NULL, 30, NULL, NULL, 5, 'Highly recommend this tour!', '2024-07-30 11:40:00', 'Approved'),
 (23, NULL, 35, NULL, NULL, 4, 'Good tour, but needed better planning.', '2024-08-15 16:00:00', 'Approved'),
 (24, NULL, 40, NULL, NULL, 3, 'Average tour, nothing special.', '2024-09-20 13:20:00', 'Pending'),
-(25, NULL, 45, NULL, NULL, 5, 'Best tour Iâ€™ve experienced!', '2024-10-25 10:30:00', 'Approved'),
+(25, NULL, 45, NULL, NULL, 5, 'Best tour I’ve experienced!', '2024-10-25 10:30:00', 'Approved'),
 (26, NULL, 50, NULL, NULL, 4, 'Enjoyable tour, tight schedule.', '2024-11-30 12:45:00', 'Approved'),
 (27, NULL, 51, NULL, NULL, 3, 'Okay tour, could be improved.', '2025-01-15 15:15:00', 'Pending'),
 (28, NULL, 3, NULL, NULL, 4, 'Solid tour experience.', '2025-02-20 09:00:00', 'Approved'),
@@ -87,7 +84,7 @@ INSERT INTO Review (TravelerID, AccommodationID, OperatorID, GuideID, RideID, Ra
 (35, NULL, NULL, 30, NULL, 5, 'Fantastic guide, learned a lot!', '2024-08-20 08:50:00', 'Approved'),
 (36, NULL, NULL, 35, NULL, 4, 'Good guide, but tour was rushed.', '2024-09-15 12:15:00', 'Approved'),
 (37, NULL, NULL, 40, NULL, 3, 'Average guide performance.', '2024-10-20 15:30:00', 'Pending'),
-(38, NULL, NULL, 45, NULL, 5, 'Best guide Iâ€™ve had!', '2024-11-25 09:40:00', 'Approved'),
+(38, NULL, NULL, 45, NULL, 5, 'Best guide I’ve had!', '2024-11-25 09:40:00', 'Approved'),
 (39, NULL, NULL, 50, NULL, 4, 'Very knowledgeable guide.', '2024-12-30 14:00:00', 'Approved'),
 (40, NULL, NULL, 3, NULL, 3, 'Guide was decent, could improve.', '2025-02-05 11:25:00', 'Pending'),
 
@@ -102,4 +99,138 @@ INSERT INTO Review (TravelerID, AccommodationID, OperatorID, GuideID, RideID, Ra
 (48, NULL, NULL, NULL, 35, 4, 'Good ride, but could be cleaner.', '2024-10-30 12:15:00', 'Approved'),
 (49, NULL, NULL, NULL, 40, 3, 'Average ride experience.', '2024-12-05 15:30:00', 'Pending'),
 (50, NULL, NULL, NULL, 45, 5, 'Fantastic transportation service!', '2025-01-20 09:40:00', 'Approved');
+----------------------------------------------------------------------------------
 
+
+-- request altered
+----------------------------------------------------------------------------------
+ALTER TABLE Request
+ADD AccomodationPaidStatus VARCHAR(20) NOT NULL DEFAULT 'Unpaid'
+CONSTRAINT CHK_PaidStatus CHECK (AccomodationPaidStatus IN ('Paid', 'Unpaid'));
+
+ALTER TABLE Request
+ADD RidePaidStatus VARCHAR(20) NOT NULL DEFAULT 'Unpaid'
+CONSTRAINT CHK_RidePaidStatus CHECK (RidePaidStatus IN ('Paid', 'Unpaid'));
+
+ALTER TABLE Request
+ADD ActivityPaidStatus VARCHAR(20) NOT NULL DEFAULT 'Unpaid'
+CONSTRAINT CHK_ActivityPaidStatus CHECK (ActivityPaidStatus IN ('Paid', 'Unpaid'));
+----------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------
+-- ADDING TRAVELERID BECAUSE....? WE FORGOT THAT SOMEHOW?
+ALTER TABLE Request
+ADD TravelerID INT
+FOREIGN KEY (TravelerID) REFERENCES Traveler(TravelerID) ON DELETE NO ACTION; -- no action as cycles are forming w/ cascade
+
+-- FILL DATA IN
+UPDATE Request
+SET TravelerID = ABS(CHECKSUM(NEWID())) % 55 + 1 --random IDS within the traveler range
+WHERE TravelerID IS NULL;
+----------------------------------------------------------------------------------
+
+
+-- MY USELESS QUERIES FOR WHEN I WAS MAKING FORMS
+---- EVERYTHING BELOW RTHIS IS USELESS
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+----------------------------------------------------------------------------------
+select * from Traveler
+select distinct preferences from traveler
+select * from Location
+where CountryName = 'Pakistan'
+
+DECLARE @Keyword VARCHAR(100) = 'Paris'
+DECLARE @MinBudget INT = 0
+DECLARE @MaxBudget INT = 100000
+DECLARE @Duration INT = 5
+DECLARE @GroupSize INT = 1
+DECLARE @TripType VARCHAR(100) = 'Cultural'
+
+SELECT 
+    p.*, 
+    sp_accom.ProviderName AS AccommodationProvider,
+    sp_transport.ProviderName AS TransportProvider,
+    l.CityName,
+    l.CountryName
+FROM Package p
+INNER JOIN Accommodation ac ON p.AccommodationID = ac.AccomodationID
+INNER JOIN Hotel h ON ac.HotelID = h.HotelID
+INNER JOIN ServiceProvider sp_accom ON h.ProviderID = sp_accom.ProviderId
+INNER JOIN Ride r on r.RideID = p.RideID
+INNER JOIN TransportService ts ON r.RideID = ts.TransportID
+INNER JOIN ServiceProvider sp_transport ON ts.ProviderID = sp_transport.ProviderId
+INNER JOIN Destination d ON p.DestinationID = d.DestinationID
+INNER JOIN Location l ON d.LocationID = l.LocationID
+WHERE 
+    (@Keyword = '' OR p.Title LIKE '%' + @Keyword + '%' OR l.CityName LIKE '%' + @Keyword + '%')
+    AND p.BasePrice BETWEEN @MinBudget AND @MaxBudget
+    AND (@Duration IS NULL OR (p.Duration = @Duration OR (@Duration = 10 AND p.Duration >= 10)))
+    AND (@GroupSize IS NULL OR (p.GroupSize = @GroupSize OR (@GroupSize = 20 AND p.GroupSize >= 20)))
+    AND (@TripType IS NULL OR p.TripType = @TripType)
+ORDER BY p.PackageID
+
+select p.Title, a.ActivityName
+from Package p
+inner join PackageActivities pa on pa.PackageID = p.PackageID
+inner join Activity a on a.ActivityID = pa.ActivityID
+where p.Title = 'Sydney Coastal Getaway'
+
+select * from Wishlist
+
+
+
+select * from Operator
+
+
+
+
+SELECT 
+    p.*,
+    sp_accom.ProviderName AS AccommodationProvider,
+    sp_transport.ProviderName AS TransportProvider,
+    l.CityName,
+    l.CountryName,
+    STUFF((
+        SELECT ', ' + a.ActivityName
+        FROM PackageActivities pa
+        INNER JOIN Activity a ON pa.ActivityID = a.ActivityID
+        WHERE pa.PackageID = p.PackageID
+        FOR XML PATH('')
+    ), 1, 2, '') AS Activities
+FROM Package p
+INNER JOIN Accommodation ac ON p.AccommodationID = ac.AccomodationID
+INNER JOIN Hotel h ON ac.HotelID = h.HotelID
+INNER JOIN ServiceProvider sp_accom ON h.ProviderID = sp_accom.ProviderId
+INNER JOIN Ride r on r.RideID = p.RideID
+INNER JOIN TransportService ts ON r.RideID = ts.TransportID
+INNER JOIN ServiceProvider sp_transport ON ts.ProviderID = sp_transport.ProviderId
+INNER JOIN Destination d ON p.DestinationID = d.DestinationID
+INNER JOIN Location l ON d.LocationID = l.LocationID
+ORDER BY p.PackageID
+OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY
+
+select * from package
+select * from Request
+
+select *  from Package
+
+select * from Accommodation
+select * from Hotel
+select * from ServiceProvider
+
+select * from Ride
+select * from PackageActivities
+select * from Activity
+
+select p.packageid, sp.ProviderName
+from Package p
+INNER JOIN Accommodation a ON p.AccommodationID = a.AccomodationID
+INNER JOIN Hotel h ON a.HotelID = h.HotelID
+INNER JOIN ServiceProvider sp ON h.ProviderID = sp.ProviderId
+
+select p.packageid, l.CityName, l.CountryName
+from Package p
+inner join Destination d on p.DestinationID = d.DestinationID
+inner join Location l on l.LocationID = d.LocationID

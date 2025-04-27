@@ -36,8 +36,58 @@ namespace dbfinalproject_interfaces
 
         private void button2_Click(object sender, EventArgs e)
         {
+            try
+            {
+                con.Open();
 
+                //fetch a RANDOM (newid() generates unique value, order by shuffles and that creates randomness) but EXISTING operatorid
+                int operatorId = -1;
+                string operatorQuery = "SELECT TOP 1 OperatorID FROM Operator ORDER BY NEWID()";
+
+                SqlCommand operatorCmd = new SqlCommand(operatorQuery, con);
+                object result = operatorCmd.ExecuteScalar();
+
+                if (result != null)
+                {
+                    operatorId = Convert.ToInt32(result);
+                }
+                else
+                {
+                    MessageBox.Show("No operators found.");
+                    return;
+                }
+
+                //insert request into table (custom trip always null)
+                string query = @"
+                INSERT INTO Request 
+                (OperatorID, TravelerID, TripSourceType, PackageID, CustomTripID, DateRequested, RequestStatus, PreferredStartDate, AccomodationPaidStatus, RidePaidStatus, ActivityPaidStatus)
+                VALUES 
+                (@OperatorID, @TravelerID, 'Package', @PackageID, NULL, GETDATE(), 'Pending', NULL, 'Unpaid', 'Unpaid', 'Unpaid')";
+
+                SqlCommand cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@OperatorID", operatorId);
+                cmd.Parameters.AddWithValue("@TravelerID", travelerId);
+                cmd.Parameters.AddWithValue("@PackageID", packageId);
+
+                int rowsAffected = cmd.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Request successfully submitted!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error submitting request: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
+
+
 
         //method to set data every time a new card is made (like a parameterized constructor)
         public void SetData(string title, string description, string destinationCity, string destinationCountry, string accommodation, 
@@ -105,6 +155,7 @@ namespace dbfinalproject_interfaces
                     MessageBox.Show("Unable to perform this action.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+                con.Close();
             }
         }
     }

@@ -42,6 +42,7 @@
             this.btnBook = new System.Windows.Forms.Button();
             this.lblTripType = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -60,8 +61,8 @@
             // 
             this.lblDesc.AutoSize = true;
             this.lblDesc.Font = new System.Drawing.Font("Microsoft JhengHei UI", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDesc.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.lblDesc.Location = new System.Drawing.Point(23, 116);
+            this.lblDesc.ForeColor = System.Drawing.Color.GhostWhite;
+            this.lblDesc.Location = new System.Drawing.Point(33, 117);
             this.lblDesc.Name = "lblDesc";
             this.lblDesc.Size = new System.Drawing.Size(95, 20);
             this.lblDesc.TabIndex = 1;
@@ -84,7 +85,7 @@
             this.lblAccommodation.AutoSize = true;
             this.lblAccommodation.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAccommodation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.lblAccommodation.Location = new System.Drawing.Point(23, 143);
+            this.lblAccommodation.Location = new System.Drawing.Point(23, 151);
             this.lblAccommodation.Name = "lblAccommodation";
             this.lblAccommodation.Size = new System.Drawing.Size(151, 23);
             this.lblAccommodation.TabIndex = 3;
@@ -95,7 +96,7 @@
             this.lblTransport.AutoSize = true;
             this.lblTransport.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTransport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.lblTransport.Location = new System.Drawing.Point(23, 177);
+            this.lblTransport.Location = new System.Drawing.Point(23, 182);
             this.lblTransport.Name = "lblTransport";
             this.lblTransport.Size = new System.Drawing.Size(92, 23);
             this.lblTransport.TabIndex = 4;
@@ -106,7 +107,7 @@
             this.lblActivities.AutoSize = true;
             this.lblActivities.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblActivities.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.lblActivities.Location = new System.Drawing.Point(23, 213);
+            this.lblActivities.Location = new System.Drawing.Point(23, 216);
             this.lblActivities.Name = "lblActivities";
             this.lblActivities.Size = new System.Drawing.Size(87, 23);
             this.lblActivities.TabIndex = 5;
@@ -117,7 +118,7 @@
             this.lblGroupSize.AutoSize = true;
             this.lblGroupSize.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGroupSize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.lblGroupSize.Location = new System.Drawing.Point(23, 246);
+            this.lblGroupSize.Location = new System.Drawing.Point(23, 251);
             this.lblGroupSize.Name = "lblGroupSize";
             this.lblGroupSize.Size = new System.Drawing.Size(143, 23);
             this.lblGroupSize.TabIndex = 6;
@@ -128,7 +129,7 @@
             this.lblSusScore.AutoSize = true;
             this.lblSusScore.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSusScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.lblSusScore.Location = new System.Drawing.Point(23, 281);
+            this.lblSusScore.Location = new System.Drawing.Point(23, 286);
             this.lblSusScore.Name = "lblSusScore";
             this.lblSusScore.Size = new System.Drawing.Size(171, 23);
             this.lblSusScore.TabIndex = 7;
@@ -139,7 +140,7 @@
             this.lblDuration.AutoSize = true;
             this.lblDuration.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDuration.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.lblDuration.Location = new System.Drawing.Point(24, 318);
+            this.lblDuration.Location = new System.Drawing.Point(24, 323);
             this.lblDuration.Name = "lblDuration";
             this.lblDuration.Size = new System.Drawing.Size(86, 23);
             this.lblDuration.TabIndex = 8;
@@ -150,7 +151,7 @@
             this.lblBasePrice.AutoSize = true;
             this.lblBasePrice.Font = new System.Drawing.Font("Microsoft JhengHei UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBasePrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.lblBasePrice.Location = new System.Drawing.Point(26, 358);
+            this.lblBasePrice.Location = new System.Drawing.Point(126, 399);
             this.lblBasePrice.Name = "lblBasePrice";
             this.lblBasePrice.Size = new System.Drawing.Size(86, 20);
             this.lblBasePrice.TabIndex = 9;
@@ -163,7 +164,7 @@
             this.btnWishlist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWishlist.Font = new System.Drawing.Font("Microsoft JhengHei UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWishlist.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.btnWishlist.Location = new System.Drawing.Point(29, 394);
+            this.btnWishlist.Location = new System.Drawing.Point(49, 436);
             this.btnWishlist.Name = "btnWishlist";
             this.btnWishlist.Size = new System.Drawing.Size(157, 63);
             this.btnWishlist.TabIndex = 10;
@@ -178,7 +179,7 @@
             this.btnBook.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBook.Font = new System.Drawing.Font("Microsoft JhengHei UI", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.btnBook.Location = new System.Drawing.Point(212, 394);
+            this.btnBook.Location = new System.Drawing.Point(226, 436);
             this.btnBook.Name = "btnBook";
             this.btnBook.Size = new System.Drawing.Size(157, 63);
             this.btnBook.TabIndex = 11;
@@ -191,7 +192,7 @@
             this.lblTripType.AutoSize = true;
             this.lblTripType.Font = new System.Drawing.Font("Microsoft JhengHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTripType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.lblTripType.Location = new System.Drawing.Point(236, 246);
+            this.lblTripType.Location = new System.Drawing.Point(22, 359);
             this.lblTripType.Name = "lblTripType";
             this.lblTripType.Size = new System.Drawing.Size(88, 23);
             this.lblTripType.TabIndex = 12;
@@ -200,9 +201,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.panel1.Controls.Add(this.lblDesc);
             this.panel1.Location = new System.Drawing.Point(-10, -9);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(455, 118);
+            this.panel1.Size = new System.Drawing.Size(455, 152);
             this.panel1.TabIndex = 13;
             // 
             // PackageCard
@@ -220,12 +222,13 @@
             this.Controls.Add(this.lblTransport);
             this.Controls.Add(this.lblAccommodation);
             this.Controls.Add(this.lblDestination);
-            this.Controls.Add(this.lblDesc);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.panel1);
             this.Name = "PackageCard";
-            this.Size = new System.Drawing.Size(434, 470);
+            this.Size = new System.Drawing.Size(434, 523);
             this.Load += new System.EventHandler(this.PackageCard_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
