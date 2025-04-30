@@ -28,7 +28,7 @@ for u guys, here's what ive done so far
 - Validation checks for everything: email, password, numRooms, AvgPrices
 - If you just signed up, you can't actually login after that (admin hasn't approved you yet)
 - 
-## Hotel Dashboard Features
+### Hotel Dashboard Features
 - Service Integration Tab: Displays pending accommodation assignments (room description, capacity, price in USD) in a DataGridView that you can approve or reject.
 - Service Listing Tab: Lists all hotel accommodations (room details, price in USD, destination) in a DataGridView, you can edit room Description and Price
 - Booking Management Tab: Shows booking details (request ID, booking date, total cost in USD, payment status) in a DataGridView, can confirm and cancel pending confirmations.
