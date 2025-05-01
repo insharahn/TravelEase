@@ -31,8 +31,8 @@ for u guys, here's what ive done so far
 ### Hotel Dashboard Features
 - Service Integration Tab: Displays pending accommodation assignments (room description, capacity, price in USD) in a DataGridView that you can approve or reject.
 - Service Listing Tab: Lists all hotel accommodations (room details, price in USD, destination) in a DataGridView, you can edit room Description and Price
-- Booking Management Tab: Shows booking details (request ID, booking date, total cost in USD, payment status) in a DataGridView, can confirm and cancel pending confirmations.
-- Performance Reports Tab: Visualizes metrics via charts (pie for occupancy, bar for ratings, line for revenue), with a ComboBox to switch chart types using UpdateChart and no-data alerts.
+- Booking Management Tab: Shows booking details (request ID, booking date, total cost in USD, payment status) in a DataGridView, can confirm and cancel pending confirmations (occupied rooms updated accordingly).
+- Performance Reports Tab: Visualizes metrics via charts (pie for occupancy, bar for ratings, line for revenue), with a ComboBox to switch chart types.
 - Exit and Logout Buttons
 
 Thought I'd add images too, let me know if anything needs to be changed
