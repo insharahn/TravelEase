@@ -208,8 +208,69 @@ WHERE  r.TripSourceType = 'Custom';
 
 
 
+-----------------------------------------------------------------------------------------
+-------------------------------MODIFYING BOOKING COLUMNS SO THEY R NULLABLE
+ALTER TABLE Booking
+ALTER COLUMN BookingDate DATETIME NULL;
+
+ALTER TABLE Booking
+ALTER COLUMN BookingStatus VARCHAR(20) NULL;
+-----------------------------------------------------------------------------------------
 
 
+
+-----------------------------------------------------------------------------------------
+---------------------- TRIGGER FOR UPDATING COST WHENEVER SMTH IS INSERTED INTO BOOKINGS!
+CREATE TRIGGER trg_UpdateTotalCost
+ON Booking
+AFTER INSERT
+AS
+BEGIN
+    -- PACKAGE TRIPS
+    UPDATE b
+    SET TotalCost =
+          p.BasePrice
+        + p.Duration * ISNULL(a.PricePerNight, 0)
+        + ISNULL((SELECT rv.Price FROM Ride rv WHERE rv.RideID = p.RideID) * p.GroupSize, 0)
+        + ISNULL(
+            p.GroupSize * (
+                SELECT SUM(act.Price)
+                FROM PackageActivities pa
+                JOIN Activity act ON pa.ActivityID = act.ActivityID
+                WHERE pa.PackageID = p.PackageID
+            ), 0)
+    FROM Booking b
+    JOIN inserted i ON b.BookingID = i.BookingID
+    JOIN Request r ON b.RequestID = r.RequestID
+    JOIN Package p ON r.PackageID = p.PackageID
+    LEFT JOIN Accommodation a ON p.AccommodationID = a.AccomodationID
+    WHERE r.TripSourceType = 'Package';
+
+    -- CUSTOM TRIPS
+    UPDATE b
+    SET TotalCost =
+          ct.BasePrice
+        + ct.Duration * ISNULL(a.PricePerNight, 0)
+        + ISNULL((SELECT rv.Price FROM Ride rv WHERE rv.RideID = ct.RideID) * ct.GroupSize, 0)
+        + ISNULL(
+            ct.GroupSize * (
+                SELECT SUM(act.Price)
+                FROM CustomTripActivities cta
+                JOIN Activity act ON cta.ActivityID = act.ActivityID
+                WHERE cta.CustomTripID = ct.CustomTripID
+            ), 0)
+    FROM Booking b
+    JOIN inserted i ON b.BookingID = i.BookingID
+    JOIN Request r ON b.RequestID = r.RequestID
+    JOIN CustomTrip ct ON r.CustomTripID = ct.CustomTripID
+    LEFT JOIN Accommodation a ON ct.AccommodationID = a.AccomodationID
+    WHERE r.TripSourceType = 'Custom';
+END;
+-----------------------------------------------------------------------------------------
+
+
+
+-----------------------------------------------------------------------------------------
 -- MY USELESS QUERIES FOR WHEN I WAS MAKING FORMS
 ---- EVERYTHING BELOW RTHIS IS USELESS
 ----------- USELESS STARTS HERE -------------------------------------------------
@@ -437,3 +498,114 @@ from activity
  INNER JOIN ServiceProvider SP on SP.ProviderId = G.GuideID
  WHERE SP.DestinationID = 1
 
+ -- bookings wAAAAAAAAAA
+ select * from Request
+select * from Booking
+select * from Payment
+select * from DigitalPasses
+
+-- package
+SELECT l.CityName, l.CountryName, p.Title, r.PreferredStartDate, b.TotalCost
+FROM Booking b
+INNER JOIN Request r ON b.RequestID = r.RequestID
+INNER JOIN Package p ON p.PackageID = r.PackageID
+INNER JOIN Destination d ON p.DestinationID = d.DestinationID
+INNER JOIN Location l ON l.LocationID = d.LocationID
+WHERE r.TripSourceType = 'Package'
+
+SELECT l.CityName, l.CountryName, r.PreferredStartDate, b.TotalCost
+FROM Booking b
+INNER JOIN Request r ON b.RequestID = r.RequestID
+INNER JOIN CustomTrip c ON c.CustomTripID = r.CustomTripID
+INNER JOIN Destination d ON c.DestinationID = d.DestinationID
+INNER JOIN Location l ON l.LocationID = d.LocationID
+WHERE r.TripSourceType = 'Custom'
+
+select * from Request
+select * from Booking
+select * from Payment
+
+INSERT INTO Booking (RequestID, TotalCost, BookingDate, BookingStatus, CancellationReason)
+            SELECT r.RequestID, 0, NULL, 'Pending', NULL
+            FROM Request r
+            LEFT JOIN Booking b ON r.RequestID = b.RequestID
+            WHERE r.TravelerID = 1 AND b.RequestID IS NULL
+
+select r.RequestID, t.Username, t.Password, r.PreferredStartDate
+from Booking b
+inner join Payment p on p.BookingID = b.BookingID
+inner join Request r on r.RequestID = b.RequestID
+inner join Traveler t on t.TravelerID = r.TravelerID
+where b.BookingStatus = 'Confirmed' AND p.PaymentStatus = 'Success' AND r.PreferredStartDate < GETDATE()
+
+select * from Review
+
+-- UPDATING MY BOY THOMAS' SO I CAN SEE SOMETHING IN THE DAMN TRAVEL HISTORY
+UPDATE Request
+SET PreferredStartDate = DATEADD(YEAR, -1, GETDATE())
+WHERE RequestID = 2
+
+inner join Payment p on p.BookingID = b.BookingID
+inner join Request r on r.RequestID = b.RequestID
+inner join Traveler t on t.TravelerID = r.TravelerID
+where b.BookingStatus = 'Confirmed' AND p.PaymentStatus = 'Success' AND r.PreferredStartDate < GETDATE()
+
+
+select distinct CancellationReason
+from Booking
+
+select *
+from Booking b
+inner join Request r on r.RequestID = b.RequestID
+inner join Traveler t on r.TravelerID = t.TravelerID
+where t.Username = 'james_w'
+
+select *
+from Booking b
+inner join Request r on r.RequestID = b.RequestID
+inner join Traveler t on r.TravelerID = t.TravelerID
+inner join DigitalPasses d on d.BookingID = b.BookingID
+where t.Username = 'james_w'
+
+select * from DigitalPasses
+select * from Payment
+
+
+select b.BookingID, b.BookingStatus, p.PaymentStatus, d.PassID, d.PassType, d.PassStatus
+from Booking b
+inner join Request r on r.RequestID = b.RequestID
+inner join Traveler t on r.TravelerID = t.TravelerID
+inner join DigitalPasses d on d.BookingID = b.BookingID
+inner join Payment p on p.BookingID = b.BookingID
+where b.BookingStatus <> 'Confirmed'
+
+select * from Booking
+select * from  Payment
+select * from DigitalPasses
+
+select * from Request r -- paid status for all of them
+inner join CustomTrip ct on ct.CustomTripID = r.CustomTripID
+
+
+
+select * from CustomTrip
+
+select c.AccommodationStatusFlag, c.RideStatusFlag, c.ActivitiesStatusFlag
+from Booking b
+inner join Request r on r.RequestID = b.RequestID
+inner join CustomTrip c on c.CustomTripID = r.CustomTripID
+where r.TripSourceType = 'Custom'
+
+select * from  Booking
+select * from Package
+
+select d.PassType, d.ExpiryDate
+from Booking b
+inner join DigitalPasses d on d.BookingID = b.BookingID
+where b.BookingID = @BookingID
+
+select * from Traveler where TravelerID = 26
+
+SELECT PassType, ExpiryDate 
+FROM DigitalPasses 
+WHERE BookingID = 2
