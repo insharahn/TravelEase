@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -258,9 +258,9 @@ namespace Hotel_and_Transport
                 using (SqlConnection conn = new SqlConnection("Data Source=AABIA\\SQLEXPRESS;Initial Catalog=TravelEase;Integrated Security=True;Encrypt=False;Trust Server Certificate=True"))
                 {
                     conn.Open();
-                    // Get GroupSize and HotelID
+                    // Get details for checking capacity and available rooms
                     string detailsQuery = @"
-                        SELECT COALESCE(pkg.GroupSize, ct.GroupSize) AS GroupSize, h.HotelID
+                        SELECT COALESCE(pkg.GroupSize, ct.GroupSize) AS GroupSize, h.HotelID, OccupiedRooms, TotalRooms, MaxCapacity
                         FROM Booking b
                         JOIN Request req ON b.RequestID = req.RequestID
                         LEFT JOIN Package pkg ON req.PackageID = pkg.PackageID
@@ -279,7 +279,25 @@ namespace Hotel_and_Transport
                     }
                     int groupSize = Convert.ToInt32(reader["GroupSize"]);
                     int hotelId = Convert.ToInt32(reader["HotelID"]);
+                    int occupiedRooms = Convert.ToInt32(reader["OccupiedRooms"]);
+                    int totalRooms = Convert.ToInt32(reader["TotalRooms"]);
+                    int capacity = Convert.ToInt32(reader["MaxCapacity"]);
+
                     reader.Close();
+
+                    // Check room availability
+                    if (totalRooms < occupiedRooms + 1)
+                    {
+                        MessageBox.Show("Not enough rooms available.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Check room capacity
+                    if (capacity < groupSize)
+                    {
+                        MessageBox.Show("Not enough room capacity.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     // Update AccomodationPaidStatus in Request
                     string updateRequestQuery = @"
@@ -295,10 +313,11 @@ namespace Hotel_and_Transport
                         return;
                     }
 
+
                     // Update Hotel.OccupiedRooms
                     string updateHotelQuery = @"
                         UPDATE Hotel
-                        SET OccupiedRooms = OccupiedRooms + @GroupSize
+                        SET OccupiedRooms = OccupiedRooms + 1
                         WHERE HotelID = @HotelID";
                     cmd = new SqlCommand(updateHotelQuery, conn);
                     cmd.Parameters.AddWithValue("@HotelID", hotelId);
@@ -467,7 +486,10 @@ namespace Hotel_and_Transport
 
         private void exitButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("Are you sure you want to exit?", "Confirm Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
         private void cmbGraphType_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -540,7 +562,7 @@ namespace Hotel_and_Transport
                     {
                         chartPerformance.Titles.Add("Rating Distribution");
                         series.ChartType = SeriesChartType.Column;
-                        chartArea.AxisX.Title = "Rating (Stars)";
+                        chartArea.AxisX.Title = "Rating | Stars";
                         chartArea.AxisY.Title = "Number of Ratings";
 
                         // Initialize ratings (mock if no data)
@@ -581,7 +603,7 @@ namespace Hotel_and_Transport
                         chartPerformance.Titles.Add("Monthly Revenue");
                         series.ChartType = SeriesChartType.Line;
                         chartArea.AxisX.Title = "Month";
-                        chartArea.AxisY.Title = "  Revenue ($)  ";
+                        chartArea.AxisY.Title = "Revenue | $";
                         chartArea.AxisY.LabelStyle.Format = "$#,##0";
                         series.MarkerStyle = MarkerStyle.Circle;
                         series.MarkerSize = 8;
