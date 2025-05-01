@@ -27,7 +27,7 @@ for u guys, here's what ive done so far
 - ProviderID picked from the Service Provider and inserted automatically, HotelID assigned here
 - Validation checks for everything: email, password, numRooms, AvgPrices
 - If you just signed up, you can't actually login after that (admin hasn't approved you yet)
-- 
+
 ### Hotel Dashboard Features
 - Service Integration Tab: Displays pending accommodation assignments (room description, capacity, price in USD) in a DataGridView that you can approve or reject.
 - Service Listing Tab: Lists all hotel accommodations (room details, price in USD, destination) in a DataGridView, you can edit room Description and Price
