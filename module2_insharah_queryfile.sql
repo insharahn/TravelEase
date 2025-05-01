@@ -436,3 +436,4 @@ from activity
  INNER JOIN Guide G ON A.GuideID = G.GuideID
  INNER JOIN ServiceProvider SP on SP.ProviderId = G.GuideID
  WHERE SP.DestinationID = 1
+

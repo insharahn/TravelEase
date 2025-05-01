@@ -158,5 +158,10 @@ namespace dbfinalproject_interfaces
                 con.Close();
             }
         }
+
+        private void lblActivities_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

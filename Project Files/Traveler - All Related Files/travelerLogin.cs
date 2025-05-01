@@ -136,5 +136,10 @@ namespace dbfinalproject_interfaces
                 passwordVisible = true;
             }
         }
+
+        private void travelerLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

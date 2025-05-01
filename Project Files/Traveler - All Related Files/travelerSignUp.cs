@@ -218,6 +218,16 @@ namespace dbfinalproject_interfaces
         {
 
         }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void travelerSignUp_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

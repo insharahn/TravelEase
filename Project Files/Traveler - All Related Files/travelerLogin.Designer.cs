@@ -230,6 +230,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "travelerLogin";
             this.Text = "travelerLogin";
+            this.Load += new System.EventHandler(this.travelerLogin_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);

@@ -51,11 +51,12 @@
             this.clbPreferences = new System.Windows.Forms.CheckedListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnShowPwd = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(79, 288);
+            this.txtEmail.Location = new System.Drawing.Point(76, 252);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(185, 31);
@@ -64,7 +65,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(75, 244);
+            this.label1.Location = new System.Drawing.Point(75, 219);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 24);
@@ -75,7 +76,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(75, 366);
+            this.label2.Location = new System.Drawing.Point(72, 313);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 24);
@@ -84,7 +85,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(79, 410);
+            this.txtUsername.Location = new System.Drawing.Point(76, 347);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(182, 31);
@@ -93,7 +94,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(75, 484);
+            this.label3.Location = new System.Drawing.Point(72, 422);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 24);
@@ -102,7 +103,7 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(79, 528);
+            this.txtPassword.Location = new System.Drawing.Point(76, 458);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -112,7 +113,7 @@
             // buttonRegister
             // 
             this.buttonRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.buttonRegister.Location = new System.Drawing.Point(390, 1145);
+            this.buttonRegister.Location = new System.Drawing.Point(76, 1040);
             this.buttonRegister.Margin = new System.Windows.Forms.Padding(4);
             this.buttonRegister.Name = "buttonRegister";
             this.buttonRegister.Size = new System.Drawing.Size(139, 58);
@@ -124,7 +125,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(75, 617);
+            this.label5.Location = new System.Drawing.Point(75, 521);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(156, 24);
@@ -133,7 +134,7 @@
             // 
             // txtContact
             // 
-            this.txtContact.Location = new System.Drawing.Point(79, 664);
+            this.txtContact.Location = new System.Drawing.Point(79, 557);
             this.txtContact.Margin = new System.Windows.Forms.Padding(4);
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(185, 31);
@@ -142,7 +143,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(339, 117);
+            this.label6.Location = new System.Drawing.Point(339, 132);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(102, 24);
@@ -161,7 +162,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(72, 116);
+            this.label7.Location = new System.Drawing.Point(72, 132);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(105, 24);
@@ -181,7 +182,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(81, 968);
+            this.label8.Location = new System.Drawing.Point(73, 833);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(456, 24);
@@ -191,7 +192,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(72, 856);
+            this.label9.Location = new System.Drawing.Point(72, 735);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(764, 24);
@@ -202,7 +203,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(72, 741);
+            this.label10.Location = new System.Drawing.Point(72, 628);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 24);
@@ -212,7 +213,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(79, 785);
+            this.dateTimePicker1.Location = new System.Drawing.Point(79, 663);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(185, 31);
@@ -221,7 +222,7 @@
             // cmbNationality
             // 
             this.cmbNationality.FormattingEnabled = true;
-            this.cmbNationality.Location = new System.Drawing.Point(79, 901);
+            this.cmbNationality.Location = new System.Drawing.Point(77, 770);
             this.cmbNationality.Margin = new System.Windows.Forms.Padding(4);
             this.cmbNationality.Name = "cmbNationality";
             this.cmbNationality.Size = new System.Drawing.Size(428, 32);
@@ -232,8 +233,8 @@
             // 
             this.linkLabel1.ActiveLinkColor = System.Drawing.Color.WhiteSmoke;
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkColor = System.Drawing.Color.PowderBlue;
-            this.linkLabel1.Location = new System.Drawing.Point(245, 1209);
+            this.linkLabel1.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.linkLabel1.Location = new System.Drawing.Point(75, 1127);
             this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(460, 24);
@@ -245,8 +246,9 @@
             // label11
             // 
             this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
             this.label11.Font = new System.Drawing.Font("Engravers MT", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.LightBlue;
+            this.label11.ForeColor = System.Drawing.Color.LightCyan;
             this.label11.Location = new System.Drawing.Point(429, 35);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
@@ -257,9 +259,9 @@
             // 
             // clbPreferences
             // 
-            this.clbPreferences.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.clbPreferences.BackColor = System.Drawing.Color.AliceBlue;
             this.clbPreferences.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.clbPreferences.ForeColor = System.Drawing.Color.AliceBlue;
+            this.clbPreferences.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
             this.clbPreferences.FormattingEnabled = true;
             this.clbPreferences.Items.AddRange(new object[] {
             "Adventure",
@@ -270,7 +272,7 @@
             "History",
             "Nature",
             "Tech"});
-            this.clbPreferences.Location = new System.Drawing.Point(79, 1008);
+            this.clbPreferences.Location = new System.Drawing.Point(79, 869);
             this.clbPreferences.Margin = new System.Windows.Forms.Padding(4);
             this.clbPreferences.Name = "clbPreferences";
             this.clbPreferences.ScrollAlwaysVisible = true;
@@ -299,7 +301,7 @@
             // 
             this.btnShowPwd.Font = new System.Drawing.Font("Microsoft JhengHei", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowPwd.ForeColor = System.Drawing.Color.CadetBlue;
-            this.btnShowPwd.Location = new System.Drawing.Point(282, 527);
+            this.btnShowPwd.Location = new System.Drawing.Point(282, 458);
             this.btnShowPwd.Name = "btnShowPwd";
             this.btnShowPwd.Size = new System.Drawing.Size(65, 32);
             this.btnShowPwd.TabIndex = 30;
@@ -307,12 +309,21 @@
             this.btnShowPwd.UseVisualStyleBackColor = true;
             this.btnShowPwd.Click += new System.EventHandler(this.btnShowPwd_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1485, 100);
+            this.panel1.TabIndex = 31;
+            // 
             // travelerSignUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(966, 1050);
             this.Controls.Add(this.btnShowPwd);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -337,11 +348,13 @@
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Maiandra GD", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ForeColor = System.Drawing.Color.CadetBlue;
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "travelerSignUp";
             this.Text = "TravelerSignUp";
+            this.Load += new System.EventHandler(this.travelerSignUp_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -372,6 +385,7 @@
         private System.Windows.Forms.CheckedListBox clbPreferences;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnShowPwd;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 
