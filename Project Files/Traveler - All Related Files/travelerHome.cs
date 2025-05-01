@@ -398,5 +398,21 @@ namespace dbfinalproject_interfaces
             travelerCustomTrip cs = new travelerCustomTrip(this.TravelerID);
             cs.Show();  
         }
+
+        private void btnBookings_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            travelerBookings booking = new travelerBookings(TravelerID);
+            booking.OpenTab(0); //open at 0th (booking) tab
+            booking.Show();
+        }
+
+        private void btnTravelHistory_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            travelerBookings booking = new travelerBookings(TravelerID);
+            booking.OpenTab(2); //third tab is travel history
+            booking.Show();
+        }
     }
 }

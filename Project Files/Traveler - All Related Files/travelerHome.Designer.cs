@@ -53,6 +53,8 @@
             this.clbAccessibility = new System.Windows.Forms.CheckedListBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnCustomTrip = new System.Windows.Forms.Button();
+            this.btnBookings = new System.Windows.Forms.Button();
+            this.btnTravelHistory = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // sqlCommand1
@@ -66,7 +68,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label1.Location = new System.Drawing.Point(708, 277);
+            this.label1.Location = new System.Drawing.Point(650, 242);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 21);
             this.label1.TabIndex = 12;
@@ -84,7 +86,7 @@
             this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrev.Font = new System.Drawing.Font("Mongolian Baiti", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrev.ForeColor = System.Drawing.Color.GhostWhite;
-            this.btnPrev.Location = new System.Drawing.Point(788, 729);
+            this.btnPrev.Location = new System.Drawing.Point(730, 694);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(135, 58);
             this.btnPrev.TabIndex = 11;
@@ -98,7 +100,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label2.Location = new System.Drawing.Point(737, 437);
+            this.label2.Location = new System.Drawing.Point(679, 402);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 21);
             this.label2.TabIndex = 13;
@@ -116,7 +118,7 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Mongolian Baiti", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.Color.GhostWhite;
-            this.btnNext.Location = new System.Drawing.Point(965, 729);
+            this.btnNext.Location = new System.Drawing.Point(907, 694);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(135, 58);
             this.btnNext.TabIndex = 10;
@@ -130,7 +132,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label3.Location = new System.Drawing.Point(866, 437);
+            this.label3.Location = new System.Drawing.Point(808, 402);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(227, 21);
             this.label3.TabIndex = 14;
@@ -142,7 +144,7 @@
             this.btnFilter.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnFilter.Font = new System.Drawing.Font("Mongolian Baiti", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.btnFilter.Location = new System.Drawing.Point(875, 670);
+            this.btnFilter.Location = new System.Drawing.Point(817, 635);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(135, 41);
             this.btnFilter.TabIndex = 9;
@@ -156,7 +158,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label4.Location = new System.Drawing.Point(705, 208);
+            this.label4.Location = new System.Drawing.Point(647, 173);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(315, 42);
             this.label4.TabIndex = 15;
@@ -191,7 +193,7 @@
             "18",
             "19",
             "20"});
-            this.cmbGroupSize.Location = new System.Drawing.Point(902, 471);
+            this.cmbGroupSize.Location = new System.Drawing.Point(844, 436);
             this.cmbGroupSize.Name = "cmbGroupSize";
             this.cmbGroupSize.Size = new System.Drawing.Size(121, 29);
             this.cmbGroupSize.TabIndex = 8;
@@ -202,7 +204,7 @@
             this.txtMinPrice.BackColor = System.Drawing.Color.MintCream;
             this.txtMinPrice.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMinPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.txtMinPrice.Location = new System.Drawing.Point(712, 387);
+            this.txtMinPrice.Location = new System.Drawing.Point(654, 352);
             this.txtMinPrice.Name = "txtMinPrice";
             this.txtMinPrice.Size = new System.Drawing.Size(116, 28);
             this.txtMinPrice.TabIndex = 16;
@@ -222,7 +224,7 @@
             "Education",
             "Leisure",
             "Spiritual/Religious"});
-            this.cmbTripType.Location = new System.Drawing.Point(712, 472);
+            this.cmbTripType.Location = new System.Drawing.Point(654, 437);
             this.cmbTripType.Name = "cmbTripType";
             this.cmbTripType.Size = new System.Drawing.Size(121, 29);
             this.cmbTripType.TabIndex = 7;
@@ -233,7 +235,7 @@
             this.txtMaxPrice.BackColor = System.Drawing.Color.MintCream;
             this.txtMaxPrice.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMaxPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.txtMaxPrice.Location = new System.Drawing.Point(890, 387);
+            this.txtMaxPrice.Location = new System.Drawing.Point(832, 352);
             this.txtMaxPrice.Name = "txtMaxPrice";
             this.txtMaxPrice.Size = new System.Drawing.Size(116, 28);
             this.txtMaxPrice.TabIndex = 17;
@@ -257,7 +259,7 @@
             "8",
             "9",
             "10"});
-            this.cmbDuration.Location = new System.Drawing.Point(712, 310);
+            this.cmbDuration.Location = new System.Drawing.Point(654, 275);
             this.cmbDuration.Name = "cmbDuration";
             this.cmbDuration.Size = new System.Drawing.Size(121, 29);
             this.cmbDuration.TabIndex = 5;
@@ -268,7 +270,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label5.Location = new System.Drawing.Point(709, 358);
+            this.label5.Location = new System.Drawing.Point(651, 323);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 21);
             this.label5.TabIndex = 18;
@@ -280,7 +282,7 @@
             this.txtKeyword.BackColor = System.Drawing.Color.MintCream;
             this.txtKeyword.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtKeyword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.txtKeyword.Location = new System.Drawing.Point(709, 237);
+            this.txtKeyword.Location = new System.Drawing.Point(651, 202);
             this.txtKeyword.Name = "txtKeyword";
             this.txtKeyword.Size = new System.Drawing.Size(155, 28);
             this.txtKeyword.TabIndex = 2;
@@ -292,7 +294,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label6.Location = new System.Drawing.Point(845, 390);
+            this.label6.Location = new System.Drawing.Point(787, 355);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(27, 21);
             this.label6.TabIndex = 19;
@@ -309,7 +311,7 @@
             this.btnViewWishlist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewWishlist.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewWishlist.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnViewWishlist.Location = new System.Drawing.Point(812, 60);
+            this.btnViewWishlist.Location = new System.Drawing.Point(594, 27);
             this.btnViewWishlist.Name = "btnViewWishlist";
             this.btnViewWishlist.Size = new System.Drawing.Size(135, 52);
             this.btnViewWishlist.TabIndex = 1;
@@ -323,7 +325,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Sitka Heading", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label7.Location = new System.Drawing.Point(705, 158);
+            this.label7.Location = new System.Drawing.Point(647, 123);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(170, 40);
             this.label7.TabIndex = 20;
@@ -343,16 +345,16 @@
             // 
             this.btnLogin.AllowDrop = true;
             this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.btnLogin.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
             this.btnLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SteelBlue;
             this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnLogin.Location = new System.Drawing.Point(618, 60);
+            this.btnLogin.Font = new System.Drawing.Font("Lucida Fax", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this.btnLogin.Location = new System.Drawing.Point(1192, 123);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(135, 52);
+            this.btnLogin.Size = new System.Drawing.Size(135, 68);
             this.btnLogin.TabIndex = 21;
             this.btnLogin.Text = "Back to Login";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -372,7 +374,7 @@
             "3",
             "4",
             "5"});
-            this.cmbSusScore.Location = new System.Drawing.Point(1108, 472);
+            this.cmbSusScore.Location = new System.Drawing.Point(1050, 437);
             this.cmbSusScore.Name = "cmbSusScore";
             this.cmbSusScore.Size = new System.Drawing.Size(121, 29);
             this.cmbSusScore.TabIndex = 22;
@@ -383,7 +385,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label8.Location = new System.Drawing.Point(1099, 437);
+            this.label8.Location = new System.Drawing.Point(1041, 402);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(146, 21);
             this.label8.TabIndex = 23;
@@ -403,7 +405,7 @@
             "Vegan Meals",
             "Wheelchair Access",
             "Wheelchair Availability"});
-            this.clbAccessibility.Location = new System.Drawing.Point(709, 560);
+            this.clbAccessibility.Location = new System.Drawing.Point(651, 525);
             this.clbAccessibility.Name = "clbAccessibility";
             this.clbAccessibility.Size = new System.Drawing.Size(489, 104);
             this.clbAccessibility.TabIndex = 24;
@@ -414,7 +416,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label9.Location = new System.Drawing.Point(708, 523);
+            this.label9.Location = new System.Drawing.Point(650, 488);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(368, 21);
             this.label9.TabIndex = 25;
@@ -431,19 +433,60 @@
             this.btnCustomTrip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomTrip.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomTrip.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCustomTrip.Location = new System.Drawing.Point(1024, 60);
+            this.btnCustomTrip.Location = new System.Drawing.Point(761, 27);
             this.btnCustomTrip.Name = "btnCustomTrip";
-            this.btnCustomTrip.Size = new System.Drawing.Size(234, 52);
+            this.btnCustomTrip.Size = new System.Drawing.Size(185, 52);
             this.btnCustomTrip.TabIndex = 26;
             this.btnCustomTrip.Text = "Design Custom Trip";
             this.btnCustomTrip.UseVisualStyleBackColor = false;
             this.btnCustomTrip.Click += new System.EventHandler(this.btnCustomTrip_Click);
             // 
+            // btnBookings
+            // 
+            this.btnBookings.AllowDrop = true;
+            this.btnBookings.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBookings.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.btnBookings.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.btnBookings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SteelBlue;
+            this.btnBookings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnBookings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBookings.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBookings.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnBookings.Location = new System.Drawing.Point(978, 27);
+            this.btnBookings.Name = "btnBookings";
+            this.btnBookings.Size = new System.Drawing.Size(153, 52);
+            this.btnBookings.TabIndex = 27;
+            this.btnBookings.Text = "View Bookings";
+            this.btnBookings.UseVisualStyleBackColor = false;
+            this.btnBookings.Click += new System.EventHandler(this.btnBookings_Click);
+            // 
+            // btnTravelHistory
+            // 
+            this.btnTravelHistory.AllowDrop = true;
+            this.btnTravelHistory.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnTravelHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.btnTravelHistory.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.btnTravelHistory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.SteelBlue;
+            this.btnTravelHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnTravelHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTravelHistory.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTravelHistory.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.btnTravelHistory.Location = new System.Drawing.Point(1162, 27);
+            this.btnTravelHistory.Name = "btnTravelHistory";
+            this.btnTravelHistory.Size = new System.Drawing.Size(183, 52);
+            this.btnTravelHistory.TabIndex = 28;
+            this.btnTravelHistory.Text = "View Travel History";
+            this.btnTravelHistory.UseVisualStyleBackColor = false;
+            this.btnTravelHistory.Click += new System.EventHandler(this.btnTravelHistory_Click);
+            // 
             // travelerHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1309, 820);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(1440, 820);
+            this.Controls.Add(this.btnTravelHistory);
+            this.Controls.Add(this.btnBookings);
             this.Controls.Add(this.btnCustomTrip);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.clbAccessibility);
@@ -502,5 +545,7 @@
         private System.Windows.Forms.CheckedListBox clbAccessibility;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnCustomTrip;
+        private System.Windows.Forms.Button btnBookings;
+        private System.Windows.Forms.Button btnTravelHistory;
     }
 }
