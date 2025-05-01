@@ -69,7 +69,7 @@ namespace Hotel_and_Transport
                     MessageBox.Show("Login successful!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // Navigate to dashboard 
                     // get the ID of the user
-                    string query2 = "SELECT ProviderID FROM ServiceProvider WHERE Email = @email AND Password = @password AND ProviderType = 1 AND SpStatus = 'Approved'";
+                    string query2 = "SELECT ProviderID FROM ServiceProvider WHERE Email = @email AND Password = @password AND ProviderType = 3 AND SpStatus = 'Approved'";
                     SqlCommand cmd2 = new SqlCommand(query2, con);
                     cmd2.Parameters.AddWithValue("@email", email);
                     cmd2.Parameters.AddWithValue("@password", password);
