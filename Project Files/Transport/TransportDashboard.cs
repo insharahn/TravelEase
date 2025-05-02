@@ -105,7 +105,7 @@ namespace Hotel_and_Transport
         {
             if (dgvTrips.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select an accommodation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a Ride.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -141,7 +141,7 @@ namespace Hotel_and_Transport
         {
             if (dgvTrips.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Please select an accommodation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select a Ride.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
@@ -212,7 +212,7 @@ namespace Hotel_and_Transport
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading accommodations: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error loading Rides: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
