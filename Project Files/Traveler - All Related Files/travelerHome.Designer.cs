@@ -90,7 +90,7 @@
             this.btnPrev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrev.Font = new System.Drawing.Font("Mongolian Baiti", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrev.ForeColor = System.Drawing.Color.GhostWhite;
-            this.btnPrev.Location = new System.Drawing.Point(943, 707);
+            this.btnPrev.Location = new System.Drawing.Point(855, 706);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(135, 58);
             this.btnPrev.TabIndex = 11;
@@ -120,7 +120,7 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNext.Font = new System.Drawing.Font("Mongolian Baiti", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.ForeColor = System.Drawing.Color.GhostWhite;
-            this.btnNext.Location = new System.Drawing.Point(1140, 707);
+            this.btnNext.Location = new System.Drawing.Point(1052, 706);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(135, 58);
             this.btnNext.TabIndex = 10;
@@ -144,7 +144,7 @@
             this.btnFilter.AllowDrop = true;
             this.btnFilter.Font = new System.Drawing.Font("Mongolian Baiti", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFilter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(63)))), ((int)(((byte)(63)))));
-            this.btnFilter.Location = new System.Drawing.Point(1047, 636);
+            this.btnFilter.Location = new System.Drawing.Point(959, 635);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(135, 41);
             this.btnFilter.TabIndex = 9;
@@ -301,7 +301,7 @@
             this.btnViewWishlist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewWishlist.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewWishlist.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnViewWishlist.Location = new System.Drawing.Point(838, 126);
+            this.btnViewWishlist.Location = new System.Drawing.Point(896, 127);
             this.btnViewWishlist.Name = "btnViewWishlist";
             this.btnViewWishlist.Size = new System.Drawing.Size(135, 52);
             this.btnViewWishlist.TabIndex = 1;
@@ -340,7 +340,7 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Lucida Fax", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btnLogin.Location = new System.Drawing.Point(901, 29);
+            this.btnLogin.Location = new System.Drawing.Point(959, 30);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(202, 68);
             this.btnLogin.TabIndex = 21;
@@ -416,7 +416,7 @@
             this.btnCustomTrip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCustomTrip.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCustomTrip.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCustomTrip.Location = new System.Drawing.Point(612, 126);
+            this.btnCustomTrip.Location = new System.Drawing.Point(670, 127);
             this.btnCustomTrip.Name = "btnCustomTrip";
             this.btnCustomTrip.Size = new System.Drawing.Size(185, 52);
             this.btnCustomTrip.TabIndex = 26;
@@ -434,7 +434,7 @@
             this.btnBookings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBookings.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBookings.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnBookings.Location = new System.Drawing.Point(1017, 126);
+            this.btnBookings.Location = new System.Drawing.Point(1075, 127);
             this.btnBookings.Name = "btnBookings";
             this.btnBookings.Size = new System.Drawing.Size(153, 52);
             this.btnBookings.TabIndex = 27;
@@ -452,7 +452,7 @@
             this.btnTravelHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTravelHistory.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTravelHistory.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnTravelHistory.Location = new System.Drawing.Point(1215, 126);
+            this.btnTravelHistory.Location = new System.Drawing.Point(1273, 127);
             this.btnTravelHistory.Name = "btnTravelHistory";
             this.btnTravelHistory.Size = new System.Drawing.Size(183, 52);
             this.btnTravelHistory.TabIndex = 28;
@@ -470,7 +470,7 @@
             this.btnProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProfile.Font = new System.Drawing.Font("Lucida Fax", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProfile.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btnProfile.Location = new System.Drawing.Point(673, 29);
+            this.btnProfile.Location = new System.Drawing.Point(731, 30);
             this.btnProfile.Name = "btnProfile";
             this.btnProfile.Size = new System.Drawing.Size(202, 68);
             this.btnProfile.TabIndex = 29;
@@ -509,7 +509,7 @@
             this.btnReviews.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReviews.Font = new System.Drawing.Font("Lucida Fax", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReviews.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.btnReviews.Location = new System.Drawing.Point(1131, 29);
+            this.btnReviews.Location = new System.Drawing.Point(1189, 30);
             this.btnReviews.Name = "btnReviews";
             this.btnReviews.Size = new System.Drawing.Size(202, 68);
             this.btnReviews.TabIndex = 33;

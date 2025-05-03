@@ -327,7 +327,38 @@ SET TravelerStatus = CASE ABS(CHECKSUM(NEWID())) % 3
 END;
 ---------------------------------------------------------------------------------------
 
+----- AABIAS QUERIES CHAPAFIED
 
+ALTER TABLE Accommodation
+ADD AccommodationStatus VARCHAR(20) CHECK (AccommodationStatus IN ('Pending', 'Approved', 'Rejected')) NOT NULL DEFAULT 'Pending';
+
+ALTER TABLE Ride
+ADD RideStatus VARCHAR(20) CHECK (RideStatus IN ('Pending', 'Approved', 'Rejected')) NOT NULL DEFAULT 'Pending';
+
+ALTER TABLE Activity
+ADD ActivityStatus VARCHAR(20) CHECK (ActivityStatus IN ('Pending', 'Approved', 'Rejected')) NOT NULL DEFAULT 'Pending';
+
+
+ALTER TABLE Activity
+ADD CurrentParticipants INT DEFAULT 0 NOT NULL;
+
+UPDATE a
+SET a.CurrentParticipants = COALESCE(
+    (SELECT SUM(DISTINCT CASE 
+        WHEN p.PackageID IS NOT NULL THEN p.GroupSize
+        WHEN ct.CustomTripID IS NOT NULL THEN ct.GroupSize
+        ELSE 0
+    END)
+     FROM Request r
+     LEFT JOIN Package p ON r.PackageID = p.PackageID
+     LEFT JOIN PackageActivities pa ON p.PackageID = pa.PackageID AND pa.ActivityID = a.ActivityID
+     LEFT JOIN CustomTrip ct ON r.CustomTripID = ct.CustomTripID
+     LEFT JOIN CustomTripActivities cta ON ct.CustomTripID = cta.CustomTripID AND cta.ActivityID = a.ActivityID
+     WHERE (pa.ActivityID IS NOT NULL OR cta.ActivityID IS NOT NULL)), 0)
+FROM Activity a;
+
+UPDATE Activity
+SET CapacityLimit = CapacityLimit + 40;
 
 
 -----------------------------------------------------------------------------------------
