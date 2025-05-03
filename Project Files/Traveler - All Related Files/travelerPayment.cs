@@ -208,11 +208,22 @@ namespace dbfinalproject_interfaces
                     string insertPass = @"
                     INSERT INTO DigitalPasses (BookingID, PassType, IssueDate, ExpiryDate, PassStatus)
                     VALUES (@BookingID, @PassType, @IssueDate, @ExpiryDate, 'Active');";
-    
-                    //calculate expiry date as preferred start + 20 days
-                    DateTime preferredStartDate = DateTime.Parse(PreferredStartDate);
+
+                    //   calculate expiry date as preferred start + 20 days
+
+                    //   DateTime preferredStartDate = DateTime.Parse(PreferredStartDate);
+
+                    DateTime preferredStartDate;
+                    string dateFormat = "yyyy-MM-dd";  //specify the exact format expected
+                    if (!DateTime.TryParseExact(PreferredStartDate, dateFormat, null, System.Globalization.DateTimeStyles.None, out preferredStartDate))
+                    {
+                        MessageBox.Show($"Preferred Start Date: {PreferredStartDate}");
+                        MessageBox.Show("Invalid date format for Preferred Start Date.");
+                        return;  //exit if the date format is incorrect
+                    }
                     DateTime expiryDate = preferredStartDate.AddDays(20);
                     DateTime now = DateTime.Now;  //get date and time
+
 
                     using (SqlCommand cmd = new SqlCommand(insertPass, conn, tran))
                     {
@@ -247,15 +258,15 @@ namespace dbfinalproject_interfaces
                     conn.Close();
 
                     this.Hide();
-                    travelerBookings booking = new travelerBookings(BookingID);
+                    travelerBookings booking = new travelerBookings(TravelerID);
                     booking.Show();
-                }
+            }
                 catch (Exception ex)
                 {
-                    tran.Rollback();
-                    MessageBox.Show("Error during payment: " + ex.Message);
-                }
+                tran.Rollback();
+                MessageBox.Show("Error during payment: " + ex.Message);
             }
+        }
         }
 
     }

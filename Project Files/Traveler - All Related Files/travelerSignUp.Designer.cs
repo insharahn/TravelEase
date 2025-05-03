@@ -323,7 +323,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(198)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(966, 1050);
             this.Controls.Add(this.btnShowPwd);
             this.Controls.Add(this.tableLayoutPanel1);

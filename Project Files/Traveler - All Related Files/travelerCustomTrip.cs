@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -139,6 +140,10 @@ namespace dbfinalproject_interfaces
 
         private void LoadActivitiesForDestination(int destinationID)
         {
+            //clear the old activities and mapping
+            clbActivities.Items.Clear();
+            activityMap.Clear();
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -147,7 +152,7 @@ namespace dbfinalproject_interfaces
                  SELECT A.ActivityID, A.ActivityName, A.StartTime, SP.ProviderName AS GuideName
                  FROM Activity A
                  INNER JOIN Guide G ON A.GuideID = G.GuideID
-                 INNER JOIN ServiceProvider SP on SP.ProviderId = G.GuideID 
+                 INNER JOIN ServiceProvider SP on SP.ProviderId = G.ProviderID 
                  WHERE SP.DestinationID = @destID
                  ";
 
@@ -368,6 +373,16 @@ namespace dbfinalproject_interfaces
             this.Hide();
             travelerBookings booking = new travelerBookings(TravelerID);
             booking.Show();
+        }
+
+        private void clbActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpPreferredStartDate_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

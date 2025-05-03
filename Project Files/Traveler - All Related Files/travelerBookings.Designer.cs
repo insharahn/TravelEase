@@ -52,6 +52,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Font = new System.Drawing.Font("Sitka Banner", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(38, 33);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -63,10 +64,10 @@
             this.tabPage1.Controls.Add(this.flpPendingBookings);
             this.tabPage1.Controls.Add(this.btnHome);
             this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Location = new System.Drawing.Point(4, 32);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1025, 534);
+            this.tabPage1.Size = new System.Drawing.Size(1025, 531);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Current Bookings";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -82,7 +83,7 @@
             this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHome.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnHome.Location = new System.Drawing.Point(841, 31);
+            this.btnHome.Location = new System.Drawing.Point(841, 29);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(135, 52);
             this.btnHome.TabIndex = 4;
@@ -102,16 +103,17 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tabPage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.flpConfirmedBookings);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Location = new System.Drawing.Point(4, 32);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1025, 534);
+            this.tabPage2.Size = new System.Drawing.Size(1025, 531);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Confirmed Bookings";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // flpConfirmedBookings
             // 
@@ -137,10 +139,10 @@
             this.tabPage3.Controls.Add(this.button2);
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.flpTravelHistory);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Location = new System.Drawing.Point(4, 32);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1025, 534);
+            this.tabPage3.Size = new System.Drawing.Size(1025, 531);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Travel History";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -184,7 +186,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Location = new System.Drawing.Point(835, 32);
+            this.button1.Location = new System.Drawing.Point(835, 30);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(135, 52);
             this.button1.TabIndex = 5;
@@ -203,7 +205,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Location = new System.Drawing.Point(833, 31);
+            this.button2.Location = new System.Drawing.Point(833, 29);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(135, 52);
             this.button2.TabIndex = 5;
@@ -215,6 +217,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(198)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1105, 603);
             this.Controls.Add(this.tabControl1);
             this.Name = "travelerBookings";

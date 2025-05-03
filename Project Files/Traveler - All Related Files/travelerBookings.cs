@@ -119,9 +119,13 @@ namespace dbfinalproject_interfaces
                     };
 
                     string destination = $"{row["CityName"]}, {row["CountryName"]}";
-                    string startDate = row["PreferredStartDate"] == DBNull.Value ? "" :
-                                       $"Start Date: {Convert.ToDateTime(row["PreferredStartDate"]).ToShortDateString()}";
                     string cost = $"Total Cost: ${Convert.ToDecimal(row["TotalCost"]):0.00}";
+                    //string startDate = row["PreferredStartDate"] == DBNull.Value ? "" :
+                    //                  $"Start Date: {Convert.ToDateTime(row["PreferredStartDate"]).ToShortDateString()}";
+                    string startDate = row["PreferredStartDate"] == DBNull.Value ? "" :
+                   $"Start Date: {((DateTime)row["PreferredStartDate"]).ToString("yyyy-MM-dd")}";
+
+
 
 
                     Label lblTitle = new Label
@@ -323,7 +327,7 @@ namespace dbfinalproject_interfaces
                         }
                     }
                     else if (lbl.Text.StartsWith("Start Date:")) //date
-                        date = lbl.Text.Replace("Start Date: ", "").Trim();
+                        date = lbl.Text.Replace("Start Date: ", "").Trim();  //in yyyy-MM-dd format
                     else if (lbl.Text.StartsWith("Total Cost:")) //cost
                         cost = double.Parse(lbl.Text.Replace("Total Cost: $", ""));
                 }
@@ -582,14 +586,23 @@ namespace dbfinalproject_interfaces
                     Tag = row["BookingID"]
                 };
 
-                // Optional: Add btnReview.Click += event handler
+                btnReview.Click += BtnReview_Click; //event handler for when the the button is clicked
                 panel.Controls.Add(btnReview);
             }
 
             return panel;
         }
 
+        private void BtnReview_Click(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            int bookingID = Convert.ToInt32(btn.Tag);
 
+            //open the review form — pass TravelerID and BookingID
+            this.Hide();
+            travelerReview reviewForm = new travelerReview(TravelerID);
+            reviewForm.Show();
+        }
 
 
 

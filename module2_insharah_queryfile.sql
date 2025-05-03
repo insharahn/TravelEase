@@ -310,6 +310,26 @@ set PreferredStartDate = '2025-08-12'
 ALTER COLUMN PreferredStartDate DATE NOT NULL;
 
 
+---------------------------------------------------------------------------------------
+-- ADD STATUS TO TRAVELER 
+ALTER TABLE Traveler
+ADD TravelerStatus VARCHAR(20) NOT NULL DEFAULT 'Pending';
+-- ADD CHECK CONSTRAINT
+ALTER TABLE Traveler
+ADD CONSTRAINT CK_Traveler_TravelerStatus
+CHECK (TravelerStatus IN ('Approved', 'Pending', 'Rejected')); 
+----- ASSIGN RANDOM VALUES
+UPDATE Traveler
+SET TravelerStatus = CASE ABS(CHECKSUM(NEWID())) % 3
+    WHEN 0 THEN 'Approved'
+    WHEN 1 THEN 'Pending'
+    ELSE 'Rejected'
+END;
+---------------------------------------------------------------------------------------
+
+
+
+
 -----------------------------------------------------------------------------------------
 -- MY USELESS QUERIES FOR WHEN I WAS MAKING FORMS
 ---- EVERYTHING BELOW RTHIS IS USELESS
@@ -661,11 +681,120 @@ select * from Payment
 
 select * from Review
 
+sp_help Review
+
 select * from Traveler
 
-sp_help Request
+SELECT a.AccomodationID, sp.ProviderName
+FROM Booking b
+INNER JOIN Request r ON b.RequestID = r.RequestID
+INNER JOIN Payment pay ON pay.BookingID = b.BookingID
+INNER JOIN Package p ON r.PackageID = p.PackageID
+INNER JOIN Accommodation a ON p.AccommodationID = a.AccomodationID
+INNER JOIN Hotel h ON h.HotelID = a.HotelID
+INNER JOIN ServiceProvider sp ON sp.ProviderId = h.ProviderID
+WHERE r.TripSourceType = 'Package'
+  AND b.BookingStatus = 'Confirmed'
+  AND r.PreferredStartDate < GETDATE()
+  AND pay.PaymentStatus = 'Success' --paid, confirmed, in the past -> reviewable
+  AND r.TravelerID = 26 -- thomas_n Quest$567
 
-select * from request where PreferredStartDate IS NULL
-update Request
-set PreferredStartDate = '2025-08-12'
- where PreferredStartDate IS NULL
+
+SELECT a.AccomodationID, sp.ProviderName
+FROM Booking b
+INNER JOIN Request r ON b.RequestID = r.RequestID
+INNER JOIN Payment pay ON pay.BookingID = b.BookingID
+INNER JOIN CustomTrip c ON r.CustomTripID = c.CustomTripID
+INNER JOIN Accommodation a ON c.AccommodationID = a.AccomodationID
+INNER JOIN Hotel h ON h.HotelID = a.HotelID
+INNER JOIN ServiceProvider sp ON sp.ProviderId = h.ProviderID
+WHERE r.TripSourceType = 'Custom'
+  AND b.BookingStatus = 'Confirmed'
+  AND r.PreferredStartDate < GETDATE()
+  AND pay.PaymentStatus = 'Success' --paid, confirmed, in the past -> reviewable
+  AND r.TravelerID = 26 -- thomas_n Quest$567
+
+
+SELECT o.OperatorID, o.CompanyName
+FROM Booking b
+INNER JOIN Request r ON b.RequestID = r.RequestID
+INNER JOIN Payment pay ON pay.BookingID = b.BookingID
+INNER JOIN Operator o ON r.OperatorID = o.OperatorID
+WHERE b.BookingStatus = 'Confirmed'
+  AND r.PreferredStartDate < GETDATE()
+  AND pay.PaymentStatus = 'Success' --paid, confirmed, in the past -> reviewable
+  AND r.TravelerID = 26 -- thomas_n Quest$567
+
+   SELECT r.RideID, sp.ProviderName
+        FROM Booking b
+        INNER JOIN Request req ON b.RequestID = req.RequestID
+        INNER JOIN Payment pay ON pay.BookingID = b.BookingID
+        LEFT JOIN CustomTrip c ON req.CustomTripID = c.CustomTripID
+        LEFT JOIN Package p ON req.PackageID = p.PackageID
+        INNER JOIN Ride r ON r.RideID = ISNULL(c.RideID, p.RideID)
+		INNER JOIN TransportService t ON t.TransportID = r.TransportID
+        INNER JOIN ServiceProvider sp ON sp.ProviderId = t.ProviderID
+        WHERE b.BookingStatus = 'Confirmed'
+          AND req.PreferredStartDate < GETDATE()
+          AND pay.PaymentStatus = 'Success'
+          AND req.TravelerID = 26
+
+ 
+   SELECT g.GuideID, sp.ProviderName
+        FROM Booking b
+        INNER JOIN Request req ON b.RequestID = req.RequestID
+		INNER JOIN CustomTrip c ON req.CustomTripID = c.CustomTripID
+		INNER JOIN CustomTripActivities cta ON cta.CustomTripID = c.CustomTripID
+		INNER JOIN Activity a ON a.ActivityID = cta.ActivityID
+		INNER JOIN Guide g ON g.GuideID = a.GuideID
+		INNER JOIN ServiceProvider sp ON sp.ProviderId = g.ProviderID
+		INNER JOIN Payment p ON p.BookingID = b.BookingID
+		WHERE req.TripSourceType = 'Custom' AND p.PaymentStatus = 'Success' AND b.BookingStatus = 'Confirmed' AND req.PreferredStartDate < GETDATE()
+
+
+		  SELECT DISTINCT g.GuideID, sp.ProviderName
+ FROM Booking b
+ INNER JOIN Request req ON b.RequestID = req.RequestID
+ INNER JOIN Package pack ON req.PackageID = pack.PackageID
+ INNER JOIN PackageActivities pa ON pa.PackageID = pack.PackageID
+ INNER JOIN Activity a ON a.ActivityID = pa.ActivityID
+ INNER JOIN Guide g ON g.GuideID = a.GuideID
+ INNER JOIN ServiceProvider sp ON sp.ProviderId = g.ProviderID
+ INNER JOIN Payment p ON p.BookingID = b.BookingID
+ WHERE req.TripSourceType = 'Package' 
+   AND p.PaymentStatus = 'Success'
+   AND b.BookingStatus = 'Confirmed'
+   AND req.PreferredStartDate < GETDATE()
+   AND req.TravelerID = 26
+
+
+   SELECT r.Rating, r.Comment, r.ReviewDate,
+    ISNULL(spAccommodation.ProviderName, 
+        ISNULL(spRide.ProviderName,
+            ISNULL(spGuide.ProviderName, o.CompanyName))) AS ReviewTarget
+FROM Review r
+LEFT JOIN Accommodation a ON r.AccommodationID = a.AccomodationID
+LEFT JOIN Hotel h ON a.HotelID = h.HotelID
+LEFT JOIN ServiceProvider spAccommodation ON spAccommodation.ProviderId = h.ProviderID
+
+LEFT JOIN Ride ride ON r.RideID = ride.RideID
+LEFT JOIN TransportService ts ON ride.TransportID = ts.TransportID
+LEFT JOIN ServiceProvider spRide ON spRide.ProviderId = ts.ProviderID
+
+LEFT JOIN Guide g ON r.GuideID = g.GuideID
+LEFT JOIN ServiceProvider spGuide ON spGuide.ProviderId = g.ProviderID
+
+LEFT JOIN Operator o ON r.OperatorID = o.OperatorID
+
+WHERE r.TravelerID = 1 AND r.ModerationStatus = 'Approved'
+ORDER BY r.ReviewDate DESC
+
+select * from Review
+UPDATE Review
+SET ModerationStatus = 'Approved'
+WHERE ReviewID > 51
+
+select * from TransportService
+select * from Ride
+
+select * from Traveler

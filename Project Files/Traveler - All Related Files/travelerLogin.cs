@@ -56,7 +56,7 @@ namespace dbfinalproject_interfaces
             if (!string.IsNullOrWhiteSpace(email) && string.IsNullOrWhiteSpace(username))
             {
                 //email login
-                querycheck = "SELECT * FROM Traveler WHERE Email = @email AND Password = @password";
+                querycheck = "SELECT * FROM Traveler WHERE Email = @email AND Password = @password AND TravelerStatus = 'Approved'";
                 cmd.CommandText = querycheck;
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@password", password);
@@ -64,7 +64,7 @@ namespace dbfinalproject_interfaces
             else if (!string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(email))
             {
                 //username login
-                querycheck = "SELECT * FROM Traveler WHERE Username = @username AND Password = @password";
+                querycheck = "SELECT * FROM Traveler WHERE Username = @username AND Password = @password AND TravelerStatus = 'Approved'";
                 cmd.CommandText = querycheck;
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@password", password);
@@ -72,7 +72,7 @@ namespace dbfinalproject_interfaces
             else if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(email))
             {
                 //username + email login
-                querycheck = "SELECT * FROM Traveler WHERE Username = @username AND Email = @email AND Password = @password";
+                querycheck = "SELECT * FROM Traveler WHERE Username = @username AND Email = @email AND Password = @password AND TravelerStatus = 'Approved'";
                 cmd.CommandText = querycheck;
                 cmd.Parameters.AddWithValue("@username", username);
                 cmd.Parameters.AddWithValue("@email", email);
@@ -100,7 +100,29 @@ namespace dbfinalproject_interfaces
             }
             else //fail
             {
-                MessageBox.Show("Invalid login credentials.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //check if user exists but not approved
+                string statusQuery = "SELECT TravelerStatus FROM Traveler WHERE " +
+                                     (!string.IsNullOrWhiteSpace(email) && string.IsNullOrWhiteSpace(username)
+                                         ? "Email = @email"
+                                         : !string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(email)
+                                             ? "Username = @username"
+                                             : "Email = @email AND Username = @username");
+
+                SqlCommand statusCmd = new SqlCommand(statusQuery, con);
+                foreach (SqlParameter p in cmd.Parameters)
+                    statusCmd.Parameters.AddWithValue(p.ParameterName, p.Value);
+
+                object statusObj = statusCmd.ExecuteScalar();
+                if (statusObj != null && statusObj != DBNull.Value)
+                {
+                    string status = statusObj.ToString();
+                    MessageBox.Show($"Login blocked: Your account is currently '{status}'.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Invalid login credentials.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
                 txtUsername.Clear();
                 txtEmail.Clear();
                 txtPassword.Clear();

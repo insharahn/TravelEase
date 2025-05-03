@@ -32,6 +32,8 @@ namespace dbfinalproject_interfaces
         string currentTripType = null;
         int? currentSusScore = null;
         List<string> selectedAccessibilities = new List<string>();
+        List<string> selectedActivities = new List<string>();
+        string currentOperator = null;
 
         public travelerHome()
         {
@@ -47,37 +49,10 @@ namespace dbfinalproject_interfaces
         //load packages w/ or w/out filters every time homepage loads
         private void LoadPackages(string keyword = "", int minBudget = 0, int maxBudget = 100000,
                                     int? duration = null, int? groupSize = null, int? sustainabiltyScore = 0, 
-                                    string tripType = null, List<string> accessibilities = null)
+                                    string tripType = null, List<string> accessibilities = null, string cOperator = null,
+                                    List<string> selectedActivities = null)
         {
             flowLayoutPackages.Controls.Clear();
-
-            ////main query to get all package information + apply filters + load 10 packages per "page"
-            //string packageQuery = @"
-            //SELECT 
-            //    p.*, 
-            //    sp_accom.ProviderName AS AccommodationProvider,
-            //    sp_transport.ProviderName AS TransportProvider,
-            //    l.CityName,
-            //    l.CountryName
-            //FROM Package p
-            //INNER JOIN Accommodation ac ON p.AccommodationID = ac.AccomodationID
-            //INNER JOIN Hotel h ON ac.HotelID = h.HotelID
-            //INNER JOIN ServiceProvider sp_accom ON h.ProviderID = sp_accom.ProviderId
-            //INNER JOIN Ride r on r.RideID = p.RideID
-            //INNER JOIN TransportService ts ON r.RideID = ts.TransportID
-            //INNER JOIN ServiceProvider sp_transport ON ts.ProviderID = sp_transport.ProviderId
-            //INNER JOIN Destination d ON p.DestinationID = d.DestinationID
-            //INNER JOIN Location l ON d.LocationID = l.LocationID
-            //WHERE 
-            //    (@Keyword = '' OR p.Title LIKE '%' + @Keyword + '%' OR l.CityName LIKE '%' + @Keyword + '%' OR  l.CountryName LIKE '%' + @Keyword + '%')
-            //    AND p.BasePrice BETWEEN @MinBudget AND @MaxBudget
-            //    AND (@Duration IS NULL OR (p.Duration = @Duration OR (@Duration = 10 AND p.Duration >= 10)))
-            //    AND (@GroupSize IS NULL OR (p.GroupSize = @GroupSize OR (@GroupSize = 20 AND p.GroupSize >= 20)))
-            //    AND (@TripType IS NULL OR p.TripType = @TripType)
-            //    AND (@SustainabilityScore IS NULL OR p.SustainabilityScore = @SustainabilityScore)
-            //ORDER BY p.PackageID
-            //OFFSET (@PageNumber * @PageSize) ROWS FETCH NEXT @PageSize ROWS ONLY;
-            //";
 
             //main query to get all package information + apply filters + load 10 packages per "page"
             string packageQuery = @"
@@ -96,6 +71,7 @@ namespace dbfinalproject_interfaces
             INNER JOIN ServiceProvider sp_transport ON ts.ProviderID = sp_transport.ProviderId
             INNER JOIN Destination d ON p.DestinationID = d.DestinationID
             INNER JOIN Location l ON d.LocationID = l.LocationID
+            INNER JOIN Operator o ON p.OperatorID = o.OperatorID
             WHERE 
                 (@Keyword = '' OR p.Title LIKE '%' + @Keyword + '%' OR l.CityName LIKE '%' + @Keyword + '%' OR l.CountryName LIKE '%' + @Keyword + '%')
                 AND p.BasePrice BETWEEN @MinBudget AND @MaxBudget
@@ -103,6 +79,17 @@ namespace dbfinalproject_interfaces
                 AND (@GroupSize IS NULL OR (p.GroupSize = @GroupSize OR (@GroupSize = 20 AND p.GroupSize >= 20)))
                 AND (@TripType IS NULL OR p.TripType = @TripType)
                 AND (@SustainabilityScore IS NULL OR p.SustainabilityScore = @SustainabilityScore)
+                AND (@Operator IS NULL OR o.CompanyName = @Operator)
+                AND (
+                    @ActivityCount = 0 OR p.PackageID IN (
+                        SELECT pa.PackageID
+                        FROM PackageActivities pa
+                        INNER JOIN Activity a ON a.ActivityID = pa.ActivityID
+                        WHERE a.ActivityName IN (/* dynamically inserted activity list */)
+                        GROUP BY pa.PackageID
+                        HAVING COUNT(DISTINCT a.ActivityName) = @ActivityCount
+                    )
+                )
                 AND (
                     @AccessibilityCount = 0 OR p.PackageID IN (
                         SELECT acc.PackageID
@@ -168,6 +155,18 @@ namespace dbfinalproject_interfaces
                 packageQuery = packageQuery.Replace("/* dynamically inserted param list */", placeholder);
             }
 
+            //get the activities the same way
+            if (selectedActivities == null || selectedActivities.Count == 0)
+            {
+                packageQuery = packageQuery.Replace("/* dynamically inserted activity list */", "NULL");
+            }
+            else
+            {
+                string activityParams = string.Join(", ", selectedActivities.Select((_, index) => $"@Activity{index}"));
+                packageQuery = packageQuery.Replace("/* dynamically inserted activity list */", activityParams);
+            }
+
+
             //fill the packages
             using (SqlCommand cmd = new SqlCommand(activitiesQuery, con))
             {
@@ -215,6 +214,14 @@ namespace dbfinalproject_interfaces
                     for (int i = 0; i < accessibilities.Count; i++) //add in
                         cmd.Parameters.AddWithValue($"@Accessibility{i}", accessibilities[i]);
                 }
+                cmd.Parameters.AddWithValue("@Operator", (object)cOperator ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ActivityCount", selectedActivities?.Count ?? 0);
+                if (selectedActivities != null)
+                {
+                    for (int i = 0; i < selectedActivities.Count; i++)
+                        cmd.Parameters.AddWithValue($"@Activity{i}", selectedActivities[i]);
+                }
+
 
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
@@ -256,13 +263,16 @@ namespace dbfinalproject_interfaces
 
         private void travelerHome_Load(object sender, EventArgs e)
         {
-            LoadPackages(currentKeyword, currentMinBudget, currentMaxBudget, currentDuration, currentGroupSize, currentSusScore, currentTripType, selectedAccessibilities);
+            LoadPackages(currentKeyword, currentMinBudget, currentMaxBudget, currentDuration, currentGroupSize, currentSusScore, currentTripType, selectedAccessibilities, currentOperator, selectedActivities);
+
+            PopulateOperatorComboBox(); //fill operator based on existing values
 
             //default = any
             cmbDuration.SelectedIndex = 0;
             cmbGroupSize.SelectedIndex = 0;
             cmbTripType.SelectedIndex = 0;
-            cmbTripType.SelectedIndex = 0;
+            cmbSusScore.SelectedIndex = 0;
+
         }
 
         private void flowLayoutPackages_Paint(object sender, PaintEventArgs e)
@@ -361,23 +371,35 @@ namespace dbfinalproject_interfaces
                 selectedAccessibilities.Add(item.ToString());
             }
 
+            //operator
+            currentOperator = null;
+            if (cmbOperator.SelectedItem != null && cmbOperator.SelectedItem.ToString() != "Any")
+                currentOperator = cmbOperator.SelectedItem.ToString();
+
+            //activities
+            selectedActivities.Clear();
+            foreach (object item in clbActivities.CheckedItems)
+            {
+                selectedActivities.Add(item.ToString());
+            }
+
 
             //reload with valid filters
             currentPage = 0;
-            LoadPackages(currentKeyword, currentMinBudget, currentMaxBudget, currentDuration, currentGroupSize, currentSusScore, currentTripType, selectedAccessibilities);
+            LoadPackages(currentKeyword, currentMinBudget, currentMaxBudget, currentDuration, currentGroupSize, currentSusScore, currentTripType, selectedAccessibilities, currentOperator, selectedActivities);
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
             currentPage++;
-            LoadPackages(currentKeyword, currentMinBudget, currentMaxBudget, currentDuration, currentGroupSize, currentSusScore, currentTripType, selectedAccessibilities);
+            LoadPackages(currentKeyword, currentMinBudget, currentMaxBudget, currentDuration, currentGroupSize, currentSusScore, currentTripType, selectedAccessibilities, currentOperator, selectedActivities);
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
             if (currentPage > 0)
                 currentPage--;
-            LoadPackages(currentKeyword, currentMinBudget, currentMaxBudget, currentDuration, currentGroupSize, currentSusScore, currentTripType, selectedAccessibilities);
+            LoadPackages(currentKeyword, currentMinBudget, currentMaxBudget, currentDuration, currentGroupSize, currentSusScore, currentTripType, selectedAccessibilities, currentOperator, selectedActivities);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -413,6 +435,48 @@ namespace dbfinalproject_interfaces
             travelerBookings booking = new travelerBookings(TravelerID);
             booking.OpenTab(2); //third tab is travel history
             booking.Show();
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            travelerUpdateProfile profile = new travelerUpdateProfile(TravelerID);
+            profile.Show();
+        }
+
+        void PopulateOperatorComboBox() //populate operator with actual values
+        {
+            cmbOperator.Items.Clear();
+            cmbOperator.Items.Add("Any"); // default
+
+            using (SqlCommand cmd = new SqlCommand("SELECT CompanyName FROM Operator", con))
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        cmbOperator.Items.Add(reader.GetString(0));
+                    }
+                }
+            }
+
+            cmbOperator.SelectedIndex = 0;
+        }
+
+        private void cmbOperator_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReviews_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            travelerReview review = new travelerReview(TravelerID);
+            review.OpenTab(4); //open reviews directly
+            review.Show();
         }
     }
 }

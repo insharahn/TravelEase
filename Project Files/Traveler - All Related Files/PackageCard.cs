@@ -62,7 +62,7 @@ namespace dbfinalproject_interfaces
                 INSERT INTO Request 
                 (OperatorID, TravelerID, TripSourceType, PackageID, CustomTripID, DateRequested, RequestStatus, PreferredStartDate, AccomodationPaidStatus, RidePaidStatus, ActivityPaidStatus)
                 VALUES 
-                (@OperatorID, @TravelerID, 'Package', @PackageID, NULL, GETDATE(), 'Pending', NULL, 'Unpaid', 'Unpaid', 'Unpaid')";
+                (@OperatorID, @TravelerID, 'Package', @PackageID, NULL, GETDATE(), 'Pending', DATEADD(MONTH, 2, GETDATE()), 'Unpaid', 'Unpaid', 'Unpaid')";
 
                 SqlCommand cmd = new SqlCommand(query, con);
 
