@@ -268,6 +268,46 @@ BEGIN
 END;
 -----------------------------------------------------------------------------------------
 
+---------------------------------------------------------------------------------------------------------------------------
+----------------------------------- ZARA'S QUERY FOR PACKAGES: INCLUDING OPERATOR------------------------------------
+  ALTER TABLE Package
+  ADD OperatorID INT NULL;
+
+  ALTER TABLE Package
+  ADD CONSTRAINT FK_Package_Operator
+    FOREIGN KEY (OperatorID) REFERENCES Operator(OperatorID);
+
+  WITH RandomPick AS (
+  SELECT
+    p.PackageID,
+    o.OperatorID,
+    ROW_NUMBER() OVER (
+      PARTITION BY p.PackageID 
+      ORDER BY NEWID()
+    ) AS rn
+  FROM dbo.Package AS p
+  CROSS JOIN dbo.[Operator] AS o
+)
+
+UPDATE p
+SET p.OperatorID = rp.OperatorID
+FROM dbo.Package AS p
+JOIN RandomPick AS rp
+  ON p.PackageID = rp.PackageID
+WHERE rp.rn = 1
+   -- remove this line if you want to overwrite existing values
+-----------------------------------------------------------------------------------------------------
+
+----------------------------- EXTREMELY IMPORTANT----------------------------------------------------
+------------------ PREF START DATE CANT BE NUKL-------------------------------------------
+
+select * from request where PreferredStartDate IS NULL
+update Request
+set PreferredStartDate = '2025-08-12'
+ where PreferredStartDate IS NULL
+ --------------------------------------------------------------------------------------------------------
+ ALTER TABLE Request
+ALTER COLUMN PreferredStartDate DATE NOT NULL;
 
 
 -----------------------------------------------------------------------------------------
@@ -356,6 +396,11 @@ select * from package
 select * from Request
 
 select *  from Package
+select OperatorID, CompanyName FROM Operator
+
+select * from Package p
+inner join Operator o on p.OperatorID = o.OperatorID
+where o.CompanyName = --whatever was picked
 
 select * from Accommodation
 select * from Hotel
@@ -609,3 +654,18 @@ select * from Traveler where TravelerID = 26
 SELECT PassType, ExpiryDate 
 FROM DigitalPasses 
 WHERE BookingID = 2
+
+
+select * from Booking
+select * from Payment
+
+select * from Review
+
+select * from Traveler
+
+sp_help Request
+
+select * from request where PreferredStartDate IS NULL
+update Request
+set PreferredStartDate = '2025-08-12'
+ where PreferredStartDate IS NULL
