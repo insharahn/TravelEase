@@ -117,4 +117,31 @@ INSERT INTO Review (TravelerID, AccommodationID, OperatorID, GuideID, RideID, Ra
 (49, NULL, NULL, NULL, 40, 3, 'Average ride experience.', '2024-12-05 15:30:00', 'Pending'),
 (50, NULL, NULL, NULL, 45, 5, 'Fantastic transportation service!', '2025-01-20 09:40:00', 'Approved');
 
+----------------------------------------
+-- Updated Activity Table
+----------------------------------------
+--- add currentParticipants, calculate the total from tables and update capacity to +40
+
+ALTER TABLE Activity
+ADD CurrentParticipants INT DEFAULT 0 NOT NULL;
+
+UPDATE a
+SET a.CurrentParticipants = COALESCE(
+    (SELECT SUM(DISTINCT CASE 
+        WHEN p.PackageID IS NOT NULL THEN p.GroupSize
+        WHEN ct.CustomTripID IS NOT NULL THEN ct.GroupSize
+        ELSE 0
+    END)
+     FROM Request r
+     LEFT JOIN Package p ON r.PackageID = p.PackageID
+     LEFT JOIN PackageActivities pa ON p.PackageID = pa.PackageID AND pa.ActivityID = a.ActivityID
+     LEFT JOIN CustomTrip ct ON r.CustomTripID = ct.CustomTripID
+     LEFT JOIN CustomTripActivities cta ON ct.CustomTripID = cta.CustomTripID AND cta.ActivityID = a.ActivityID
+     WHERE (pa.ActivityID IS NOT NULL OR cta.ActivityID IS NOT NULL)), 0)
+FROM Activity a;
+
+UPDATE Activity
+SET CapacityLimit = CapacityLimit + 40;
+
+
 
