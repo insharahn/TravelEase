@@ -266,6 +266,8 @@ namespace dbfinalproject_interfaces
             LoadPackages(currentKeyword, currentMinBudget, currentMaxBudget, currentDuration, currentGroupSize, currentSusScore, currentTripType, selectedAccessibilities, currentOperator, selectedActivities);
 
             PopulateOperatorComboBox(); //fill operator based on existing values
+            PopulateTripTypeComboBox(); //do the same for trip tupe
+
 
             //default = any
             cmbDuration.SelectedIndex = 0;
@@ -444,26 +446,61 @@ namespace dbfinalproject_interfaces
             profile.Show();
         }
 
+        private void PopulateTripTypeComboBox()
+        {
+            cmbTripType.Items.Clear();
+            cmbTripType.Items.Add("Any"); //default option
+
+            try
+            {
+                if (con.State != ConnectionState.Open)
+                    con.Open();
+
+                using (SqlCommand cmd = new SqlCommand("SELECT DISTINCT TripType FROM Package WHERE TripType IS NOT NULL", con))
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        cmbTripType.Items.Add(reader.GetString(0).Trim());
+                    }
+                }
+
+                cmbTripType.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading trip types: " + ex.Message);
+            }
+        }
+
+
         void PopulateOperatorComboBox() //populate operator with actual values
         {
             cmbOperator.Items.Clear();
             cmbOperator.Items.Add("Any"); // default
 
-            using (SqlCommand cmd = new SqlCommand("SELECT CompanyName FROM Operator", con))
+            try
             {
-                if (con.State != ConnectionState.Open)
-                    con.Open();
-
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand("SELECT CompanyName FROM Operator", con))
                 {
-                    while (reader.Read())
+                    if (con.State != ConnectionState.Open)
+                        con.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmbOperator.Items.Add(reader.GetString(0));
+                        while (reader.Read())
+                        {
+                            cmbOperator.Items.Add(reader.GetString(0));
+                        }
                     }
                 }
-            }
 
-            cmbOperator.SelectedIndex = 0;
+                cmbOperator.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading operators: " + ex.Message);
+            }
         }
 
         private void cmbOperator_SelectedIndexChanged(object sender, EventArgs e)
@@ -477,6 +514,11 @@ namespace dbfinalproject_interfaces
             travelerReview review = new travelerReview(TravelerID);
             review.OpenTab(4); //open reviews directly
             review.Show();
+        }
+
+        private void cmbTripType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

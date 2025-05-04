@@ -81,13 +81,6 @@
             // 
             this.cmbTripType.Font = new System.Drawing.Font("Bell MT", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTripType.FormattingEnabled = true;
-            this.cmbTripType.Items.AddRange(new object[] {
-            "Adventure",
-            "Business",
-            "Cultural",
-            "Education",
-            "Leisure",
-            "Spiritual/Religious"});
             this.cmbTripType.Location = new System.Drawing.Point(91, 344);
             this.cmbTripType.Name = "cmbTripType";
             this.cmbTripType.Size = new System.Drawing.Size(258, 30);

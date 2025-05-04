@@ -100,32 +100,49 @@ namespace dbfinalproject_interfaces
             }
             else //fail
             {
-                //check if user exists but not approved
-                string statusQuery = "SELECT TravelerStatus FROM Traveler WHERE " +
-                                     (!string.IsNullOrWhiteSpace(email) && string.IsNullOrWhiteSpace(username)
-                                         ? "Email = @email"
-                                         : !string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(email)
-                                             ? "Username = @username"
-                                             : "Email = @email AND Username = @username");
+                //check if user exists and verify the credentials first
+                string loginQuery = "SELECT TravelerStatus FROM Traveler WHERE " +
+                                    (!string.IsNullOrWhiteSpace(email) && string.IsNullOrWhiteSpace(username)
+                                        ? "Email = @email AND Password = @password"
+                                        : !string.IsNullOrWhiteSpace(username) && string.IsNullOrWhiteSpace(email)
+                                            ? "Username = @username AND Password = @password"
+                                            : "Email = @email AND Username = @username AND Password = @password");
 
-                SqlCommand statusCmd = new SqlCommand(statusQuery, con);
+                SqlCommand loginCmd = new SqlCommand(loginQuery, con);
                 foreach (SqlParameter p in cmd.Parameters)
-                    statusCmd.Parameters.AddWithValue(p.ParameterName, p.Value);
+                    loginCmd.Parameters.AddWithValue(p.ParameterName, p.Value);
 
-                object statusObj = statusCmd.ExecuteScalar();
-                if (statusObj != null && statusObj != DBNull.Value)
-                {
-                    string status = statusObj.ToString();
-                    MessageBox.Show($"Login blocked: Your account is currently '{status}'.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
+                object loginResult = loginCmd.ExecuteScalar();
+
+                if (loginResult == null) //invalid login credentials
                 {
                     MessageBox.Show("Invalid login credentials.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                else
+                {
+                    //if credentials are valid, check account status
+                    string status = loginResult.ToString();
+                    if (status == "Approved")
+                    {
+                        //proceed with login
+                        int travelerId = Convert.ToInt32(dt.Rows[0]["TravelerID"]); //get traveler id
+                        this.Hide();
+                        travelerHome home = new travelerHome();
+                        home.TravelerID = travelerId; //set
+                        home.Show();
+                    }
+                    else
+                    {
+                        //account exists but isn't approved
+                        MessageBox.Show($"Login blocked: Your account is currently '{status}'.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
 
+                //clear fields after attempt to log in
                 txtUsername.Clear();
                 txtEmail.Clear();
                 txtPassword.Clear();
+                
             }
 
             con.Close();

@@ -36,7 +36,7 @@ namespace dbfinalproject_interfaces
         {
             lblSustainabilityScore.Text = "?"; //set sus score
 
-            //populate data for destination
+            //populate data for destination and trip tupe
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
@@ -62,9 +62,27 @@ namespace dbfinalproject_interfaces
                 cmbAccommodation.SelectedIndexChanged += AccommodationOrRide_Changed; //accommodation changed, sustainabilty score changes
                 cmbRide.SelectedIndexChanged += AccommodationOrRide_Changed; //ride changed, sustainabilty score changes
 
+                reader.Close();
+
+                //populate trip type combo box from package table
+                string tripTypeQuery = "SELECT DISTINCT TripType FROM Package WHERE TripType IS NOT NULL";
+                SqlCommand tripTypeCmd = new SqlCommand(tripTypeQuery, conn);
+                SqlDataReader tripTypeReader = tripTypeCmd.ExecuteReader();
+
+                List<string> tripTypes = new List<string>();
+                while (tripTypeReader.Read())
+                {
+                    tripTypes.Add(tripTypeReader.GetString(0));
+                }
+                tripTypeReader.Close(); //make sure to close the reader before the next command
+
+                cmbTripType.DataSource = tripTypes;
 
                 conn.Close();
             }
+
+
+            cmbDestination.SelectedIndex = 1; //select by default
         }
 
         //detination chosen, load accommodations
@@ -270,15 +288,43 @@ namespace dbfinalproject_interfaces
                     return;
                 }
 
+                //validate dropdowns first
+                if (cmbDestination.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a destination.");
+                    return;
+                }
+                if (cmbTripType.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a trip type.");
+                    return;
+                }
+                if (cmbGroupSize.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a group size.");
+                    return;
+                }
+                if (cmbDuration.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a duration.");
+                    return;
+                }
+
+
                 //---------------- CUSTOM TRIP INSERTION------------------
                 //get the values
                 int destinationId = ((KeyValuePair<int, string>)cmbDestination.SelectedItem).Key;
-                int accommodationId = ((KeyValuePair<int, string>)cmbAccommodation.SelectedItem).Key;
-                int rideId = ((KeyValuePair<int, string>)cmbRide.SelectedItem).Key;
+                // int accommodationId = ((KeyValuePair<int, string>)cmbAccommodation.SelectedItem).Key;
+                //  int rideId = ((KeyValuePair<int, string>)cmbRide.SelectedItem).Key;
+
+                int accommodationId = (int)cmbAccommodation.SelectedValue;
+                int rideId = (int)cmbRide.SelectedValue;
                 int groupSize = Convert.ToInt32(cmbGroupSize.SelectedItem);
                 int duration = Convert.ToInt32(cmbDuration.SelectedItem);
                 string tripType = cmbTripType.SelectedItem?.ToString();
-                int sustainabilityScore = int.Parse(lblSustainabilityScore.Text);
+                int sustainabilityScore = 3; // default
+                if (!int.TryParse(lblSustainabilityScore.Text, out sustainabilityScore))
+                    sustainabilityScore = 3; // allback to default
                 string capacityType = groupSize == 1 ? "Solo" : "Group";
 
                 //flags
@@ -298,7 +344,7 @@ namespace dbfinalproject_interfaces
                 cmd.Parameters.AddWithValue("@TravelerID", TravelerID);
                 cmd.Parameters.AddWithValue("@AccommodationID", accommodationId == -1 ? (object)DBNull.Value : accommodationId);
                 cmd.Parameters.AddWithValue("@AccommodationStatusFlag", accommodationStatus);
-                cmd.Parameters.AddWithValue("@TripType", tripType);
+                cmd.Parameters.AddWithValue("@TripType", string.IsNullOrEmpty(tripType) ? (object)DBNull.Value : tripType);
                 cmd.Parameters.AddWithValue("@CapacityType", capacityType);
                 cmd.Parameters.AddWithValue("@GroupSize", groupSize);
                 cmd.Parameters.AddWithValue("@Duration", duration);

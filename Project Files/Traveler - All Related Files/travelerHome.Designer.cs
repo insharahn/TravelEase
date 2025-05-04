@@ -212,18 +212,11 @@
             this.cmbTripType.Font = new System.Drawing.Font("Microsoft New Tai Lue", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbTripType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
             this.cmbTripType.FormattingEnabled = true;
-            this.cmbTripType.Items.AddRange(new object[] {
-            "Any",
-            "Adventure",
-            "Business",
-            "Cultural",
-            "Education",
-            "Leisure",
-            "Spiritual/Religious"});
             this.cmbTripType.Location = new System.Drawing.Point(634, 567);
             this.cmbTripType.Name = "cmbTripType";
             this.cmbTripType.Size = new System.Drawing.Size(121, 29);
             this.cmbTripType.TabIndex = 7;
+            this.cmbTripType.SelectedIndexChanged += new System.EventHandler(this.cmbTripType_SelectedIndexChanged);
             // 
             // txtMaxPrice
             // 
