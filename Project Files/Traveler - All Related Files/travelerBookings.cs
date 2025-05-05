@@ -161,17 +161,6 @@ namespace dbfinalproject_interfaces
                         Location = new Point(200, 60)
                     };
 
-                    string paymentStatus = row["PaymentStatus"]?.ToString();
-                    bool isPaid = paymentStatus == "Success";
-                    Label lblStatus = new Label
-                    {
-                        Text = isPaid ? "Payment confirmed, booking confirmation pending" : "Pending payment",
-                        Font = new Font("Sitka Banner", 9, FontStyle.Italic),
-                        AutoSize = true,
-                        ForeColor = isPaid ? Color.Black : Color.FromArgb(34, 53, 53),
-                        Location = new Point(10, 90)
-                    };
-
 
                     Button btnPay = new Button
                     {
@@ -183,6 +172,19 @@ namespace dbfinalproject_interfaces
                         Tag = row["BookingID"]
                     };
 
+                    string paymentStatus = row["PaymentStatus"]?.ToString();
+                    bool isPaid = paymentStatus == "Success";
+                    btnPay.Visible = !isPaid; //only visible if not paid
+                    Label lblStatus = new Label
+                    {
+                        Text = isPaid ? "Payment confirmed, booking confirmation pending" : "Pending payment",
+                        Font = new Font("Sitka Banner", 9, FontStyle.Italic),
+                        AutoSize = true,
+                        ForeColor = isPaid ? Color.Black : Color.FromArgb(34, 53, 53),
+                        Location = new Point(10, 90)
+                    };
+
+                    
                     Button btnCancel = new Button
                     {
                         Text = "Cancel",

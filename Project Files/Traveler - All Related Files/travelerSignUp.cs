@@ -156,9 +156,8 @@ namespace dbfinalproject_interfaces
 
                 MessageBox.Show("Registered successfully", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Hide();
-                travelerHome home = new travelerHome();
-                home.TravelerID = Convert.ToInt32(travelerID); //set the TravelerID
-                home.Show();
+                travelerLogin login = new travelerLogin();
+                login.Show();
 
             }
             catch (SqlException ex)

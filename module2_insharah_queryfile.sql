@@ -829,3 +829,10 @@ select * from TransportService
 select * from Ride
 
 select * from Traveler
+
+select distinct TripType
+from package
+
+sp_help CustomTrip
+sp_help Request
+sp_help Booking
