@@ -68,12 +68,32 @@
             this.accomodationgridview = new System.Windows.Forms.DataGridView();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.rejectBookingButton = new System.Windows.Forms.Button();
+            this.ConfirmBookingButton = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.mybookings = new System.Windows.Forms.DataGridView();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.reportChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.reportComboBox = new System.Windows.Forms.ComboBox();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.AddExistingItineraryButton = new System.Windows.Forms.Button();
+            this.CurrentParticipants = new System.Windows.Forms.TextBox();
+            this.AddItineraries = new System.Windows.Forms.Button();
+            this.existingItineraries = new System.Windows.Forms.DataGridView();
+            this.label24 = new System.Windows.Forms.Label();
+            this.GuideComboBox = new System.Windows.Forms.ComboBox();
+            this.EndTime = new System.Windows.Forms.TextBox();
+            this.Price = new System.Windows.Forms.TextBox();
+            this.StartTime = new System.Windows.Forms.TextBox();
+            this.ActivityName = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
             this.label10 = new System.Windows.Forms.Label();
@@ -95,6 +115,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.reportChart)).BeginInit();
+            this.tabPage6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.existingItineraries)).BeginInit();
             this.SuspendLayout();
             // 
             // tabContrf
@@ -104,6 +126,7 @@
             this.tabContrf.Controls.Add(this.tabPage3);
             this.tabContrf.Controls.Add(this.tabPage4);
             this.tabContrf.Controls.Add(this.tabPage5);
+            this.tabContrf.Controls.Add(this.tabPage6);
             this.tabContrf.Font = new System.Drawing.Font("Microsoft YaHei", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabContrf.Location = new System.Drawing.Point(24, 91);
             this.tabContrf.Name = "tabContrf";
@@ -174,7 +197,6 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "My Trips";
             this.label11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // pictureBox2
             // 
@@ -505,6 +527,8 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(206)))));
+            this.tabPage4.Controls.Add(this.rejectBookingButton);
+            this.tabPage4.Controls.Add(this.ConfirmBookingButton);
             this.tabPage4.Controls.Add(this.label14);
             this.tabPage4.Controls.Add(this.mybookings);
             this.tabPage4.Controls.Add(this.pictureBox4);
@@ -514,7 +538,32 @@
             this.tabPage4.Size = new System.Drawing.Size(636, 306);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Trip Bookings";
-            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // rejectBookingButton
+            // 
+            this.rejectBookingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.rejectBookingButton.Font = new System.Drawing.Font("Microsoft YaHei", 10.25F, System.Drawing.FontStyle.Bold);
+            this.rejectBookingButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.rejectBookingButton.Location = new System.Drawing.Point(18, 171);
+            this.rejectBookingButton.Name = "rejectBookingButton";
+            this.rejectBookingButton.Size = new System.Drawing.Size(167, 45);
+            this.rejectBookingButton.TabIndex = 25;
+            this.rejectBookingButton.Text = "Reject Booking";
+            this.rejectBookingButton.UseVisualStyleBackColor = false;
+            this.rejectBookingButton.Click += new System.EventHandler(this.rejectBookingButton_Click);
+            // 
+            // ConfirmBookingButton
+            // 
+            this.ConfirmBookingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.ConfirmBookingButton.Font = new System.Drawing.Font("Microsoft YaHei", 10.25F, System.Drawing.FontStyle.Bold);
+            this.ConfirmBookingButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.ConfirmBookingButton.Location = new System.Drawing.Point(18, 104);
+            this.ConfirmBookingButton.Name = "ConfirmBookingButton";
+            this.ConfirmBookingButton.Size = new System.Drawing.Size(167, 46);
+            this.ConfirmBookingButton.TabIndex = 24;
+            this.ConfirmBookingButton.Text = "Confirm Booking";
+            this.ConfirmBookingButton.UseVisualStyleBackColor = false;
+            this.ConfirmBookingButton.Click += new System.EventHandler(this.ConfirmBookingButton_Click);
             // 
             // label14
             // 
@@ -522,21 +571,20 @@
             this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(206)))));
             this.label14.Font = new System.Drawing.Font("Microsoft YaHei", 13.75F, System.Drawing.FontStyle.Bold);
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
-            this.label14.Location = new System.Drawing.Point(257, 18);
+            this.label14.Location = new System.Drawing.Point(290, 16);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(137, 26);
+            this.label14.Size = new System.Drawing.Size(222, 26);
             this.label14.TabIndex = 20;
-            this.label14.Text = "My Bookings";
+            this.label14.Text = "My Pending Bookings";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // mybookings
             // 
             this.mybookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.mybookings.Location = new System.Drawing.Point(125, 57);
+            this.mybookings.Location = new System.Drawing.Point(206, 56);
             this.mybookings.Name = "mybookings";
             this.mybookings.Size = new System.Drawing.Size(406, 232);
             this.mybookings.TabIndex = 22;
-            this.mybookings.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mybookings_CellContentClick);
             // 
             // pictureBox4
             // 
@@ -559,7 +607,6 @@
             this.tabPage5.Size = new System.Drawing.Size(636, 306);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Reports";
-            this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
             // 
             // reportChart
             // 
@@ -576,7 +623,6 @@
             this.reportChart.Size = new System.Drawing.Size(385, 232);
             this.reportChart.TabIndex = 1;
             this.reportChart.Text = "chart1";
-            this.reportChart.Click += new System.EventHandler(this.reportChart_Click);
             // 
             // reportComboBox
             // 
@@ -586,6 +632,195 @@
             this.reportComboBox.Size = new System.Drawing.Size(121, 24);
             this.reportComboBox.TabIndex = 0;
             this.reportComboBox.SelectedIndexChanged += new System.EventHandler(this.reportComboBox_SelectedIndexChanged);
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(206)))));
+            this.tabPage6.Controls.Add(this.AddExistingItineraryButton);
+            this.tabPage6.Controls.Add(this.CurrentParticipants);
+            this.tabPage6.Controls.Add(this.AddItineraries);
+            this.tabPage6.Controls.Add(this.existingItineraries);
+            this.tabPage6.Controls.Add(this.label24);
+            this.tabPage6.Controls.Add(this.GuideComboBox);
+            this.tabPage6.Controls.Add(this.EndTime);
+            this.tabPage6.Controls.Add(this.Price);
+            this.tabPage6.Controls.Add(this.StartTime);
+            this.tabPage6.Controls.Add(this.ActivityName);
+            this.tabPage6.Controls.Add(this.label15);
+            this.tabPage6.Controls.Add(this.label17);
+            this.tabPage6.Controls.Add(this.label18);
+            this.tabPage6.Controls.Add(this.label19);
+            this.tabPage6.Controls.Add(this.label20);
+            this.tabPage6.Controls.Add(this.label21);
+            this.tabPage6.Controls.Add(this.label23);
+            this.tabPage6.Location = new System.Drawing.Point(4, 25);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(636, 306);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Add Itineraries";
+            // 
+            // AddExistingItineraryButton
+            // 
+            this.AddExistingItineraryButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.AddExistingItineraryButton.Font = new System.Drawing.Font("Microsoft YaHei", 10.25F, System.Drawing.FontStyle.Bold);
+            this.AddExistingItineraryButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.AddExistingItineraryButton.Location = new System.Drawing.Point(349, 255);
+            this.AddExistingItineraryButton.Name = "AddExistingItineraryButton";
+            this.AddExistingItineraryButton.Size = new System.Drawing.Size(214, 30);
+            this.AddExistingItineraryButton.TabIndex = 40;
+            this.AddExistingItineraryButton.Text = "Add Existing Itineraries";
+            this.AddExistingItineraryButton.UseVisualStyleBackColor = false;
+            this.AddExistingItineraryButton.Click += new System.EventHandler(this.AddExistingItineraryButton_Click_1);
+            // 
+            // CurrentParticipants
+            // 
+            this.CurrentParticipants.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.CurrentParticipants.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.CurrentParticipants.Location = new System.Drawing.Point(140, 154);
+            this.CurrentParticipants.Name = "CurrentParticipants";
+            this.CurrentParticipants.Size = new System.Drawing.Size(109, 15);
+            this.CurrentParticipants.TabIndex = 39;
+            // 
+            // AddItineraries
+            // 
+            this.AddItineraries.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.AddItineraries.Font = new System.Drawing.Font("Microsoft YaHei", 10.25F, System.Drawing.FontStyle.Bold);
+            this.AddItineraries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.AddItineraries.Location = new System.Drawing.Point(52, 255);
+            this.AddItineraries.Name = "AddItineraries";
+            this.AddItineraries.Size = new System.Drawing.Size(178, 30);
+            this.AddItineraries.TabIndex = 38;
+            this.AddItineraries.Text = "Add Itineraries";
+            this.AddItineraries.UseVisualStyleBackColor = false;
+            // 
+            // existingItineraries
+            // 
+            this.existingItineraries.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.existingItineraries.Location = new System.Drawing.Point(288, 56);
+            this.existingItineraries.Name = "existingItineraries";
+            this.existingItineraries.Size = new System.Drawing.Size(323, 185);
+            this.existingItineraries.TabIndex = 37;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(363, 17);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(182, 19);
+            this.label24.TabIndex = 36;
+            this.label24.Text = "Add Existing Itineraries";
+            // 
+            // GuideComboBox
+            // 
+            this.GuideComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.GuideComboBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(53)))), ((int)(((byte)(53)))));
+            this.GuideComboBox.FormattingEnabled = true;
+            this.GuideComboBox.Location = new System.Drawing.Point(140, 112);
+            this.GuideComboBox.Name = "GuideComboBox";
+            this.GuideComboBox.Size = new System.Drawing.Size(121, 24);
+            this.GuideComboBox.TabIndex = 33;
+            // 
+            // EndTime
+            // 
+            this.EndTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.EndTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EndTime.Location = new System.Drawing.Point(140, 220);
+            this.EndTime.Name = "EndTime";
+            this.EndTime.Size = new System.Drawing.Size(109, 15);
+            this.EndTime.TabIndex = 32;
+            // 
+            // Price
+            // 
+            this.Price.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.Price.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Price.Location = new System.Drawing.Point(140, 82);
+            this.Price.Name = "Price";
+            this.Price.Size = new System.Drawing.Size(109, 15);
+            this.Price.TabIndex = 31;
+            // 
+            // StartTime
+            // 
+            this.StartTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.StartTime.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.StartTime.Location = new System.Drawing.Point(140, 187);
+            this.StartTime.Name = "StartTime";
+            this.StartTime.Size = new System.Drawing.Size(109, 15);
+            this.StartTime.TabIndex = 30;
+            // 
+            // ActivityName
+            // 
+            this.ActivityName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(192)))), ((int)(((byte)(185)))));
+            this.ActivityName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ActivityName.Location = new System.Drawing.Point(140, 56);
+            this.ActivityName.Name = "ActivityName";
+            this.ActivityName.Size = new System.Drawing.Size(109, 15);
+            this.ActivityName.TabIndex = 28;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(24, 219);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(55, 16);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "End Time";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(24, 56);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(84, 16);
+            this.label17.TabIndex = 25;
+            this.label17.Text = "Activity Name ";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(24, 81);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(33, 16);
+            this.label18.TabIndex = 24;
+            this.label18.Text = "Price";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(24, 116);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(38, 16);
+            this.label19.TabIndex = 23;
+            this.label19.Text = "Guide";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(23, 154);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(111, 16);
+            this.label20.TabIndex = 22;
+            this.label20.Text = "Current Participants";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(24, 187);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(59, 16);
+            this.label21.TabIndex = 21;
+            this.label21.Text = "Start Time";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft YaHei", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(23, 17);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(137, 19);
+            this.label23.TabIndex = 19;
+            this.label23.Text = "Create Itineraries";
             // 
             // sqlCommand1
             // 
@@ -614,7 +849,6 @@
             this.logout.TabIndex = 18;
             this.logout.Text = "LOG OUT";
             this.logout.UseVisualStyleBackColor = false;
-            this.logout.Click += new System.EventHandler(this.logout_Click);
             // 
             // exit
             // 
@@ -660,6 +894,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.tabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.reportChart)).EndInit();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.existingItineraries)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -717,6 +954,26 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.DataVisualization.Charting.Chart reportChart;
         private System.Windows.Forms.ComboBox reportComboBox;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.ComboBox GuideComboBox;
+        private System.Windows.Forms.TextBox EndTime;
+        private System.Windows.Forms.TextBox StartTime;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.DataGridView existingItineraries;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button AddItineraries;
+        private System.Windows.Forms.TextBox CurrentParticipants;
+        private System.Windows.Forms.TextBox Price;
+        private System.Windows.Forms.TextBox ActivityName;
+        private System.Windows.Forms.Button AddExistingItineraryButton;
+        private System.Windows.Forms.Button ConfirmBookingButton;
+        private System.Windows.Forms.Button rejectBookingButton;
     }
 }
 

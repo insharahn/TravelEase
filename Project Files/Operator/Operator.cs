@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using Microsoft.Data.SqlClient;
 using System.Windows.Forms.DataVisualization.Charting;
+using Microsoft.IdentityModel.Tokens;
 
 namespace TourOperator
 { 
@@ -25,6 +26,7 @@ namespace TourOperator
             updateTrip.Click += updateTrip_Click;
             deleteTrip.Click += deleteTrip_Click;
             Mytrips.CellClick += Mytrips_CellClick;
+            AddItineraries.Click += AddItineraries_Click; // Add this line
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -35,12 +37,7 @@ namespace TourOperator
                 destination.Items.Add(i.ToString());
             destination.SelectedIndex = 0;
 
-            triptype.Items.AddRange(new[]
-            {
-                "Leisure", "Adventure", "Education",
-                "Business", "Spiritual/Religious", "Cultural", "Other"
-            });
-            triptype.SelectedIndex = -1;
+          
 
             capacitytype.Items.AddRange(new[] { "Solo", "Group" });
             capacitytype.SelectedIndex = -1;
@@ -50,15 +47,45 @@ namespace TourOperator
             LoadAccommodations();
             LoadRides();
             LoadRequests();
-            LoadReportComboBox();
+            LoadReportComboBox();       //Updated
+            LoadExistingItineraries();  // New
+            LoadGuides();               //  New
+            LoadTripCategories();       // New
 
             //   OperatorReports_Load();
+        }
+        private void LoadTripCategories()
+        {
+            triptype.Items.Clear();
+            try
+            {
+                const string sql = "SELECT TripType FROM TripCategory";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            triptype.Items.Add(reader["TripType"].ToString());
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading trip types: " + ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+            triptype.SelectedIndex = -1;
         }
         private void LoadReportComboBox()
         {
             reportComboBox.Items.Add("Booking Rates");
             reportComboBox.Items.Add("Revenue");
             reportComboBox.Items.Add("Review Summary");
+            reportComboBox.Items.Add("Response Time"); // Added Response Time option
         }
         private void LoadMyTrips()
         {
@@ -136,27 +163,7 @@ namespace TourOperator
                 MessageBox.Show("Error loading rides: " + ex.Message);
             }
         }
-        private void LoadRequests()
-        {
-            try
-            {
-                const string sql = "SELECT * FROM Request WHERE OperatorID = @OperatorID";
-                using (var cmd = new SqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@OperatorID", _operatorId);
-                    using (var da = new SqlDataAdapter(cmd))
-                    {
-                        var dt = new DataTable();
-                        da.Fill(dt);
-                        mybookings.DataSource = dt;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading booking requests: " + ex.Message);
-            }
-        }
+ 
 
 
         private void accomodationgridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -222,20 +229,20 @@ namespace TourOperator
             if (!ValidateForm()) return;
 
             const string sql = @"
-INSERT INTO Package
-  (Title, Description, DestinationID,
-   AccommodationID, AccommodationStatusFlag,
-   RideID, RideStatusFlag,
-   ActivityStatusFlag,
-   TripType, CapacityType, GroupSize, Duration, BasePrice,
-   SustainabilityScore, OperatorID)
-VALUES
-  (@Title, @Desc, @DestID,
-   @AccID, @AccFlag,
-   @RideID, @RideFlag,
-   @ActFlag,
-   @TripType, @CapType, @GroupSize, @Duration, @BasePrice,
-   @SustainScore, @OperatorID);";
+                INSERT INTO Package
+                  (Title, Description, DestinationID,
+                   AccommodationID, AccommodationStatusFlag,
+                   RideID, RideStatusFlag,
+                   ActivityStatusFlag,
+                   TripType, CapacityType, GroupSize, Duration, BasePrice,
+                   SustainabilityScore, OperatorID)
+                VALUES
+                  (@Title, @Desc, @DestID,
+                   @AccID, @AccFlag,
+                   @RideID, @RideFlag,
+                   @ActFlag,
+                   @TripType, @CapType, @GroupSize, @Duration, @BasePrice,
+                   @SustainScore, @OperatorID);";
 
             try
             {
@@ -270,17 +277,17 @@ VALUES
             if (!ValidateForm()) return;
 
             const string sql = @"
-UPDATE Package SET
-    Title = @Title,
-    Description = @Desc,
-    DestinationID = @DestID,
-    TripType = @TripType,
-    CapacityType = @CapType,
-    GroupSize = @GroupSize,
-    Duration = @Duration,
-    BasePrice = @BasePrice
-WHERE
-    PackageID = @PackageID AND OperatorID = @OperatorID;";
+            UPDATE Package SET
+                Title = @Title,
+                Description = @Desc,
+                DestinationID = @DestID,
+                TripType = @TripType,
+                CapacityType = @CapType,
+                GroupSize = @GroupSize,
+                Duration = @Duration,
+                BasePrice = @BasePrice
+            WHERE
+                PackageID = @PackageID AND OperatorID = @OperatorID;";
 
             try
             {
@@ -339,8 +346,8 @@ WHERE
                 return;
 
             const string sql = @"
-DELETE FROM Package
-WHERE PackageID = @PackageID AND OperatorID = @OperatorID;";
+            DELETE FROM Package
+            WHERE PackageID = @PackageID AND OperatorID = @OperatorID;";
 
             try
             {
@@ -394,6 +401,12 @@ WHERE PackageID = @PackageID AND OperatorID = @OperatorID;";
             if (triptype.SelectedIndex < 0 || capacitytype.SelectedIndex < 0)
             {
                 MessageBox.Show("Select both Trip Type and Capacity Type."); return false;
+            }
+            // Add validation for Solo capacity type
+            if (capacitytype.SelectedItem?.ToString() == "Solo" && grp != 1)
+            {
+                MessageBox.Show("Group Size must be exactly 1 for Solo trips.");
+                return false;
             }
             return true;
         }
@@ -460,10 +473,10 @@ WHERE PackageID = @PackageID AND OperatorID = @OperatorID;";
                 con.Open();
                 // duplicate into Accommodation
                 string copySql = @"
-INSERT INTO Accommodation (HotelID, MaxCapacity, PricePerNight, RoomDesc)
-SELECT DestinationID, GroupSize, BasePrice, Title + ' room'
-FROM Package WHERE PackageID=@PID;
-SELECT SCOPE_IDENTITY();";
+                INSERT INTO Accommodation (HotelID, MaxCapacity, PricePerNight, RoomDesc)
+                SELECT DestinationID, GroupSize, BasePrice, Title + ' room'
+                FROM Package WHERE PackageID=@PID;
+                SELECT SCOPE_IDENTITY();";
                 int newAccId;
                 using (var cmd = new SqlCommand(copySql, con))
                 {
@@ -500,10 +513,10 @@ SELECT SCOPE_IDENTITY();";
                 con.Open();
                 // duplicate into Ride
                 string copySql = @"
-INSERT INTO Ride (TransportID, OriginID, DestinationID, Price, TimeRequested, ArrivalTime)
-SELECT DestinationID, DestinationID, DestinationID, BasePrice, GETDATE(), DATEADD(hour, Duration, GETDATE())
-FROM Package WHERE PackageID=@PID;
-SELECT SCOPE_IDENTITY();";
+                INSERT INTO Ride (TransportID, OriginID, DestinationID, Price, TimeRequested, ArrivalTime)
+                SELECT DestinationID, DestinationID, DestinationID, BasePrice, GETDATE(), DATEADD(hour, Duration, GETDATE())
+                FROM Package WHERE PackageID=@PID;
+                SELECT SCOPE_IDENTITY();";
                 int newRideId;
                 using (var cmd = new SqlCommand(copySql, con))
                 {
@@ -528,34 +541,6 @@ SELECT SCOPE_IDENTITY();";
             finally { if (con.State == ConnectionState.Open) con.Close(); }
         }
 
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void mybookings_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void logout_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-       
-
-       
 
         private void LoadBookingRatesChart()
         {
@@ -692,14 +677,446 @@ SELECT SCOPE_IDENTITY();";
                 case "Review Summary":
                     LoadReviewSummaryChart();
                     break;
+                case "Response Time":
+                    LoadResponseTimeChart();
+                    break;
                 default:
                     break;
             }
         }
-
-        private void reportChart_Click(object sender, EventArgs e)
+        private void LoadGuides()
         {
+            try
+            {
+                const string sql = @"
+            SELECT s.ProviderName, g.GuideID 
+            FROM Guide g
+            INNER JOIN ServiceProvider s ON s.ProviderID = g.ProviderID
+            WHERE s.ProviderType = 2";
 
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        GuideComboBox.Items.Clear();
+                        while (reader.Read())
+                        {
+                            // Add ProviderName to the combo box, store ProviderID in Tag
+                            GuideComboBox.Items.Add(new ComboBoxItem
+                            {
+                                Text = reader["ProviderName"].ToString(),
+                                Value = (int)reader["GuideID"]
+                            });
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading guides: " + ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+        }
+
+        // Helper class to store both Text and Value in the combo box
+        private class ComboBoxItem
+        {
+            public string Text { get; set; }
+            public int Value { get; set; }
+
+            public override string ToString()
+            {
+                return Text;
+            }
+        }
+        private void AddItineraries_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validate that a package is selected
+                if (_selectedPackageId < 0)
+                {
+                    MessageBox.Show("Please select a trip from the Mytrips grid first.");
+                    return;
+                }
+
+                // Validate form inputs
+                if (string.IsNullOrWhiteSpace(ActivityName.Text))
+                {
+                    MessageBox.Show("Please enter an Activity Name.");
+                    return;
+                }
+                if (!decimal.TryParse(Price.Text, out decimal price) || price < 0)
+                {
+                    MessageBox.Show("Price must be a valid number ≥ 0.");
+                    return;
+                }
+                if (GuideComboBox.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Please select a Guide.");
+                    return;
+                }
+                if (!int.TryParse(CurrentParticipants.Text, out int currentParticipants) || currentParticipants < 0)
+                {
+                    MessageBox.Show("Current Participants must be a valid number ≥ 0.");
+                    return;
+                }
+                if (!DateTime.TryParse(StartTime.Text, out DateTime startTime))
+                {
+                    MessageBox.Show("Please enter a valid Start Time.");
+                    return;
+                }
+                if (!DateTime.TryParse(EndTime.Text, out DateTime endTime))
+                {
+                    MessageBox.Show("Please enter a valid End Time.");
+                    return;
+                }
+                if (endTime <= startTime)
+                {
+                    MessageBox.Show("End Time must be after Start Time.");
+                    return;
+                }
+
+                // Get the selected Guide's ProviderID
+                var selectedGuide = (ComboBoxItem)GuideComboBox.SelectedItem;
+                int guideId = selectedGuide.Value;
+
+                // SQL query to insert into Activity table and get the new ActivityID
+                const string insertActivitySql = @"
+        INSERT INTO Activity (ActivityName, GuideID, StartTime, EndTime, CapacityLimit, Price, ActivityStatus, CurrentParticipants)
+        VALUES (@ActivityName, @GuideID, @StartTime, @EndTime, @CapacityLimit, @Price, @ActivityStatus, @CurrentParticipants);
+        SELECT SCOPE_IDENTITY();";
+
+                int newActivityId;
+                using (SqlCommand cmd = new SqlCommand(insertActivitySql, con))
+                {
+                    cmd.Parameters.AddWithValue("@ActivityName", ActivityName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@GuideID", guideId);
+                    cmd.Parameters.AddWithValue("@StartTime", startTime);
+                    cmd.Parameters.AddWithValue("@EndTime", endTime);
+                    cmd.Parameters.AddWithValue("@CapacityLimit", currentParticipants + 10);
+                    cmd.Parameters.AddWithValue("@Price", price);
+                    cmd.Parameters.AddWithValue("@ActivityStatus", "Pending");
+                    cmd.Parameters.AddWithValue("@CurrentParticipants", currentParticipants);
+
+                    con.Open();
+                    newActivityId = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Close();
+                }
+
+                // Insert into PackageActivities table with the selected PackageID and new ActivityID
+                const string insertPackageActivitiesSql = @"
+        INSERT INTO PackageActivities (PackageID, ActivityID)
+        VALUES (@PackageID, @ActivityID);";
+
+                using (SqlCommand cmd = new SqlCommand(insertPackageActivitiesSql, con))
+                {
+                    cmd.Parameters.AddWithValue("@PackageID", _selectedPackageId);
+                    cmd.Parameters.AddWithValue("@ActivityID", newActivityId);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+
+                MessageBox.Show("Activity added successfully and linked to the selected package.");
+                // Clear the form fields after adding
+                ActivityName.Clear();
+                Price.Clear();
+                GuideComboBox.SelectedIndex = -1;
+                CurrentParticipants.Clear();
+                StartTime.Clear();
+                EndTime.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding activity or linking to package: " + ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+        }
+
+        private void LoadExistingItineraries()
+        {
+            try
+            {
+                const string sql = @"
+        SELECT ActivityID, ActivityName, GuideID, StartTime, EndTime, 
+               CapacityLimit, Price, CurrentParticipants 
+        FROM Activity";
+
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+                        existingItineraries.DataSource = dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading existing itineraries: " + ex.Message);
+            }
+        }
+   
+        private void AddExistingItineraryButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validate that a package is selected
+                if (_selectedPackageId < 0)
+                {
+                    MessageBox.Show("Please select a trip from the Mytrips grid first.");
+                    return;
+                }
+
+                // Validate that a row is selected in existingItineraries
+                if (existingItineraries.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select an activity from the existing itineraries grid.");
+                    return;
+                }
+
+                // Get the selected activity row
+                DataGridViewRow selectedRow = existingItineraries.SelectedRows[0];
+                string activityName = selectedRow.Cells["ActivityName"].Value.ToString();
+                int guideId = Convert.ToInt32(selectedRow.Cells["GuideID"].Value);
+                DateTime startTime = Convert.ToDateTime(selectedRow.Cells["StartTime"].Value);
+                DateTime endTime = Convert.ToDateTime(selectedRow.Cells["EndTime"].Value);
+                int capacityLimit = Convert.ToInt32(selectedRow.Cells["CapacityLimit"].Value);
+                decimal price = Convert.ToDecimal(selectedRow.Cells["Price"].Value);
+                int currentParticipants = Convert.ToInt32(selectedRow.Cells["CurrentParticipants"].Value);
+
+                // Duplicate the activity in the Activity table
+                const string insertActivitySql = @"
+        INSERT INTO Activity (ActivityName, GuideID, StartTime, EndTime, CapacityLimit, Price, ActivityStatus, CurrentParticipants)
+        VALUES (@ActivityName, @GuideID, @StartTime, @EndTime, @CapacityLimit, @Price, @ActivityStatus, @CurrentParticipants);
+        SELECT SCOPE_IDENTITY();";
+
+                int newActivityId;
+                using (SqlCommand cmd = new SqlCommand(insertActivitySql, con))
+                {
+                    cmd.Parameters.AddWithValue("@ActivityName", activityName);
+                    cmd.Parameters.AddWithValue("@GuideID", guideId);
+                    cmd.Parameters.AddWithValue("@StartTime", startTime);
+                    cmd.Parameters.AddWithValue("@EndTime", endTime);
+                    cmd.Parameters.AddWithValue("@CapacityLimit", capacityLimit);
+                    cmd.Parameters.AddWithValue("@Price", price);
+                    cmd.Parameters.AddWithValue("@ActivityStatus", "Pending");
+                    cmd.Parameters.AddWithValue("@CurrentParticipants", currentParticipants);
+
+                    con.Open();
+                    newActivityId = Convert.ToInt32(cmd.ExecuteScalar());
+                    con.Close();
+                }
+
+                // Insert into PackageActivities table with the selected PackageID and new ActivityID
+                const string insertPackageActivitiesSql = @"
+        INSERT INTO PackageActivities (PackageID, ActivityID)
+        VALUES (@PackageID, @ActivityID);";
+
+                using (SqlCommand cmd = new SqlCommand(insertPackageActivitiesSql, con))
+                {
+                    cmd.Parameters.AddWithValue("@PackageID", _selectedPackageId);
+                    cmd.Parameters.AddWithValue("@ActivityID", newActivityId);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+
+                MessageBox.Show("Existing activity duplicated and linked to the selected package successfully.");
+                LoadExistingItineraries(); // Refresh the grid to show the new activity
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error duplicating activity or linking to package: " + ex.Message);
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+        }
+
+        private void LoadRequests()
+        {
+            try
+            {
+                const string sql = "SELECT b.BookingID, b.BookingStatus, r.TripSourceType, b.BookingDate " +
+                                  "FROM Booking b " +
+                                  "INNER JOIN Request r ON r.RequestID = b.RequestID " +
+                                  "WHERE OperatorID = @OperatorID AND b.BookingStatus = 'Pending'";
+                using (var cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@OperatorID", _operatorId);
+                    using (var da = new SqlDataAdapter(cmd))
+                    {
+                        var dt = new DataTable();
+                        da.Fill(dt);
+                        mybookings.DataSource = dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading booking requests: " + ex.Message);
+            }
+        }
+
+        private void ConfirmBookingButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mybookings.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a booking to confirm.");
+                    return;
+                }
+
+                int bookingId = Convert.ToInt32(mybookings.SelectedRows[0].Cells["BookingID"].Value);
+                // Update Booking status and set BookingDate to current date
+                const string updateBookingSql = @"
+            UPDATE Booking 
+            SET BookingStatus = 'Confirmed', BookingDate = GETDATE() 
+            WHERE BookingID = @BookingID AND BookingStatus = 'Pending'";
+                // Sync Request status
+                const string updateRequestSql = @"
+            UPDATE Request 
+            SET RequestStatus = 'Accepted' 
+            WHERE RequestID = (SELECT RequestID FROM Booking WHERE BookingID = @BookingID)";
+
+                using (var cmd = new SqlCommand(updateBookingSql, con))
+                {
+                    cmd.Parameters.AddWithValue("@BookingID", bookingId);
+                    con.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        // Execute the request status update
+                        using (var cmdRequest = new SqlCommand(updateRequestSql, con))
+                        {
+                            cmdRequest.Parameters.AddWithValue("@BookingID", bookingId);
+                            cmdRequest.ExecuteNonQuery();
+                        }
+                        MessageBox.Show("Booking confirmed successfully.");
+                        LoadRequests(); // Refresh the grid to show only pending bookings
+                    }
+                    else
+                    {
+                        MessageBox.Show("Booking could not be confirmed (already processed or invalid).");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error confirming booking: " + ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+        }
+
+        private void rejectBookingButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (mybookings.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Please select a booking to reject.");
+                    return;
+                }
+
+                int bookingId = Convert.ToInt32(mybookings.SelectedRows[0].Cells["BookingID"].Value);
+                // Update Booking status and set BookingDate to current date
+                const string updateBookingSql = @"
+            UPDATE Booking 
+            SET BookingStatus = 'Rejected', BookingDate = GETDATE() 
+            WHERE BookingID = @BookingID AND BookingStatus = 'Pending'";
+                // Sync Request status
+                const string updateRequestSql = @"
+            UPDATE Request 
+            SET RequestStatus = 'Rejected' 
+            WHERE RequestID = (SELECT RequestID FROM Booking WHERE BookingID = @BookingID)";
+
+                using (var cmd = new SqlCommand(updateBookingSql, con))
+                {
+                    cmd.Parameters.AddWithValue("@BookingID", bookingId);
+                    con.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        // Execute the request status update
+                        using (var cmdRequest = new SqlCommand(updateRequestSql, con))
+                        {
+                            cmdRequest.Parameters.AddWithValue("@BookingID", bookingId);
+                            cmdRequest.ExecuteNonQuery();
+                        }
+                        MessageBox.Show("Booking rejected successfully.");
+                        LoadRequests(); // Refresh the grid to show only pending bookings
+                    }
+                    else
+                    {
+                        MessageBox.Show("Booking could not be rejected (already processed or invalid).");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error rejecting booking: " + ex.Message);
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open) con.Close();
+            }
+        }
+        private void LoadResponseTimeChart()
+        {
+            string query = @"
+        SELECT 
+            AVG(DATEDIFF(MINUTE, r.DateRequested, b.BookingDate)) / 1440 AS AverageResponseTimeDays,
+            AVG(DATEDIFF(MINUTE, r.DateRequested, b.BookingDate)) % 1440 AS AverageResponseTimeMinutes
+        FROM Request r
+        JOIN Booking b ON r.RequestID = b.RequestID
+        WHERE 
+            r.OperatorID = @OperatorID
+            AND b.BookingStatus IN ('Confirmed', 'Rejected')
+            AND r.RequestStatus IN ('Accepted', 'Rejected')";
+
+            using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-J0FKTUC\\SQLEXPRESS;" +
+                 "Initial Catalog=\"Travel ease2\";" +
+                 "Integrated Security=True;Encrypt=False"))
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@OperatorID", _operatorId);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                reportChart.Series.Clear();
+                Series seriesDays = new Series("Average Response Time (Days)");
+                seriesDays.ChartType = SeriesChartType.Column;
+                seriesDays.Color = System.Drawing.Color.Blue;
+
+                Series seriesMinutes = new Series("Average Response Time (Minutes)");
+                seriesMinutes.ChartType = SeriesChartType.Column;
+                seriesMinutes.Color = System.Drawing.Color.Green;
+
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    seriesDays.Points.AddXY("Days", Convert.ToDouble(row["AverageResponseTimeDays"]));
+                    seriesMinutes.Points.AddXY("Minutes", Convert.ToDouble(row["AverageResponseTimeMinutes"]));
+                }
+
+                reportChart.Series.Add(seriesDays);
+                reportChart.Series.Add(seriesMinutes);
+                reportChart.Titles.Clear();
+                reportChart.Titles.Add("Average Response Time for Operator");
+            }
         }
     }
 }
