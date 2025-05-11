@@ -360,7 +360,32 @@ FROM Activity a;
 UPDATE Activity
 SET CapacityLimit = CapacityLimit + 40;
 
+-----------------------------------------------------------------------------------------
+-----------------------------TRIP TYPE TABLE (ZARA)-------------------------------------
+-----------------------------------------------------------------------------------------
+CREATE TABLE TripCategory (
+    TripTypeID INT PRIMARY KEY IDENTITY(1,1),
+    TripType VARCHAR(50) UNIQUE NOT NULL
+);
 
+INSERT INTO TripCategory (TripType) VALUES
+('Leisure'),
+('Adventure'),
+('Education'),
+('Business'),
+('Spiritual/Religious'),
+('Cultural'),
+('Other');
+
+
+-----------------------------------------------------------------------------------------
+-----------------------------DATE IN DESTINATION-----------------------------------------
+-----------------------------------------------------------------------------------------
+ALTER TABLE Destination
+ADD DateAdded DATE;
+-- Set random DateAdded values between '2021-01-01' and '2025-05-01'
+UPDATE Destination
+SET DateAdded = DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2021-01-01', '2025-05-01'), '2021-01-01');
 -----------------------------------------------------------------------------------------
 -- MY USELESS QUERIES FOR WHEN I WAS MAKING FORMS
 ---- EVERYTHING BELOW RTHIS IS USELESS
@@ -620,6 +645,7 @@ WHERE r.TripSourceType = 'Custom'
 select * from Request
 select * from Booking
 select * from Payment
+select * from package
 
 INSERT INTO Booking (RequestID, TotalCost, BookingDate, BookingStatus, CancellationReason)
             SELECT r.RequestID, 0, NULL, 'Pending', NULL
@@ -836,3 +862,318 @@ from package
 sp_help CustomTrip
 sp_help Request
 sp_help Booking
+
+select * from Request
+select * from Booking
+select * from Payment
+select * from package
+
+select count(*)
+from Booking
+where BookingStatus = 'Confirmed'
+
+
+-- Preferred Trip Types/Destinations: Most-booked categories (e.g., hiking, luxury
+-- tours) or destinations.
+
+ SELECT c.TripType, COUNT(*) AS NumBooked
+ FROM Request r
+ INNER JOIN CustomTrip c ON c.CustomTripID = r.CustomTripID AND r.TripSourceType = 'Custom'
+ INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+ GROUP BY c.TripType
+ UNION
+ SELECT c.TripType, COUNT(*) AS NumBooked
+ FROM Request r
+ INNER JOIN Package c ON c.PackageID = r.PackageID AND r.TripSourceType = 'Package'
+ INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+ GROUP BY c.TripType
+
+ SELECT COALESCE(ct.TripType, p.TripType) AS TripType, 
+       COALESCE(SUM(ct.NumBooked), 0) + COALESCE(SUM(p.NumBooked), 0) AS NumBooked
+FROM (
+    SELECT c.TripType, COUNT(*) AS NumBooked
+    FROM Request r
+    INNER JOIN CustomTrip c ON c.CustomTripID = r.CustomTripID
+    INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+    WHERE r.TripSourceType = 'Custom'
+    GROUP BY c.TripType
+) ct
+FULL OUTER JOIN (
+    SELECT c.TripType, COUNT(*) AS NumBooked
+    FROM Request r
+    INNER JOIN Package c ON c.PackageID = r.PackageID
+    INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+    WHERE r.TripSourceType = 'Package'
+    GROUP BY c.TripType
+) p ON ct.TripType = p.TripType
+GROUP BY COALESCE(ct.TripType, p.TripType);
+
+
+
+
+ SELECT COALESCE(ct.DestinationID, p.DestinationID) AS Destination, 
+       COALESCE(SUM(ct.NumBooked), 0) + COALESCE(SUM(p.NumBooked), 0) AS NumBooked
+FROM (
+    SELECT c.DestinationID, COUNT(*) AS NumBooked
+    FROM Request r
+    INNER JOIN CustomTrip c ON c.CustomTripID = r.CustomTripID
+    INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+    WHERE r.TripSourceType = 'Custom'
+    GROUP BY c.DestinationID
+) ct
+FULL OUTER JOIN (
+    SELECT c.DestinationID, COUNT(*) AS NumBooked
+    FROM Request r
+    INNER JOIN Package c ON c.PackageID = r.PackageID
+    INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+    WHERE r.TripSourceType = 'Package'
+    GROUP BY c.DestinationID
+) p ON ct.DestinationID = p.DestinationID
+GROUP BY COALESCE(ct.DestinationID, p.DestinationID);
+
+select CityName, CountryName
+from Location l
+inner join Destination d on d.LocationID = l.LocationID
+
+
+SELECT COALESCE(ct.Destination, p.Destination) AS Destination, 
+       COALESCE(SUM(ct.NumBooked), 0) + COALESCE(SUM(p.NumBooked), 0) AS NumBooked
+FROM (
+    SELECT l.CityName + ', ' + l.CountryName AS Destination, COUNT(*) AS NumBooked
+    FROM Request r
+    INNER JOIN CustomTrip c ON c.CustomTripID = r.CustomTripID
+    INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+    INNER JOIN Destination d ON d.DestinationID = c.DestinationID
+    INNER JOIN Location l ON l.LocationID = d.LocationID
+    WHERE r.TripSourceType = 'Custom'
+    GROUP BY l.CityName, l.CountryName
+) ct
+FULL OUTER JOIN (
+    SELECT l.CityName + ', ' + l.CountryName AS Destination, COUNT(*) AS NumBooked
+    FROM Request r
+    INNER JOIN Package c ON c.PackageID = r.PackageID
+    INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+    INNER JOIN Destination d ON d.DestinationID = c.DestinationID
+    INNER JOIN Location l ON l.LocationID = d.LocationID
+    WHERE r.TripSourceType = 'Package'
+    GROUP BY l.CityName, l.CountryName
+) p ON ct.Destination = p.Destination
+GROUP BY COALESCE(ct.Destination, p.Destination)
+ORDER BY NumBooked DESC;
+
+-- Age and Nationality Distribution: Demographics of users.
+select DATEPART(Year, DateOfBirth), count(*)
+from traveler
+group by DATEPART(Year, DateOfBirth)
+
+SELECT 
+  CASE 
+    WHEN Age BETWEEN 0 AND 18 THEN '0-18'
+    WHEN Age BETWEEN 18 AND 25 THEN '18-25'
+    WHEN Age BETWEEN 26 AND 35 THEN '26-35'
+    WHEN Age BETWEEN 36 AND 50 THEN '36-50'
+    WHEN Age > 50 THEN '50+'
+    ELSE 'Other'
+  END AS AgeGroup,
+  COUNT(*) AS NumTravelers
+FROM (
+  SELECT DATEDIFF(YEAR, DateOfBirth, GETDATE()) AS Age
+  FROM Traveler
+) AS Derived
+GROUP BY 
+  CASE 
+    WHEN Age BETWEEN 0 AND 18 THEN '0-18'
+    WHEN Age BETWEEN 18 AND 25 THEN '18-25'
+    WHEN Age BETWEEN 26 AND 35 THEN '26-35'
+    WHEN Age BETWEEN 36 AND 50 THEN '36-50'
+    WHEN Age > 50 THEN '50+'
+    ELSE 'Other'
+  END;
+
+  SELECT TOP 10 CountryName, COUNT(*) AS NumTravelers
+FROM Traveler t
+INNER JOIN Location l ON l.LocationID = t.Nationality
+GROUP BY CountryName
+ORDER BY NumTravelers DESC;
+
+-- Spending Habits: Average budget per traveler.-- Query 1: Average budget for the traveler
+SELECT AVG(b.TotalCost) AS AvgBudget
+FROM Traveler t
+INNER JOIN Request r ON r.TravelerID = t.TravelerID
+INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+WHERE t.TravelerID = @TravelerID;
+
+-- Query 2: Spending over time for the traveler
+SELECT b.BookingDate, b.TotalCost
+FROM Traveler t
+INNER JOIN Request r ON r.TravelerID = t.TravelerID
+INNER JOIN Booking b ON b.RequestID = r.RequestID AND b.BookingStatus = 'Confirmed'
+WHERE t.Username = 'thomas_n'
+ORDER BY b.BookingDate;
+
+select r.travelerid,  count(*)
+from booking b
+inner join request r on r.RequestID = b.BookingID
+group by r.TravelerID
+
+SELECT CAST(r.DateRequested AS DATE) as BookingDate, b.TotalCost
+FROM Traveler t
+INNER JOIN Request r ON r.TravelerID = t.TravelerID
+INNER JOIN Booking b ON b.RequestID = r.RequestID
+WHERE t.TravelerID = 1
+
+
+SELECT AVG(b.TotalCost)
+FROM Traveler t
+INNER JOIN Request r ON r.TravelerID = t.TravelerID
+INNER JOIN Booking b ON b.RequestID = r.RequestID
+WHERE t.TravelerID = 1
+
+/*
+o Abandonment Rate: Percentage of uncompleted bookings.
+o Common Reasons: Payment failures, high prices, or complex processes.
+o Recovery Rate: Percentage of abandoned bookings later completed.
+o Potential Revenue Loss: Estimated earnings from abandoned carts.*/
+
+-- Abandonment Rate: Percentage of uncompleted bookings.
+SELECT 
+    (CAST(SUM(CASE WHEN BookingStatus <> 'Confirmed' THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)) * 100 AS AbandonmentRate
+FROM Booking;
+
+-- Common Reasons: Payment failures, high prices, or complex processes.
+SELECT ISNULL(CancellationReason, 'Unknown') AS CancellationReason, COUNT(*) AS CancellationCount
+FROM Booking
+WHERE BookingStatus = 'Cancelled'
+GROUP BY CancellationReason;
+
+-- Potential Revenue Loss: Estimated earnings from abandoned carts.*/
+SELECT SUM(TotalCost)
+From Booking
+WHERE BookingStatus = 'Cancelled'
+
+-- Recovery Rate: Percentage of abandoned bookings later completed.: SKIPPED
+
+
+/*o Most-Booked Destinations: Cities/regions with highest bookings.
+o Seasonal Trends: Demand fluctuations by month/season.
+o Traveler Satisfaction Score: Average ratings per destination.
+o Emerging Destinations: Locations with growing interest.*/
+
+--Emerging Destinations: Locations with growing interest. -> TAKING LAST 6 MONTHS
+SELECT TOP 10 
+    Combined.CityName + ', ' + Combined.CountryName AS DestinationName, 
+    COUNT(*) AS RequestCount
+FROM (
+    SELECT r.DateRequested, d.DestinationID, l.CityName, l.CountryName
+    FROM Request r
+    INNER JOIN CustomTrip c ON c.CustomTripID = r.CustomTripID AND r.TripSourceType = 'Custom'
+    INNER JOIN Destination d ON d.DestinationID = c.DestinationID
+    INNER JOIN Location l ON l.LocationID = d.LocationID
+    WHERE DATEDIFF(MONTH, r.DateRequested, GETDATE()) <= 6
+
+    UNION ALL
+
+    SELECT r.DateRequested, d.DestinationID, l.CityName, l.CountryName
+    FROM Request r
+    INNER JOIN Package c ON c.PackageID = r.PackageID AND r.TripSourceType = 'Package'
+    INNER JOIN Destination d ON d.DestinationID = c.DestinationID
+    INNER JOIN Location l ON l.LocationID = d.LocationID
+    WHERE DATEDIFF(MONTH, r.DateRequested, GETDATE()) <= 6
+) AS Combined
+GROUP BY Combined.CityName, Combined.CountryName
+ORDER BY RequestCount DESC;
+
+
+--  Most-Booked Destinations: Cities/regions with highest bookings.
+SELECT TOP 10 
+    Combined.CityName + ', ' + Combined.CountryName AS DestinationName, 
+    COUNT(*) AS BookingCount
+FROM (
+    SELECT d.DestinationID, l.CityName, l.CountryName
+    FROM Request r
+    INNER JOIN Booking b ON r.RequestID = b.RequestID AND b.BookingStatus = 'Confirmed'
+    INNER JOIN Package c ON c.PackageID = r.PackageID AND r.TripSourceType = 'Package'
+    INNER JOIN Destination d ON d.DestinationID = c.DestinationID
+    INNER JOIN Location l ON l.LocationID = d.LocationID
+
+    UNION ALL
+
+    SELECT d.DestinationID, l.CityName, l.CountryName
+    FROM Request r
+    INNER JOIN Booking b ON r.RequestID = b.RequestID AND b.BookingStatus = 'Confirmed'
+    INNER JOIN CustomTrip c ON c.CustomTripID = r.CustomTripID AND r.TripSourceType = 'Custom'
+    INNER JOIN Destination d ON d.DestinationID = c.DestinationID
+    INNER JOIN Location l ON l.LocationID = d.LocationID
+) AS Combined
+GROUP BY Combined.CityName, Combined.CountryName
+ORDER BY BookingCount DESC;
+
+-- Seasonal Trends: Demand fluctuations by month/season.
+WITH CombinedRequests AS (
+    SELECT 
+        DATEPART(MONTH, r.DateRequested) AS RequestMonth,
+        CASE 
+            WHEN DATEPART(MONTH, r.DateRequested) IN (12, 1, 2) THEN 'Winter'
+            WHEN DATEPART(MONTH, r.DateRequested) IN (3, 4, 5) THEN 'Spring'
+            WHEN DATEPART(MONTH, r.DateRequested) IN (6, 7, 8) THEN 'Summer'
+            WHEN DATEPART(MONTH, r.DateRequested) IN (9, 10, 11) THEN 'Fall'
+        END AS Season,
+        l.CityName + ', ' + l.CountryName AS DestinationName
+    FROM Request r
+    INNER JOIN Package c ON c.PackageID = r.PackageID AND r.TripSourceType = 'Package'
+    INNER JOIN Destination d ON d.DestinationID = c.DestinationID
+    INNER JOIN Location l ON l.LocationID = d.LocationID
+
+    UNION ALL
+
+    SELECT 
+        DATEPART(MONTH, r.DateRequested) AS RequestMonth,
+        CASE 
+            WHEN DATEPART(MONTH, r.DateRequested) IN (12, 1, 2) THEN 'Winter'
+            WHEN DATEPART(MONTH, r.DateRequested) IN (3, 4, 5) THEN 'Spring'
+            WHEN DATEPART(MONTH, r.DateRequested) IN (6, 7, 8) THEN 'Summer'
+            WHEN DATEPART(MONTH, r.DateRequested) IN (9, 10, 11) THEN 'Fall'
+        END AS Season,
+        l.CityName + ', ' + l.CountryName AS DestinationName
+    FROM Request r
+    INNER JOIN CustomTrip c ON c.CustomTripID = r.CustomTripID AND r.TripSourceType = 'Custom'
+    INNER JOIN Destination d ON d.DestinationID = c.DestinationID
+    INNER JOIN Location l ON l.LocationID = d.LocationID
+),
+TopDestinations AS (
+    SELECT DestinationName
+    FROM CombinedRequests
+    GROUP BY DestinationName
+    ORDER BY COUNT(*) DESC
+    OFFSET 0 ROWS FETCH NEXT 10 ROWS ONLY
+)
+SELECT 
+    cr.Season,
+    cr.DestinationName,
+    COUNT(*) AS RequestCount
+FROM CombinedRequests cr
+WHERE cr.DestinationName IN (SELECT DestinationName FROM TopDestinations)
+GROUP BY cr.Season, cr.DestinationName
+ORDER BY cr.Season, RequestCount DESC;
+
+-- Traveler Satisfaction Score: Average ratings per destination.
+	SELECT TOP 10
+    l.CityName + ', ' + l.CountryName AS DestinationName,
+    AVG(CAST(r.Rating AS FLOAT)) AS AvgRating
+FROM Review r
+LEFT JOIN Accommodation a ON r.AccommodationID = a.AccomodationID
+LEFT JOIN Hotel h ON h.HotelID = a.HotelID
+LEFT JOIN ServiceProvider sp1 ON sp1.ProviderId = h.ProviderID
+LEFT JOIN Guide g ON r.GuideID = g.GuideID
+LEFT JOIN ServiceProvider sp2 ON sp2.ProviderId = g.GuideID
+LEFT JOIN Ride ri ON r.RideID = ri.RideID
+LEFT JOIN TransportService ts ON ts.TransportID = ri.TransportID
+LEFT JOIN ServiceProvider sp3 ON sp3.ProviderId = ts.ProviderID
+LEFT JOIN Destination d ON 
+    d.DestinationID = COALESCE(sp1.DestinationID, sp2.DestinationID, sp3.DestinationID)
+INNER JOIN Location l ON l.LocationID = d.LocationID
+WHERE r.ModerationStatus = 'Approved'
+    AND d.DestinationID IS NOT NULL
+GROUP BY l.CityName, l.CountryName
+HAVING AVG(CAST(r.Rating AS FLOAT)) IS NOT NULL
+ORDER BY AvgRating DESC;

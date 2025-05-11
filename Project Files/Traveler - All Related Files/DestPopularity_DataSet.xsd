@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DestPopularity_DataSet" targetNamespace="http://tempuri.org/DestPopularity_DataSet.xsd" xmlns:mstns="http://tempuri.org/DestPopularity_DataSet.xsd" xmlns="http://tempuri.org/DestPopularity_DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Project_DataConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Project_DataConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.dbfinalproject_interfaces.Properties.Settings.GlobalReference.Default.Project_DataConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="EmergingDestinationsDataSetTableAdapter" GeneratorDataComponentClassName="EmergingDestinationsDataSetTableAdapter" Name="EmergingDestinationsDataSet" UserDataComponentName="EmergingDestinationsDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT 'Karachi, Pakistan' as DestinationName, 10 as RequestCount</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="DestinationName" DataSetColumn="DestinationName" />
+              <Mapping SourceColumn="RequestCount" DataSetColumn="RequestCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="MostBookedDestinationsDataSetTableAdapter" GeneratorDataComponentClassName="MostBookedDestinationsDataSetTableAdapter" Name="MostBookedDestinationsDataSet" UserDataComponentName="MostBookedDestinationsDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select 'Karachi, Pakistan' as DestinationName, 10 as BookingCount</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="DestinationName" DataSetColumn="DestinationName" />
+              <Mapping SourceColumn="BookingCount" DataSetColumn="BookingCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SeasonalTrendsDataSetTableAdapter" GeneratorDataComponentClassName="SeasonalTrendsDataSetTableAdapter" Name="SeasonalTrendsDataSet" UserDataComponentName="SeasonalTrendsDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT 'Fall' AS Season, 'London, United Kingdom' As DestinationName, 2 as RequestCount</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Season" DataSetColumn="Season" />
+              <Mapping SourceColumn="DestinationName" DataSetColumn="DestinationName" />
+              <Mapping SourceColumn="RequestCount" DataSetColumn="RequestCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SatisfactionScoreDataSetTableAdapter" GeneratorDataComponentClassName="SatisfactionScoreDataSetTableAdapter" Name="SatisfactionScoreDataSet" UserDataComponentName="SatisfactionScoreDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select 'London, United Kingdom' as DestinationName, 4.5 as AvgRating</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="DestinationName" DataSetColumn="DestinationName" />
+              <Mapping SourceColumn="AvgRating" DataSetColumn="AvgRating" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DestPopularity_DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DestPopularity_DataSet" msprop:Generator_DataSetName="DestPopularity_DataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="EmergingDestinationsDataSet" msprop:Generator_RowEvHandlerName="EmergingDestinationsDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="EmergingDestinationsDataSetRowDeleted" msprop:Generator_RowDeletingName="EmergingDestinationsDataSetRowDeleting" msprop:Generator_RowEvArgName="EmergingDestinationsDataSetRowChangeEvent" msprop:Generator_TablePropName="EmergingDestinationsDataSet" msprop:Generator_RowChangedName="EmergingDestinationsDataSetRowChanged" msprop:Generator_RowChangingName="EmergingDestinationsDataSetRowChanging" msprop:Generator_TableClassName="EmergingDestinationsDataSetDataTable" msprop:Generator_RowClassName="EmergingDestinationsDataSetRow" msprop:Generator_TableVarName="tableEmergingDestinationsDataSet" msprop:Generator_UserTableName="EmergingDestinationsDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DestinationName" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="DestinationName" msprop:Generator_ColumnPropNameInTable="DestinationNameColumn" msprop:Generator_ColumnVarNameInTable="columnDestinationName" msprop:Generator_UserColumnName="DestinationName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="17" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RequestCount" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="RequestCount" msprop:Generator_ColumnPropNameInTable="RequestCountColumn" msprop:Generator_ColumnVarNameInTable="columnRequestCount" msprop:Generator_UserColumnName="RequestCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MostBookedDestinationsDataSet" msprop:Generator_RowEvHandlerName="MostBookedDestinationsDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="MostBookedDestinationsDataSetRowDeleted" msprop:Generator_RowDeletingName="MostBookedDestinationsDataSetRowDeleting" msprop:Generator_RowEvArgName="MostBookedDestinationsDataSetRowChangeEvent" msprop:Generator_TablePropName="MostBookedDestinationsDataSet" msprop:Generator_RowChangedName="MostBookedDestinationsDataSetRowChanged" msprop:Generator_RowChangingName="MostBookedDestinationsDataSetRowChanging" msprop:Generator_TableClassName="MostBookedDestinationsDataSetDataTable" msprop:Generator_RowClassName="MostBookedDestinationsDataSetRow" msprop:Generator_TableVarName="tableMostBookedDestinationsDataSet" msprop:Generator_UserTableName="MostBookedDestinationsDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DestinationName" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="DestinationName" msprop:Generator_ColumnPropNameInTable="DestinationNameColumn" msprop:Generator_ColumnVarNameInTable="columnDestinationName" msprop:Generator_UserColumnName="DestinationName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="17" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BookingCount" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="BookingCount" msprop:Generator_ColumnPropNameInTable="BookingCountColumn" msprop:Generator_ColumnVarNameInTable="columnBookingCount" msprop:Generator_UserColumnName="BookingCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SeasonalTrendsDataSet" msprop:Generator_RowEvHandlerName="SeasonalTrendsDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="SeasonalTrendsDataSetRowDeleted" msprop:Generator_RowDeletingName="SeasonalTrendsDataSetRowDeleting" msprop:Generator_RowEvArgName="SeasonalTrendsDataSetRowChangeEvent" msprop:Generator_TablePropName="SeasonalTrendsDataSet" msprop:Generator_RowChangedName="SeasonalTrendsDataSetRowChanged" msprop:Generator_RowChangingName="SeasonalTrendsDataSetRowChanging" msprop:Generator_TableClassName="SeasonalTrendsDataSetDataTable" msprop:Generator_RowClassName="SeasonalTrendsDataSetRow" msprop:Generator_TableVarName="tableSeasonalTrendsDataSet" msprop:Generator_UserTableName="SeasonalTrendsDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Season" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Season" msprop:Generator_ColumnPropNameInTable="SeasonColumn" msprop:Generator_ColumnVarNameInTable="columnSeason" msprop:Generator_UserColumnName="Season" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="4" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DestinationName" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="DestinationName" msprop:Generator_ColumnPropNameInTable="DestinationNameColumn" msprop:Generator_ColumnVarNameInTable="columnDestinationName" msprop:Generator_UserColumnName="DestinationName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RequestCount" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="RequestCount" msprop:Generator_ColumnPropNameInTable="RequestCountColumn" msprop:Generator_ColumnVarNameInTable="columnRequestCount" msprop:Generator_UserColumnName="RequestCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SatisfactionScoreDataSet" msprop:Generator_RowEvHandlerName="SatisfactionScoreDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="SatisfactionScoreDataSetRowDeleted" msprop:Generator_RowDeletingName="SatisfactionScoreDataSetRowDeleting" msprop:Generator_RowEvArgName="SatisfactionScoreDataSetRowChangeEvent" msprop:Generator_TablePropName="SatisfactionScoreDataSet" msprop:Generator_RowChangedName="SatisfactionScoreDataSetRowChanged" msprop:Generator_RowChangingName="SatisfactionScoreDataSetRowChanging" msprop:Generator_TableClassName="SatisfactionScoreDataSetDataTable" msprop:Generator_RowClassName="SatisfactionScoreDataSetRow" msprop:Generator_TableVarName="tableSatisfactionScoreDataSet" msprop:Generator_UserTableName="SatisfactionScoreDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DestinationName" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="DestinationName" msprop:Generator_ColumnPropNameInTable="DestinationNameColumn" msprop:Generator_ColumnVarNameInTable="columnDestinationName" msprop:Generator_UserColumnName="DestinationName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="22" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AvgRating" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="AvgRating" msprop:Generator_ColumnPropNameInTable="AvgRatingColumn" msprop:Generator_ColumnVarNameInTable="columnAvgRating" msprop:Generator_UserColumnName="AvgRating" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

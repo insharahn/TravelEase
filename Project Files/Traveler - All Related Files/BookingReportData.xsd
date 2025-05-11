@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="BookingReportData" targetNamespace="http://tempuri.org/BookingReportData.xsd" xmlns:mstns="http://tempuri.org/BookingReportData.xsd" xmlns="http://tempuri.org/BookingReportData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Project_DataConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Project_DataConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.dbfinalproject_interfaces.Properties.Settings.GlobalReference.Default.Project_DataConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="AbandonmentRateDataSetTableAdapter" GeneratorDataComponentClassName="AbandonmentRateDataSetTableAdapter" Name="AbandonmentRateDataSet" UserDataComponentName="AbandonmentRateDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT 76.5432098765432 AS AbandonmentRate</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="AbandonmentRate" DataSetColumn="AbandonmentRate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="CommonReasonsDataSetTableAdapter" GeneratorDataComponentClassName="CommonReasonsDataSetTableAdapter" Name="CommonReasonsDataSet" UserDataComponentName="CommonReasonsDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT 'Other' AS CancellationReason, 4 AS CancellationCount
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CancellationReason" DataSetColumn="CancellationReason" />
+              <Mapping SourceColumn="CancellationCount" DataSetColumn="CancellationCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RevenueLossDataSetTableAdapter" GeneratorDataComponentClassName="RevenueLossDataSetTableAdapter" Name="RevenueLossDataSet" UserDataComponentName="RevenueLossDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT 41559.00 AS PotentialRevenueLoss</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PotentialRevenueLoss" DataSetColumn="PotentialRevenueLoss" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="BookingReportData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="BookingReportData" msprop:Generator_DataSetName="BookingReportData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="AbandonmentRateDataSet" msprop:Generator_RowEvHandlerName="AbandonmentRateDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="AbandonmentRateDataSetRowDeleted" msprop:Generator_RowDeletingName="AbandonmentRateDataSetRowDeleting" msprop:Generator_RowEvArgName="AbandonmentRateDataSetRowChangeEvent" msprop:Generator_TablePropName="AbandonmentRateDataSet" msprop:Generator_RowChangedName="AbandonmentRateDataSetRowChanged" msprop:Generator_RowChangingName="AbandonmentRateDataSetRowChanging" msprop:Generator_TableClassName="AbandonmentRateDataSetDataTable" msprop:Generator_RowClassName="AbandonmentRateDataSetRow" msprop:Generator_TableVarName="tableAbandonmentRateDataSet" msprop:Generator_UserTableName="AbandonmentRateDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AbandonmentRate" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="AbandonmentRate" msprop:Generator_ColumnPropNameInTable="AbandonmentRateColumn" msprop:Generator_ColumnVarNameInTable="columnAbandonmentRate" msprop:Generator_UserColumnName="AbandonmentRate" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CommonReasonsDataSet" msprop:Generator_RowEvHandlerName="CommonReasonsDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="CommonReasonsDataSetRowDeleted" msprop:Generator_RowDeletingName="CommonReasonsDataSetRowDeleting" msprop:Generator_RowEvArgName="CommonReasonsDataSetRowChangeEvent" msprop:Generator_TablePropName="CommonReasonsDataSet" msprop:Generator_RowChangedName="CommonReasonsDataSetRowChanged" msprop:Generator_RowChangingName="CommonReasonsDataSetRowChanging" msprop:Generator_TableClassName="CommonReasonsDataSetDataTable" msprop:Generator_RowClassName="CommonReasonsDataSetRow" msprop:Generator_TableVarName="tableCommonReasonsDataSet" msprop:Generator_UserTableName="CommonReasonsDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CancellationReason" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="CancellationReason" msprop:Generator_ColumnPropNameInTable="CancellationReasonColumn" msprop:Generator_ColumnVarNameInTable="columnCancellationReason" msprop:Generator_UserColumnName="CancellationReason" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CancellationCount" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="CancellationCount" msprop:Generator_ColumnPropNameInTable="CancellationCountColumn" msprop:Generator_ColumnVarNameInTable="columnCancellationCount" msprop:Generator_UserColumnName="CancellationCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RevenueLossDataSet" msprop:Generator_RowEvHandlerName="RevenueLossDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="RevenueLossDataSetRowDeleted" msprop:Generator_RowDeletingName="RevenueLossDataSetRowDeleting" msprop:Generator_RowEvArgName="RevenueLossDataSetRowChangeEvent" msprop:Generator_TablePropName="RevenueLossDataSet" msprop:Generator_RowChangedName="RevenueLossDataSetRowChanged" msprop:Generator_RowChangingName="RevenueLossDataSetRowChanging" msprop:Generator_TableClassName="RevenueLossDataSetDataTable" msprop:Generator_RowClassName="RevenueLossDataSetRow" msprop:Generator_TableVarName="tableRevenueLossDataSet" msprop:Generator_UserTableName="RevenueLossDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PotentialRevenueLoss" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="PotentialRevenueLoss" msprop:Generator_ColumnPropNameInTable="PotentialRevenueLossColumn" msprop:Generator_ColumnVarNameInTable="columnPotentialRevenueLoss" msprop:Generator_UserColumnName="PotentialRevenueLoss" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

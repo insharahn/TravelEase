@@ -520,5 +520,13 @@ namespace dbfinalproject_interfaces
         {
 
         }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            travelerViewReports reports = new travelerViewReports();
+            reports.TravelerID = this.TravelerID;
+            reports.Show();
+        }
     }
 }
