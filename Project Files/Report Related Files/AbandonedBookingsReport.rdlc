@@ -75,6 +75,26 @@
         <rd:TableAdapterName>CommonReasonsDataSetTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="RecoveryRateDataSet">
+      <Query>
+        <DataSourceName>BookingReportData</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="RecoveryRatePercentage">
+          <DataField>RecoveryRatePercentage</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>BookingReportData</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\zinsi\source\repos\dbfinalproject_interfaces\dbfinalproject_interfaces\BookingReportData.xsd</rd:SchemaPath>
+        <rd:TableName>RecoveryRateDataSet</rd:TableName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>RecoveryRateDataSetTableAdapter</rd:TableAdapterName>
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -106,7 +126,7 @@
                                   <Value>Abandonment Rate:</Value>
                                   <Style>
                                     <FontFamily>Bookman Old Style</FontFamily>
-                                    <FontSize>11pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -118,7 +138,7 @@
                                   <Value />
                                   <Style>
                                     <FontFamily>Bookman Old Style</FontFamily>
-                                    <FontSize>11pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -152,6 +172,7 @@
                                   <Style>
                                     <FontFamily>Bookman Old Style</FontFamily>
                                     <FontSize>11pt</FontSize>
+                                    <Format>0.0000000000%</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -224,7 +245,7 @@
                                   <Value>Potential Revenue Loss:</Value>
                                   <Style>
                                     <FontFamily>Bookman Old Style</FontFamily>
-                                    <FontSize>11pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -258,6 +279,7 @@
                                   <Style>
                                     <FontFamily>Bookman Old Style</FontFamily>
                                     <FontSize>11pt</FontSize>
+                                    <Format>'$'0.00;('$'0.00)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -274,8 +296,10 @@
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
                             <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -660,7 +684,7 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>CommonReasonsDataSet</DataSetName>
-            <Top>1.34944in</Top>
+            <Top>1.95361in</Top>
             <Left>0.87722in</Left>
             <Height>2in</Height>
             <Width>5.21528in</Width>
@@ -674,6 +698,116 @@
               <BackgroundGradientType>None</BackgroundGradientType>
             </Style>
           </Chart>
+          <Tablix Name="Tablix4">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>3.14931in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.06597in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.48339in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox14">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Recovery Rate (Percentage of Bookings Completed After Being Abandoned for 1 Month Or More):</Value>
+                                  <Style>
+                                    <FontFamily>Bookman Old Style</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="RecoveryRatePercentage">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!RecoveryRatePercentage.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Bookman Old Style</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                    <Format>0.0000000000%</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>RecoveryRatePercentage</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>RecoveryRateDataSet</DataSetName>
+            <Top>1.28966in</Top>
+            <Left>0.87722in</Left>
+            <Height>0.48339in</Height>
+            <Width>5.21528in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <FontFamily>Bookman Old Style</FontFamily>
+              <FontSize>11pt</FontSize>
+            </Style>
+          </Tablix>
         </ReportItems>
         <Height>5.30154in</Height>
         <Style>

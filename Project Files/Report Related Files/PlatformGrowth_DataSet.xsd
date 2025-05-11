@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PlatformGrowth_DataSet" targetNamespace="http://tempuri.org/PlatformGrowth_DataSet.xsd" xmlns:mstns="http://tempuri.org/PlatformGrowth_DataSet.xsd" xmlns="http://tempuri.org/PlatformGrowth_DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Project_DataConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Project_DataConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.dbfinalproject_interfaces.Properties.Settings.GlobalReference.Default.Project_DataConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="NewUsersDataSetTableAdapter" GeneratorDataComponentClassName="NewUsersDataSetTableAdapter" Name="NewUsersDataSet" UserDataComponentName="NewUsersDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT '2024-11' AS RegistrationMonth, 'Operator' AS UserType, 1 AS RegistrationCount</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RegistrationMonth" DataSetColumn="RegistrationMonth" />
+              <Mapping SourceColumn="UserType" DataSetColumn="UserType" />
+              <Mapping SourceColumn="RegistrationCount" DataSetColumn="RegistrationCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ActiveUsersDataSetTableAdapter" GeneratorDataComponentClassName="ActiveUsersDataSetTableAdapter" Name="ActiveUsersDataSet" UserDataComponentName="ActiveUsersDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT '2025-04' as Month, 'Admin' as UserType, 2 as ActiveUserCount</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Month" DataSetColumn="Month" />
+              <Mapping SourceColumn="UserType" DataSetColumn="UserType" />
+              <Mapping SourceColumn="ActiveUserCount" DataSetColumn="ActiveUserCount" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PartnershipGrowthDataSetTableAdapter" GeneratorDataComponentClassName="PartnershipGrowthDataSetTableAdapter" Name="PartnershipGrowthDataSet" UserDataComponentName="PartnershipGrowthDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select '2025-04' as Month, 'Operator' as UserType, 2 as NewRegistrations</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Month" DataSetColumn="Month" />
+              <Mapping SourceColumn="UserType" DataSetColumn="UserType" />
+              <Mapping SourceColumn="NewRegistrations" DataSetColumn="NewRegistrations" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RegionalExpansionDataSetTableAdapter" GeneratorDataComponentClassName="RegionalExpansionDataSetTableAdapter" Name="RegionalExpansionDataSet" UserDataComponentName="RegionalExpansionDataSetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="Project_DataConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT '2025-04' as Month, 10 as NewDestinations</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Month" DataSetColumn="Month" />
+              <Mapping SourceColumn="NewDestinations" DataSetColumn="NewDestinations" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PlatformGrowth_DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="PlatformGrowth_DataSet" msprop:Generator_DataSetName="PlatformGrowth_DataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NewUsersDataSet" msprop:Generator_RowEvHandlerName="NewUsersDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="NewUsersDataSetRowDeleted" msprop:Generator_RowDeletingName="NewUsersDataSetRowDeleting" msprop:Generator_RowEvArgName="NewUsersDataSetRowChangeEvent" msprop:Generator_TablePropName="NewUsersDataSet" msprop:Generator_RowChangedName="NewUsersDataSetRowChanged" msprop:Generator_RowChangingName="NewUsersDataSetRowChanging" msprop:Generator_TableClassName="NewUsersDataSetDataTable" msprop:Generator_RowClassName="NewUsersDataSetRow" msprop:Generator_TableVarName="tableNewUsersDataSet" msprop:Generator_UserTableName="NewUsersDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RegistrationMonth" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="RegistrationMonth" msprop:Generator_ColumnPropNameInTable="RegistrationMonthColumn" msprop:Generator_ColumnVarNameInTable="columnRegistrationMonth" msprop:Generator_UserColumnName="RegistrationMonth" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserType" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="UserType" msprop:Generator_ColumnPropNameInTable="UserTypeColumn" msprop:Generator_ColumnVarNameInTable="columnUserType" msprop:Generator_UserColumnName="UserType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RegistrationCount" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="RegistrationCount" msprop:Generator_ColumnPropNameInTable="RegistrationCountColumn" msprop:Generator_ColumnVarNameInTable="columnRegistrationCount" msprop:Generator_UserColumnName="RegistrationCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ActiveUsersDataSet" msprop:Generator_RowEvHandlerName="ActiveUsersDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="ActiveUsersDataSetRowDeleted" msprop:Generator_RowDeletingName="ActiveUsersDataSetRowDeleting" msprop:Generator_RowEvArgName="ActiveUsersDataSetRowChangeEvent" msprop:Generator_TablePropName="ActiveUsersDataSet" msprop:Generator_RowChangedName="ActiveUsersDataSetRowChanged" msprop:Generator_RowChangingName="ActiveUsersDataSetRowChanging" msprop:Generator_TableClassName="ActiveUsersDataSetDataTable" msprop:Generator_RowClassName="ActiveUsersDataSetRow" msprop:Generator_TableVarName="tableActiveUsersDataSet" msprop:Generator_UserTableName="ActiveUsersDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Month" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Month" msprop:Generator_ColumnPropNameInTable="MonthColumn" msprop:Generator_ColumnVarNameInTable="columnMonth" msprop:Generator_UserColumnName="Month" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserType" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="UserType" msprop:Generator_ColumnPropNameInTable="UserTypeColumn" msprop:Generator_ColumnVarNameInTable="columnUserType" msprop:Generator_UserColumnName="UserType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ActiveUserCount" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="ActiveUserCount" msprop:Generator_ColumnPropNameInTable="ActiveUserCountColumn" msprop:Generator_ColumnVarNameInTable="columnActiveUserCount" msprop:Generator_UserColumnName="ActiveUserCount" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PartnershipGrowthDataSet" msprop:Generator_RowEvHandlerName="PartnershipGrowthDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="PartnershipGrowthDataSetRowDeleted" msprop:Generator_RowDeletingName="PartnershipGrowthDataSetRowDeleting" msprop:Generator_RowEvArgName="PartnershipGrowthDataSetRowChangeEvent" msprop:Generator_TablePropName="PartnershipGrowthDataSet" msprop:Generator_RowChangedName="PartnershipGrowthDataSetRowChanged" msprop:Generator_RowChangingName="PartnershipGrowthDataSetRowChanging" msprop:Generator_TableClassName="PartnershipGrowthDataSetDataTable" msprop:Generator_RowClassName="PartnershipGrowthDataSetRow" msprop:Generator_TableVarName="tablePartnershipGrowthDataSet" msprop:Generator_UserTableName="PartnershipGrowthDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Month" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Month" msprop:Generator_ColumnPropNameInTable="MonthColumn" msprop:Generator_ColumnVarNameInTable="columnMonth" msprop:Generator_UserColumnName="Month" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserType" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="UserType" msprop:Generator_ColumnPropNameInTable="UserTypeColumn" msprop:Generator_ColumnVarNameInTable="columnUserType" msprop:Generator_UserColumnName="UserType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NewRegistrations" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="NewRegistrations" msprop:Generator_ColumnPropNameInTable="NewRegistrationsColumn" msprop:Generator_ColumnVarNameInTable="columnNewRegistrations" msprop:Generator_UserColumnName="NewRegistrations" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RegionalExpansionDataSet" msprop:Generator_RowEvHandlerName="RegionalExpansionDataSetRowChangeEventHandler" msprop:Generator_RowDeletedName="RegionalExpansionDataSetRowDeleted" msprop:Generator_RowDeletingName="RegionalExpansionDataSetRowDeleting" msprop:Generator_RowEvArgName="RegionalExpansionDataSetRowChangeEvent" msprop:Generator_TablePropName="RegionalExpansionDataSet" msprop:Generator_RowChangedName="RegionalExpansionDataSetRowChanged" msprop:Generator_RowChangingName="RegionalExpansionDataSetRowChanging" msprop:Generator_TableClassName="RegionalExpansionDataSetDataTable" msprop:Generator_RowClassName="RegionalExpansionDataSetRow" msprop:Generator_TableVarName="tableRegionalExpansionDataSet" msprop:Generator_UserTableName="RegionalExpansionDataSet">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Month" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Month" msprop:Generator_ColumnPropNameInTable="MonthColumn" msprop:Generator_ColumnVarNameInTable="columnMonth" msprop:Generator_UserColumnName="Month" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="7" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NewDestinations" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="NewDestinations" msprop:Generator_ColumnPropNameInTable="NewDestinationsColumn" msprop:Generator_ColumnVarNameInTable="columnNewDestinations" msprop:Generator_UserColumnName="NewDestinations" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

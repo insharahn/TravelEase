@@ -38,7 +38,7 @@ namespace dbfinalproject_interfaces
                 // 1. Abandonment Rate
                 string queryAbandonment = @"
                     SELECT 
-                        (CAST(SUM(CASE WHEN BookingStatus <> 'Confirmed' THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)) * 100 AS AbandonmentRate
+                        (CAST(SUM(CASE WHEN BookingStatus <> 'Confirmed' THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)) AS AbandonmentRate
                     FROM Booking;";
                 SqlDataAdapter daAbandonment = new SqlDataAdapter(queryAbandonment, con);
                 DataTable dtAbandonment = new DataTable();
@@ -78,9 +78,30 @@ namespace dbfinalproject_interfaces
                     dtRevenueLoss.Rows.Add(0); //add a dummy row or handle null
                 }
 
+                // 4. Recovery Rate (bookings made after a month)
+                string queryRecoveryRate = @"
+                    SELECT 
+                    CAST(COUNT(CASE 
+                                  WHEN DATEDIFF(DAY, r.DateRequested, b.BookingDate) >= 30
+                                  THEN 1 
+                              END) AS FLOAT)
+                    / NULLIF(COUNT(b.BookingID), 0) AS RecoveryRatePercentage
+                FROM Request r
+                INNER JOIN Booking b ON b.RequestID = r.RequestID;";
+                SqlDataAdapter daRecoveryRate = new SqlDataAdapter(queryRecoveryRate, con);
+                DataTable dtRecoveryRate = new DataTable();
+                daRecoveryRate.Fill(dtRecoveryRate);
+
+                if (dtRecoveryRate.Rows.Count == 0 || dtRecoveryRate.Rows[0]["RecoveryRatePercentage"] == DBNull.Value)
+                {
+                    dtRecoveryRate.Rows.Add(0); //add a dummy row or handle null
+                }
+
                 ReportDataSource rdsAbandonment = new ReportDataSource("AbandonmentRateDataSet", dtAbandonment);
                 ReportDataSource rdsReasons = new ReportDataSource("CommonReasonsDataSet", dtReasons);
                 ReportDataSource rdsRevenueLoss = new ReportDataSource("RevenueLossDataSet", dtRevenueLoss);
+                ReportDataSource rdsRecoveryRate = new ReportDataSource("RecoveryRateDataSet", dtRecoveryRate);
+
 
                 try
                 {
@@ -90,6 +111,7 @@ namespace dbfinalproject_interfaces
                     reportViewer1.LocalReport.DataSources.Add(rdsAbandonment);
                     reportViewer1.LocalReport.DataSources.Add(rdsReasons);
                     reportViewer1.LocalReport.DataSources.Add(rdsRevenueLoss);
+                    reportViewer1.LocalReport.DataSources.Add(rdsRecoveryRate);
                     reportViewer1.RefreshReport();
                 }
                 catch (Exception ex)

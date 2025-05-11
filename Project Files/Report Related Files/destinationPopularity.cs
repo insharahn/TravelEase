@@ -14,7 +14,12 @@ namespace dbfinalproject_interfaces
 {
     public partial class destinationPopularity : Form
     {
-        public int TravelerID { get; set; } //so that traveler is retained when returning home, can be changed to whoever's id's interface this report is in
+        public int TravelerID { get; set; } //so that traveler is retained when returning home, can be changed to whoever's id's interface this report is in and you can set it using the object created
+        /*for example:
+         * destinationPopularity dest = new destinationPopulatiry();
+         * dest.TravelerID = this.TravelerID; //assuming we r in traveler
+         * dest.Show(); //will load for that traveler
+         */
         const string reportPath = "dbfinalproject_interfaces.DestinationPopularityReport.rdlc";
         public destinationPopularity()
         {
@@ -220,6 +225,11 @@ namespace dbfinalproject_interfaces
         private void reportViewer1_Load(object sender, EventArgs e)
         {
             LoadReportData();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

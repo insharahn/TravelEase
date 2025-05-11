@@ -377,7 +377,6 @@ INSERT INTO TripCategory (TripType) VALUES
 ('Cultural'),
 ('Other');
 
-
 -----------------------------------------------------------------------------------------
 -----------------------------DATE IN DESTINATION-----------------------------------------
 -----------------------------------------------------------------------------------------
@@ -386,6 +385,19 @@ ADD DateAdded DATE;
 -- Set random DateAdded values between '2021-01-01' and '2025-05-01'
 UPDATE Destination
 SET DateAdded = DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2021-01-01', '2025-05-01'), '2021-01-01');
+
+
+-----------------------------------------------------------------------------------------
+------------------------------ACTIVE USERS TABLE-----------------------------------------
+-----------------------------------------------------------------------------------------
+
+Create Table ActiveUsers(
+ActiveUserID int identity(1, 1) primary key,
+userID int,
+userType varchar(50),
+acessDate datetime
+)
+
 -----------------------------------------------------------------------------------------
 -- MY USELESS QUERIES FOR WHEN I WAS MAKING FORMS
 ---- EVERYTHING BELOW RTHIS IS USELESS
@@ -1037,7 +1049,7 @@ o Potential Revenue Loss: Estimated earnings from abandoned carts.*/
 
 -- Abandonment Rate: Percentage of uncompleted bookings.
 SELECT 
-    (CAST(SUM(CASE WHEN BookingStatus <> 'Confirmed' THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)) * 100 AS AbandonmentRate
+    (CAST(SUM(CASE WHEN BookingStatus <> 'Confirmed' THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)) AS AbandonmentRate
 FROM Booking;
 
 -- Common Reasons: Payment failures, high prices, or complex processes.
@@ -1051,7 +1063,22 @@ SELECT SUM(TotalCost)
 From Booking
 WHERE BookingStatus = 'Cancelled'
 
--- Recovery Rate: Percentage of abandoned bookings later completed.: SKIPPED
+-- Recovery Rate: Percentage of abandoned bookings later completed
+-- Bookings made more than 1 month after the request
+SELECT 
+    CAST(COUNT(CASE 
+                  WHEN DATEDIFF(DAY, r.DateRequested, b.BookingDate) >= 30
+                  THEN 1 
+              END) AS FLOAT)
+    / NULLIF(COUNT(b.BookingID), 0) AS RecoveryRatePercentage
+FROM Request r
+INNER JOIN Booking b ON b.RequestID = r.RequestID;
+
+ SELECT 
+     (CAST(SUM(CASE WHEN BookingStatus <> 'Confirmed' THEN 1 ELSE 0 END) AS FLOAT) / COUNT(*)) * 100 AS AbandonmentRate
+ FROM Booking
+
+
 
 
 /*o Most-Booked Destinations: Cities/regions with highest bookings.
@@ -1177,3 +1204,165 @@ WHERE r.ModerationStatus = 'Approved'
 GROUP BY l.CityName, l.CountryName
 HAVING AVG(CAST(r.Rating AS FLOAT)) IS NOT NULL
 ORDER BY AvgRating DESC;
+
+
+-- 7. platform growth report
+/*o New User Registrations: Growth in travelers, operators, and providers.
+o Active Users: Monthly active travelers and operators.
+o Partnership Growth: Number of new hotels/operators joining monthly.
+o Regional Expansion: New destinations added to the platform.*/
+
+select * from ServiceProvider
+select * from Operator
+select * from Traveler
+
+-- New User Registrations: Growth in travelers, operators, and providers.
+-- CONSIDERING NEW TO HAVE SIGNED UP IN THE LAST 6 MONTHS
+SELECT 
+    FORMAT(sp.RegistrationDate, 'yyyy-MM') AS RegistrationMonth,
+    'ServiceProvider' AS UserType,
+    COUNT(*) AS RegistrationCount
+FROM ServiceProvider sp
+WHERE sp.RegistrationDate >= DATEADD(MONTH, -6, GETDATE())
+GROUP BY FORMAT(sp.RegistrationDate, 'yyyy-MM')
+UNION ALL
+SELECT 
+    FORMAT(o.RegistrationDate, 'yyyy-MM') AS RegistrationMonth,
+    'Operator' AS UserType,
+    COUNT(*) AS RegistrationCount
+FROM Operator o
+WHERE o.RegistrationDate >= DATEADD(MONTH, -6, GETDATE())
+GROUP BY FORMAT(o.RegistrationDate, 'yyyy-MM')
+UNION ALL
+SELECT 
+    FORMAT(t.RegistrationDate, 'yyyy-MM') AS RegistrationMonth,
+    'Traveler' AS UserType,
+    COUNT(*) AS RegistrationCount
+FROM Traveler t
+WHERE t.RegistrationDate >= DATEADD(MONTH, -6, GETDATE())
+GROUP BY FORMAT(t.RegistrationDate, 'yyyy-MM')
+ORDER BY RegistrationMonth, UserType;
+
+--o Active Users: Monthly active travelers and operators.
+-- considering all active users not just these two
+SELECT 
+    FORMAT(acessDate, 'yyyy-MM') AS Month,
+    UserType,
+    COUNT(DISTINCT UserID) AS ActiveUserCount
+FROM ActiveUsers
+GROUP BY FORMAT(acessDate, 'yyyy-MM'), UserType
+ORDER BY Month, UserType;
+
+-- o Partnership Growth: Number of new hotels/operators joining monthly.
+-- cosidering sps not just hotels
+SELECT 
+    FORMAT(RegistrationDate, 'yyyy-MM') AS Month,
+    'Operator' AS UserType,
+    COUNT(*) AS NewRegistrations
+FROM Operator
+WHERE RegistrationDate >= DATEADD(MONTH, -12, GETDATE())
+GROUP BY FORMAT(RegistrationDate, 'yyyy-MM')
+UNION ALL
+SELECT 
+    FORMAT(RegistrationDate, 'yyyy-MM') AS Month,
+    'ServiceProvider' AS UserType,
+    COUNT(*) AS NewRegistrations
+FROM ServiceProvider
+WHERE RegistrationDate >= DATEADD(MONTH, -12, GETDATE())
+GROUP BY FORMAT(RegistrationDate, 'yyyy-MM')
+ORDER BY Month, UserType;
+
+
+--o Regional Expansion: New destinations added to the platform.*/
+SELECT 
+    FORMAT(DateAdded, 'yyyy-MM') AS Month,
+    COUNT(*) AS NewDestinations
+FROM Destination
+GROUP BY FORMAT(DateAdded, 'yyyy-MM')
+ORDER BY Month;
+
+
+
+Select * from ActiveUsers
+INSERT INTO ActiveUsers(UserID, UserType, AcessDate)
+VALUES
+(17, 'Traveler', DATEADD(DAY, -5, GETDATE())),
+(42, 'Guide', DATEADD(DAY, -1, GETDATE())),
+(8, 'Hotel', DATEADD(DAY, -12, GETDATE())),
+(25, 'Transport', DATEADD(DAY, -3, GETDATE())),
+(34, 'Operator', DATEADD(DAY, -9, GETDATE())),
+(6, 'Admin', DATEADD(DAY, -2, GETDATE())),
+(11, 'Traveler', DATEADD(DAY, -6, GETDATE())),
+(29, 'Guide', DATEADD(DAY, -14, GETDATE())),
+(45, 'Hotel', DATEADD(DAY, -10, GETDATE())),
+(21, 'Transport', DATEADD(DAY, -1, GETDATE())),
+(36, 'Operator', DATEADD(DAY, -8, GETDATE())),
+(3, 'Admin', DATEADD(DAY, -7, GETDATE())),
+(15, 'Traveler', DATEADD(DAY, -4, GETDATE())),
+(50, 'Guide', DATEADD(DAY, -11, GETDATE())),
+(28, 'Hotel', DATEADD(DAY, -2, GETDATE())),
+(2, 'Transport', DATEADD(DAY, -15, GETDATE())),
+(38, 'Operator', DATEADD(DAY, -13, GETDATE())),
+(10, 'Admin', DATEADD(DAY, -12, GETDATE())),
+(7, 'Traveler', DATEADD(DAY, -3, GETDATE())),
+(44, 'Guide', DATEADD(DAY, -9, GETDATE())),
+(23, 'Hotel', DATEADD(DAY, -14, GETDATE())),
+(33, 'Transport', DATEADD(DAY, -5, GETDATE())),
+(20, 'Operator', DATEADD(DAY, -4, GETDATE())),
+(9, 'Admin', DATEADD(DAY, -1, GETDATE())),
+(31, 'Traveler', DATEADD(DAY, -6, GETDATE())),
+(19, 'Guide', DATEADD(DAY, -3, GETDATE())),
+(48, 'Hotel', DATEADD(DAY, -12, GETDATE())),
+(1, 'Transport', DATEADD(DAY, -10, GETDATE())),
+(41, 'Operator', DATEADD(DAY, -2, GETDATE())),
+(13, 'Admin', DATEADD(DAY, -8, GETDATE())),
+(16, 'Traveler', DATEADD(DAY, -7, GETDATE())),
+(35, 'Guide', DATEADD(DAY, -11, GETDATE())),
+(27, 'Hotel', DATEADD(DAY, -2, GETDATE())),
+(5, 'Transport', DATEADD(DAY, -13, GETDATE())),
+(43, 'Operator', DATEADD(DAY, -6, GETDATE())),
+(30, 'Admin', DATEADD(DAY, -4, GETDATE())),
+(37, 'Traveler', DATEADD(DAY, -1, GETDATE())),
+(4, 'Guide', DATEADD(DAY, -9, GETDATE())),
+(47, 'Hotel', DATEADD(DAY, -14, GETDATE())),
+(14, 'Transport', DATEADD(DAY, -5, GETDATE())),
+(39, 'Operator', DATEADD(DAY, -3, GETDATE())),
+(22, 'Admin', DATEADD(DAY, -12, GETDATE())),
+(12, 'Traveler', DATEADD(DAY, -2, GETDATE())),
+(26, 'Guide', DATEADD(DAY, -7, GETDATE())),
+(32, 'Hotel', DATEADD(DAY, -10, GETDATE())),
+(40, 'Transport', DATEADD(DAY, -15, GETDATE())),
+(18, 'Operator', DATEADD(DAY, -11, GETDATE())),
+(24, 'Admin', DATEADD(DAY, -6, GETDATE())),
+(46, 'Traveler', DATEADD(DAY, -1, GETDATE())),
+(49, 'Guide', DATEADD(DAY, -8, GETDATE()));
+
+
+-- Payment Success/Failure Rate: Percentage of completed transactions.
+-- o Chargeback Rate: Disputed transactions by travelers.
+
+-- Payment Success/Failure Rate: Percentage of completed transactions.
+SELECT 
+    PaymentStatus,
+    COUNT(*) AS Count,
+    ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (), 2) AS Percentage
+FROM Payment
+GROUP BY PaymentStatus;
+
+SELECT 
+    PaymentStatus,
+    COUNT(*) AS Count
+FROM Payment
+GROUP BY PaymentStatus;
+
+---- o Chargeback Rate: Disputed transactions by travelers.
+SELECT 
+    COUNT(CASE WHEN PaymentStatus = 'Chargeback' THEN 1 END) * 1.0 / COUNT(*) AS ChargebackRatePercent
+FROM Payment;
+
+
+SELECT 
+    COUNT(CASE WHEN PaymentStatus = 'Success' THEN 1 END) * 1.0 / COUNT(*) AS CompletedPercent
+FROM Payment;
+
+select * from Payment

@@ -20,21 +20,21 @@ namespace dbfinalproject_interfaces {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("BookingReportData")]
+    [global::System.Xml.Serialization.XmlRootAttribute("PaymentReport_DataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class BookingReportData : global::System.Data.DataSet {
+    public partial class PaymentReport_DataSet : global::System.Data.DataSet {
         
-        private AbandonmentRateDataSetDataTable tableAbandonmentRateDataSet;
+        private PaymentSuccessFailureDataSetDataTable tablePaymentSuccessFailureDataSet;
         
-        private CommonReasonsDataSetDataTable tableCommonReasonsDataSet;
+        private ChargebackRateDataSetDataTable tableChargebackRateDataSet;
         
-        private RevenueLossDataSetDataTable tableRevenueLossDataSet;
+        private SuccessfulRateDataSetDataTable tableSuccessfulRateDataSet;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public BookingReportData() {
+        public PaymentReport_DataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -45,7 +45,7 @@ namespace dbfinalproject_interfaces {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected BookingReportData(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected PaymentReport_DataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -58,14 +58,14 @@ namespace dbfinalproject_interfaces {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["AbandonmentRateDataSet"] != null)) {
-                    base.Tables.Add(new AbandonmentRateDataSetDataTable(ds.Tables["AbandonmentRateDataSet"]));
+                if ((ds.Tables["PaymentSuccessFailureDataSet"] != null)) {
+                    base.Tables.Add(new PaymentSuccessFailureDataSetDataTable(ds.Tables["PaymentSuccessFailureDataSet"]));
                 }
-                if ((ds.Tables["CommonReasonsDataSet"] != null)) {
-                    base.Tables.Add(new CommonReasonsDataSetDataTable(ds.Tables["CommonReasonsDataSet"]));
+                if ((ds.Tables["ChargebackRateDataSet"] != null)) {
+                    base.Tables.Add(new ChargebackRateDataSetDataTable(ds.Tables["ChargebackRateDataSet"]));
                 }
-                if ((ds.Tables["RevenueLossDataSet"] != null)) {
-                    base.Tables.Add(new RevenueLossDataSetDataTable(ds.Tables["RevenueLossDataSet"]));
+                if ((ds.Tables["SuccessfulRateDataSet"] != null)) {
+                    base.Tables.Add(new SuccessfulRateDataSetDataTable(ds.Tables["SuccessfulRateDataSet"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -89,9 +89,9 @@ namespace dbfinalproject_interfaces {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public AbandonmentRateDataSetDataTable AbandonmentRateDataSet {
+        public PaymentSuccessFailureDataSetDataTable PaymentSuccessFailureDataSet {
             get {
-                return this.tableAbandonmentRateDataSet;
+                return this.tablePaymentSuccessFailureDataSet;
             }
         }
         
@@ -99,9 +99,9 @@ namespace dbfinalproject_interfaces {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CommonReasonsDataSetDataTable CommonReasonsDataSet {
+        public ChargebackRateDataSetDataTable ChargebackRateDataSet {
             get {
-                return this.tableCommonReasonsDataSet;
+                return this.tableChargebackRateDataSet;
             }
         }
         
@@ -109,9 +109,9 @@ namespace dbfinalproject_interfaces {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public RevenueLossDataSetDataTable RevenueLossDataSet {
+        public SuccessfulRateDataSetDataTable SuccessfulRateDataSet {
             get {
-                return this.tableRevenueLossDataSet;
+                return this.tableSuccessfulRateDataSet;
             }
         }
         
@@ -157,7 +157,7 @@ namespace dbfinalproject_interfaces {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            BookingReportData cln = ((BookingReportData)(base.Clone()));
+            PaymentReport_DataSet cln = ((PaymentReport_DataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -182,14 +182,14 @@ namespace dbfinalproject_interfaces {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["AbandonmentRateDataSet"] != null)) {
-                    base.Tables.Add(new AbandonmentRateDataSetDataTable(ds.Tables["AbandonmentRateDataSet"]));
+                if ((ds.Tables["PaymentSuccessFailureDataSet"] != null)) {
+                    base.Tables.Add(new PaymentSuccessFailureDataSetDataTable(ds.Tables["PaymentSuccessFailureDataSet"]));
                 }
-                if ((ds.Tables["CommonReasonsDataSet"] != null)) {
-                    base.Tables.Add(new CommonReasonsDataSetDataTable(ds.Tables["CommonReasonsDataSet"]));
+                if ((ds.Tables["ChargebackRateDataSet"] != null)) {
+                    base.Tables.Add(new ChargebackRateDataSetDataTable(ds.Tables["ChargebackRateDataSet"]));
                 }
-                if ((ds.Tables["RevenueLossDataSet"] != null)) {
-                    base.Tables.Add(new RevenueLossDataSetDataTable(ds.Tables["RevenueLossDataSet"]));
+                if ((ds.Tables["SuccessfulRateDataSet"] != null)) {
+                    base.Tables.Add(new SuccessfulRateDataSetDataTable(ds.Tables["SuccessfulRateDataSet"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -224,22 +224,22 @@ namespace dbfinalproject_interfaces {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableAbandonmentRateDataSet = ((AbandonmentRateDataSetDataTable)(base.Tables["AbandonmentRateDataSet"]));
+            this.tablePaymentSuccessFailureDataSet = ((PaymentSuccessFailureDataSetDataTable)(base.Tables["PaymentSuccessFailureDataSet"]));
             if ((initTable == true)) {
-                if ((this.tableAbandonmentRateDataSet != null)) {
-                    this.tableAbandonmentRateDataSet.InitVars();
+                if ((this.tablePaymentSuccessFailureDataSet != null)) {
+                    this.tablePaymentSuccessFailureDataSet.InitVars();
                 }
             }
-            this.tableCommonReasonsDataSet = ((CommonReasonsDataSetDataTable)(base.Tables["CommonReasonsDataSet"]));
+            this.tableChargebackRateDataSet = ((ChargebackRateDataSetDataTable)(base.Tables["ChargebackRateDataSet"]));
             if ((initTable == true)) {
-                if ((this.tableCommonReasonsDataSet != null)) {
-                    this.tableCommonReasonsDataSet.InitVars();
+                if ((this.tableChargebackRateDataSet != null)) {
+                    this.tableChargebackRateDataSet.InitVars();
                 }
             }
-            this.tableRevenueLossDataSet = ((RevenueLossDataSetDataTable)(base.Tables["RevenueLossDataSet"]));
+            this.tableSuccessfulRateDataSet = ((SuccessfulRateDataSetDataTable)(base.Tables["SuccessfulRateDataSet"]));
             if ((initTable == true)) {
-                if ((this.tableRevenueLossDataSet != null)) {
-                    this.tableRevenueLossDataSet.InitVars();
+                if ((this.tableSuccessfulRateDataSet != null)) {
+                    this.tableSuccessfulRateDataSet.InitVars();
                 }
             }
         }
@@ -247,34 +247,34 @@ namespace dbfinalproject_interfaces {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "BookingReportData";
+            this.DataSetName = "PaymentReport_DataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/BookingReportData.xsd";
+            this.Namespace = "http://tempuri.org/PaymentReport_DataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableAbandonmentRateDataSet = new AbandonmentRateDataSetDataTable();
-            base.Tables.Add(this.tableAbandonmentRateDataSet);
-            this.tableCommonReasonsDataSet = new CommonReasonsDataSetDataTable();
-            base.Tables.Add(this.tableCommonReasonsDataSet);
-            this.tableRevenueLossDataSet = new RevenueLossDataSetDataTable();
-            base.Tables.Add(this.tableRevenueLossDataSet);
+            this.tablePaymentSuccessFailureDataSet = new PaymentSuccessFailureDataSetDataTable();
+            base.Tables.Add(this.tablePaymentSuccessFailureDataSet);
+            this.tableChargebackRateDataSet = new ChargebackRateDataSetDataTable();
+            base.Tables.Add(this.tableChargebackRateDataSet);
+            this.tableSuccessfulRateDataSet = new SuccessfulRateDataSetDataTable();
+            base.Tables.Add(this.tableSuccessfulRateDataSet);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeAbandonmentRateDataSet() {
+        private bool ShouldSerializePaymentSuccessFailureDataSet() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeCommonReasonsDataSet() {
+        private bool ShouldSerializeChargebackRateDataSet() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeRevenueLossDataSet() {
+        private bool ShouldSerializeSuccessfulRateDataSet() {
             return false;
         }
         
@@ -289,7 +289,7 @@ namespace dbfinalproject_interfaces {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            BookingReportData ds = new BookingReportData();
+            PaymentReport_DataSet ds = new PaymentReport_DataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -334,27 +334,29 @@ namespace dbfinalproject_interfaces {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void AbandonmentRateDataSetRowChangeEventHandler(object sender, AbandonmentRateDataSetRowChangeEvent e);
+        public delegate void PaymentSuccessFailureDataSetRowChangeEventHandler(object sender, PaymentSuccessFailureDataSetRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void CommonReasonsDataSetRowChangeEventHandler(object sender, CommonReasonsDataSetRowChangeEvent e);
+        public delegate void ChargebackRateDataSetRowChangeEventHandler(object sender, ChargebackRateDataSetRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void RevenueLossDataSetRowChangeEventHandler(object sender, RevenueLossDataSetRowChangeEvent e);
+        public delegate void SuccessfulRateDataSetRowChangeEventHandler(object sender, SuccessfulRateDataSetRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class AbandonmentRateDataSetDataTable : global::System.Data.TypedTableBase<AbandonmentRateDataSetRow> {
+        public partial class PaymentSuccessFailureDataSetDataTable : global::System.Data.TypedTableBase<PaymentSuccessFailureDataSetRow> {
             
-            private global::System.Data.DataColumn columnAbandonmentRate;
+            private global::System.Data.DataColumn columnPaymentStatus;
+            
+            private global::System.Data.DataColumn columnCount;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AbandonmentRateDataSetDataTable() {
-                this.TableName = "AbandonmentRateDataSet";
+            public PaymentSuccessFailureDataSetDataTable() {
+                this.TableName = "PaymentSuccessFailureDataSet";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -362,7 +364,7 @@ namespace dbfinalproject_interfaces {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal AbandonmentRateDataSetDataTable(global::System.Data.DataTable table) {
+            internal PaymentSuccessFailureDataSetDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -379,16 +381,24 @@ namespace dbfinalproject_interfaces {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected AbandonmentRateDataSetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected PaymentSuccessFailureDataSetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn AbandonmentRateColumn {
+            public global::System.Data.DataColumn PaymentStatusColumn {
                 get {
-                    return this.columnAbandonmentRate;
+                    return this.columnPaymentStatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CountColumn {
+                get {
+                    return this.columnCount;
                 }
             }
             
@@ -403,45 +413,46 @@ namespace dbfinalproject_interfaces {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AbandonmentRateDataSetRow this[int index] {
+            public PaymentSuccessFailureDataSetRow this[int index] {
                 get {
-                    return ((AbandonmentRateDataSetRow)(this.Rows[index]));
+                    return ((PaymentSuccessFailureDataSetRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event AbandonmentRateDataSetRowChangeEventHandler AbandonmentRateDataSetRowChanging;
+            public event PaymentSuccessFailureDataSetRowChangeEventHandler PaymentSuccessFailureDataSetRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event AbandonmentRateDataSetRowChangeEventHandler AbandonmentRateDataSetRowChanged;
+            public event PaymentSuccessFailureDataSetRowChangeEventHandler PaymentSuccessFailureDataSetRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event AbandonmentRateDataSetRowChangeEventHandler AbandonmentRateDataSetRowDeleting;
+            public event PaymentSuccessFailureDataSetRowChangeEventHandler PaymentSuccessFailureDataSetRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event AbandonmentRateDataSetRowChangeEventHandler AbandonmentRateDataSetRowDeleted;
+            public event PaymentSuccessFailureDataSetRowChangeEventHandler PaymentSuccessFailureDataSetRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddAbandonmentRateDataSetRow(AbandonmentRateDataSetRow row) {
+            public void AddPaymentSuccessFailureDataSetRow(PaymentSuccessFailureDataSetRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AbandonmentRateDataSetRow AddAbandonmentRateDataSetRow(decimal AbandonmentRate) {
-                AbandonmentRateDataSetRow rowAbandonmentRateDataSetRow = ((AbandonmentRateDataSetRow)(this.NewRow()));
+            public PaymentSuccessFailureDataSetRow AddPaymentSuccessFailureDataSetRow(string PaymentStatus, int Count) {
+                PaymentSuccessFailureDataSetRow rowPaymentSuccessFailureDataSetRow = ((PaymentSuccessFailureDataSetRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        AbandonmentRate};
-                rowAbandonmentRateDataSetRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowAbandonmentRateDataSetRow);
-                return rowAbandonmentRateDataSetRow;
+                        PaymentStatus,
+                        Count};
+                rowPaymentSuccessFailureDataSetRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowPaymentSuccessFailureDataSetRow);
+                return rowPaymentSuccessFailureDataSetRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                AbandonmentRateDataSetDataTable cln = ((AbandonmentRateDataSetDataTable)(base.Clone()));
+                PaymentSuccessFailureDataSetDataTable cln = ((PaymentSuccessFailureDataSetDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -449,47 +460,52 @@ namespace dbfinalproject_interfaces {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new AbandonmentRateDataSetDataTable();
+                return new PaymentSuccessFailureDataSetDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnAbandonmentRate = base.Columns["AbandonmentRate"];
+                this.columnPaymentStatus = base.Columns["PaymentStatus"];
+                this.columnCount = base.Columns["Count"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnAbandonmentRate = new global::System.Data.DataColumn("AbandonmentRate", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAbandonmentRate);
-                this.columnAbandonmentRate.ReadOnly = true;
+                this.columnPaymentStatus = new global::System.Data.DataColumn("PaymentStatus", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPaymentStatus);
+                this.columnCount = new global::System.Data.DataColumn("Count", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCount);
+                this.columnPaymentStatus.ReadOnly = true;
+                this.columnPaymentStatus.MaxLength = 7;
+                this.columnCount.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AbandonmentRateDataSetRow NewAbandonmentRateDataSetRow() {
-                return ((AbandonmentRateDataSetRow)(this.NewRow()));
+            public PaymentSuccessFailureDataSetRow NewPaymentSuccessFailureDataSetRow() {
+                return ((PaymentSuccessFailureDataSetRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new AbandonmentRateDataSetRow(builder);
+                return new PaymentSuccessFailureDataSetRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(AbandonmentRateDataSetRow);
+                return typeof(PaymentSuccessFailureDataSetRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.AbandonmentRateDataSetRowChanged != null)) {
-                    this.AbandonmentRateDataSetRowChanged(this, new AbandonmentRateDataSetRowChangeEvent(((AbandonmentRateDataSetRow)(e.Row)), e.Action));
+                if ((this.PaymentSuccessFailureDataSetRowChanged != null)) {
+                    this.PaymentSuccessFailureDataSetRowChanged(this, new PaymentSuccessFailureDataSetRowChangeEvent(((PaymentSuccessFailureDataSetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -497,8 +513,8 @@ namespace dbfinalproject_interfaces {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.AbandonmentRateDataSetRowChanging != null)) {
-                    this.AbandonmentRateDataSetRowChanging(this, new AbandonmentRateDataSetRowChangeEvent(((AbandonmentRateDataSetRow)(e.Row)), e.Action));
+                if ((this.PaymentSuccessFailureDataSetRowChanging != null)) {
+                    this.PaymentSuccessFailureDataSetRowChanging(this, new PaymentSuccessFailureDataSetRowChangeEvent(((PaymentSuccessFailureDataSetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -506,8 +522,8 @@ namespace dbfinalproject_interfaces {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.AbandonmentRateDataSetRowDeleted != null)) {
-                    this.AbandonmentRateDataSetRowDeleted(this, new AbandonmentRateDataSetRowChangeEvent(((AbandonmentRateDataSetRow)(e.Row)), e.Action));
+                if ((this.PaymentSuccessFailureDataSetRowDeleted != null)) {
+                    this.PaymentSuccessFailureDataSetRowDeleted(this, new PaymentSuccessFailureDataSetRowChangeEvent(((PaymentSuccessFailureDataSetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -515,14 +531,14 @@ namespace dbfinalproject_interfaces {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.AbandonmentRateDataSetRowDeleting != null)) {
-                    this.AbandonmentRateDataSetRowDeleting(this, new AbandonmentRateDataSetRowChangeEvent(((AbandonmentRateDataSetRow)(e.Row)), e.Action));
+                if ((this.PaymentSuccessFailureDataSetRowDeleting != null)) {
+                    this.PaymentSuccessFailureDataSetRowDeleting(this, new PaymentSuccessFailureDataSetRowChangeEvent(((PaymentSuccessFailureDataSetRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveAbandonmentRateDataSetRow(AbandonmentRateDataSetRow row) {
+            public void RemovePaymentSuccessFailureDataSetRow(PaymentSuccessFailureDataSetRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -531,7 +547,7 @@ namespace dbfinalproject_interfaces {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BookingReportData ds = new BookingReportData();
+                PaymentReport_DataSet ds = new PaymentReport_DataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -549,7 +565,7 @@ namespace dbfinalproject_interfaces {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "AbandonmentRateDataSetDataTable";
+                attribute2.FixedValue = "PaymentSuccessFailureDataSetDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -595,16 +611,14 @@ namespace dbfinalproject_interfaces {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class CommonReasonsDataSetDataTable : global::System.Data.TypedTableBase<CommonReasonsDataSetRow> {
+        public partial class ChargebackRateDataSetDataTable : global::System.Data.TypedTableBase<ChargebackRateDataSetRow> {
             
-            private global::System.Data.DataColumn columnCancellationReason;
-            
-            private global::System.Data.DataColumn columnCancellationCount;
+            private global::System.Data.DataColumn columnChargebackRatePercent;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public CommonReasonsDataSetDataTable() {
-                this.TableName = "CommonReasonsDataSet";
+            public ChargebackRateDataSetDataTable() {
+                this.TableName = "ChargebackRateDataSet";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -612,7 +626,7 @@ namespace dbfinalproject_interfaces {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal CommonReasonsDataSetDataTable(global::System.Data.DataTable table) {
+            internal ChargebackRateDataSetDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -629,24 +643,16 @@ namespace dbfinalproject_interfaces {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected CommonReasonsDataSetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ChargebackRateDataSetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CancellationReasonColumn {
+            public global::System.Data.DataColumn ChargebackRatePercentColumn {
                 get {
-                    return this.columnCancellationReason;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn CancellationCountColumn {
-                get {
-                    return this.columnCancellationCount;
+                    return this.columnChargebackRatePercent;
                 }
             }
             
@@ -661,46 +667,45 @@ namespace dbfinalproject_interfaces {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public CommonReasonsDataSetRow this[int index] {
+            public ChargebackRateDataSetRow this[int index] {
                 get {
-                    return ((CommonReasonsDataSetRow)(this.Rows[index]));
+                    return ((ChargebackRateDataSetRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event CommonReasonsDataSetRowChangeEventHandler CommonReasonsDataSetRowChanging;
+            public event ChargebackRateDataSetRowChangeEventHandler ChargebackRateDataSetRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event CommonReasonsDataSetRowChangeEventHandler CommonReasonsDataSetRowChanged;
+            public event ChargebackRateDataSetRowChangeEventHandler ChargebackRateDataSetRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event CommonReasonsDataSetRowChangeEventHandler CommonReasonsDataSetRowDeleting;
+            public event ChargebackRateDataSetRowChangeEventHandler ChargebackRateDataSetRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event CommonReasonsDataSetRowChangeEventHandler CommonReasonsDataSetRowDeleted;
+            public event ChargebackRateDataSetRowChangeEventHandler ChargebackRateDataSetRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddCommonReasonsDataSetRow(CommonReasonsDataSetRow row) {
+            public void AddChargebackRateDataSetRow(ChargebackRateDataSetRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public CommonReasonsDataSetRow AddCommonReasonsDataSetRow(string CancellationReason, int CancellationCount) {
-                CommonReasonsDataSetRow rowCommonReasonsDataSetRow = ((CommonReasonsDataSetRow)(this.NewRow()));
+            public ChargebackRateDataSetRow AddChargebackRateDataSetRow(decimal ChargebackRatePercent) {
+                ChargebackRateDataSetRow rowChargebackRateDataSetRow = ((ChargebackRateDataSetRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        CancellationReason,
-                        CancellationCount};
-                rowCommonReasonsDataSetRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCommonReasonsDataSetRow);
-                return rowCommonReasonsDataSetRow;
+                        ChargebackRatePercent};
+                rowChargebackRateDataSetRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowChargebackRateDataSetRow);
+                return rowChargebackRateDataSetRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                CommonReasonsDataSetDataTable cln = ((CommonReasonsDataSetDataTable)(base.Clone()));
+                ChargebackRateDataSetDataTable cln = ((ChargebackRateDataSetDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -708,52 +713,47 @@ namespace dbfinalproject_interfaces {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new CommonReasonsDataSetDataTable();
+                return new ChargebackRateDataSetDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnCancellationReason = base.Columns["CancellationReason"];
-                this.columnCancellationCount = base.Columns["CancellationCount"];
+                this.columnChargebackRatePercent = base.Columns["ChargebackRatePercent"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnCancellationReason = new global::System.Data.DataColumn("CancellationReason", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCancellationReason);
-                this.columnCancellationCount = new global::System.Data.DataColumn("CancellationCount", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCancellationCount);
-                this.columnCancellationReason.ReadOnly = true;
-                this.columnCancellationReason.MaxLength = 5;
-                this.columnCancellationCount.ReadOnly = true;
+                this.columnChargebackRatePercent = new global::System.Data.DataColumn("ChargebackRatePercent", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnChargebackRatePercent);
+                this.columnChargebackRatePercent.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public CommonReasonsDataSetRow NewCommonReasonsDataSetRow() {
-                return ((CommonReasonsDataSetRow)(this.NewRow()));
+            public ChargebackRateDataSetRow NewChargebackRateDataSetRow() {
+                return ((ChargebackRateDataSetRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new CommonReasonsDataSetRow(builder);
+                return new ChargebackRateDataSetRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(CommonReasonsDataSetRow);
+                return typeof(ChargebackRateDataSetRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.CommonReasonsDataSetRowChanged != null)) {
-                    this.CommonReasonsDataSetRowChanged(this, new CommonReasonsDataSetRowChangeEvent(((CommonReasonsDataSetRow)(e.Row)), e.Action));
+                if ((this.ChargebackRateDataSetRowChanged != null)) {
+                    this.ChargebackRateDataSetRowChanged(this, new ChargebackRateDataSetRowChangeEvent(((ChargebackRateDataSetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -761,8 +761,8 @@ namespace dbfinalproject_interfaces {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.CommonReasonsDataSetRowChanging != null)) {
-                    this.CommonReasonsDataSetRowChanging(this, new CommonReasonsDataSetRowChangeEvent(((CommonReasonsDataSetRow)(e.Row)), e.Action));
+                if ((this.ChargebackRateDataSetRowChanging != null)) {
+                    this.ChargebackRateDataSetRowChanging(this, new ChargebackRateDataSetRowChangeEvent(((ChargebackRateDataSetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -770,8 +770,8 @@ namespace dbfinalproject_interfaces {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.CommonReasonsDataSetRowDeleted != null)) {
-                    this.CommonReasonsDataSetRowDeleted(this, new CommonReasonsDataSetRowChangeEvent(((CommonReasonsDataSetRow)(e.Row)), e.Action));
+                if ((this.ChargebackRateDataSetRowDeleted != null)) {
+                    this.ChargebackRateDataSetRowDeleted(this, new ChargebackRateDataSetRowChangeEvent(((ChargebackRateDataSetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -779,14 +779,14 @@ namespace dbfinalproject_interfaces {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.CommonReasonsDataSetRowDeleting != null)) {
-                    this.CommonReasonsDataSetRowDeleting(this, new CommonReasonsDataSetRowChangeEvent(((CommonReasonsDataSetRow)(e.Row)), e.Action));
+                if ((this.ChargebackRateDataSetRowDeleting != null)) {
+                    this.ChargebackRateDataSetRowDeleting(this, new ChargebackRateDataSetRowChangeEvent(((ChargebackRateDataSetRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveCommonReasonsDataSetRow(CommonReasonsDataSetRow row) {
+            public void RemoveChargebackRateDataSetRow(ChargebackRateDataSetRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -795,7 +795,7 @@ namespace dbfinalproject_interfaces {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BookingReportData ds = new BookingReportData();
+                PaymentReport_DataSet ds = new PaymentReport_DataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -813,7 +813,7 @@ namespace dbfinalproject_interfaces {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "CommonReasonsDataSetDataTable";
+                attribute2.FixedValue = "ChargebackRateDataSetDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -859,14 +859,14 @@ namespace dbfinalproject_interfaces {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class RevenueLossDataSetDataTable : global::System.Data.TypedTableBase<RevenueLossDataSetRow> {
+        public partial class SuccessfulRateDataSetDataTable : global::System.Data.TypedTableBase<SuccessfulRateDataSetRow> {
             
-            private global::System.Data.DataColumn columnPotentialRevenueLoss;
+            private global::System.Data.DataColumn columnCompletedPercent;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RevenueLossDataSetDataTable() {
-                this.TableName = "RevenueLossDataSet";
+            public SuccessfulRateDataSetDataTable() {
+                this.TableName = "SuccessfulRateDataSet";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -874,7 +874,7 @@ namespace dbfinalproject_interfaces {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal RevenueLossDataSetDataTable(global::System.Data.DataTable table) {
+            internal SuccessfulRateDataSetDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -891,16 +891,16 @@ namespace dbfinalproject_interfaces {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected RevenueLossDataSetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected SuccessfulRateDataSetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn PotentialRevenueLossColumn {
+            public global::System.Data.DataColumn CompletedPercentColumn {
                 get {
-                    return this.columnPotentialRevenueLoss;
+                    return this.columnCompletedPercent;
                 }
             }
             
@@ -915,45 +915,45 @@ namespace dbfinalproject_interfaces {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RevenueLossDataSetRow this[int index] {
+            public SuccessfulRateDataSetRow this[int index] {
                 get {
-                    return ((RevenueLossDataSetRow)(this.Rows[index]));
+                    return ((SuccessfulRateDataSetRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event RevenueLossDataSetRowChangeEventHandler RevenueLossDataSetRowChanging;
+            public event SuccessfulRateDataSetRowChangeEventHandler SuccessfulRateDataSetRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event RevenueLossDataSetRowChangeEventHandler RevenueLossDataSetRowChanged;
+            public event SuccessfulRateDataSetRowChangeEventHandler SuccessfulRateDataSetRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event RevenueLossDataSetRowChangeEventHandler RevenueLossDataSetRowDeleting;
+            public event SuccessfulRateDataSetRowChangeEventHandler SuccessfulRateDataSetRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event RevenueLossDataSetRowChangeEventHandler RevenueLossDataSetRowDeleted;
+            public event SuccessfulRateDataSetRowChangeEventHandler SuccessfulRateDataSetRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddRevenueLossDataSetRow(RevenueLossDataSetRow row) {
+            public void AddSuccessfulRateDataSetRow(SuccessfulRateDataSetRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RevenueLossDataSetRow AddRevenueLossDataSetRow(decimal PotentialRevenueLoss) {
-                RevenueLossDataSetRow rowRevenueLossDataSetRow = ((RevenueLossDataSetRow)(this.NewRow()));
+            public SuccessfulRateDataSetRow AddSuccessfulRateDataSetRow(decimal CompletedPercent) {
+                SuccessfulRateDataSetRow rowSuccessfulRateDataSetRow = ((SuccessfulRateDataSetRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        PotentialRevenueLoss};
-                rowRevenueLossDataSetRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowRevenueLossDataSetRow);
-                return rowRevenueLossDataSetRow;
+                        CompletedPercent};
+                rowSuccessfulRateDataSetRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSuccessfulRateDataSetRow);
+                return rowSuccessfulRateDataSetRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                RevenueLossDataSetDataTable cln = ((RevenueLossDataSetDataTable)(base.Clone()));
+                SuccessfulRateDataSetDataTable cln = ((SuccessfulRateDataSetDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -961,47 +961,47 @@ namespace dbfinalproject_interfaces {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new RevenueLossDataSetDataTable();
+                return new SuccessfulRateDataSetDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnPotentialRevenueLoss = base.Columns["PotentialRevenueLoss"];
+                this.columnCompletedPercent = base.Columns["CompletedPercent"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnPotentialRevenueLoss = new global::System.Data.DataColumn("PotentialRevenueLoss", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPotentialRevenueLoss);
-                this.columnPotentialRevenueLoss.ReadOnly = true;
+                this.columnCompletedPercent = new global::System.Data.DataColumn("CompletedPercent", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCompletedPercent);
+                this.columnCompletedPercent.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RevenueLossDataSetRow NewRevenueLossDataSetRow() {
-                return ((RevenueLossDataSetRow)(this.NewRow()));
+            public SuccessfulRateDataSetRow NewSuccessfulRateDataSetRow() {
+                return ((SuccessfulRateDataSetRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new RevenueLossDataSetRow(builder);
+                return new SuccessfulRateDataSetRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(RevenueLossDataSetRow);
+                return typeof(SuccessfulRateDataSetRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.RevenueLossDataSetRowChanged != null)) {
-                    this.RevenueLossDataSetRowChanged(this, new RevenueLossDataSetRowChangeEvent(((RevenueLossDataSetRow)(e.Row)), e.Action));
+                if ((this.SuccessfulRateDataSetRowChanged != null)) {
+                    this.SuccessfulRateDataSetRowChanged(this, new SuccessfulRateDataSetRowChangeEvent(((SuccessfulRateDataSetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1009,8 +1009,8 @@ namespace dbfinalproject_interfaces {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.RevenueLossDataSetRowChanging != null)) {
-                    this.RevenueLossDataSetRowChanging(this, new RevenueLossDataSetRowChangeEvent(((RevenueLossDataSetRow)(e.Row)), e.Action));
+                if ((this.SuccessfulRateDataSetRowChanging != null)) {
+                    this.SuccessfulRateDataSetRowChanging(this, new SuccessfulRateDataSetRowChangeEvent(((SuccessfulRateDataSetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1018,8 +1018,8 @@ namespace dbfinalproject_interfaces {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.RevenueLossDataSetRowDeleted != null)) {
-                    this.RevenueLossDataSetRowDeleted(this, new RevenueLossDataSetRowChangeEvent(((RevenueLossDataSetRow)(e.Row)), e.Action));
+                if ((this.SuccessfulRateDataSetRowDeleted != null)) {
+                    this.SuccessfulRateDataSetRowDeleted(this, new SuccessfulRateDataSetRowChangeEvent(((SuccessfulRateDataSetRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1027,14 +1027,14 @@ namespace dbfinalproject_interfaces {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.RevenueLossDataSetRowDeleting != null)) {
-                    this.RevenueLossDataSetRowDeleting(this, new RevenueLossDataSetRowChangeEvent(((RevenueLossDataSetRow)(e.Row)), e.Action));
+                if ((this.SuccessfulRateDataSetRowDeleting != null)) {
+                    this.SuccessfulRateDataSetRowDeleting(this, new SuccessfulRateDataSetRowChangeEvent(((SuccessfulRateDataSetRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveRevenueLossDataSetRow(RevenueLossDataSetRow row) {
+            public void RemoveSuccessfulRateDataSetRow(SuccessfulRateDataSetRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1043,7 +1043,7 @@ namespace dbfinalproject_interfaces {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BookingReportData ds = new BookingReportData();
+                PaymentReport_DataSet ds = new PaymentReport_DataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1061,7 +1061,7 @@ namespace dbfinalproject_interfaces {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "RevenueLossDataSetDataTable";
+                attribute2.FixedValue = "SuccessfulRateDataSetDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1105,161 +1105,160 @@ namespace dbfinalproject_interfaces {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class AbandonmentRateDataSetRow : global::System.Data.DataRow {
+        public partial class PaymentSuccessFailureDataSetRow : global::System.Data.DataRow {
             
-            private AbandonmentRateDataSetDataTable tableAbandonmentRateDataSet;
+            private PaymentSuccessFailureDataSetDataTable tablePaymentSuccessFailureDataSet;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal AbandonmentRateDataSetRow(global::System.Data.DataRowBuilder rb) : 
+            internal PaymentSuccessFailureDataSetRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableAbandonmentRateDataSet = ((AbandonmentRateDataSetDataTable)(this.Table));
+                this.tablePaymentSuccessFailureDataSet = ((PaymentSuccessFailureDataSetDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal AbandonmentRate {
+            public string PaymentStatus {
                 get {
                     try {
-                        return ((decimal)(this[this.tableAbandonmentRateDataSet.AbandonmentRateColumn]));
+                        return ((string)(this[this.tablePaymentSuccessFailureDataSet.PaymentStatusColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AbandonmentRate\' in table \'AbandonmentRateDataSet\' is DBNul" +
+                        throw new global::System.Data.StrongTypingException("The value for column \'PaymentStatus\' in table \'PaymentSuccessFailureDataSet\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePaymentSuccessFailureDataSet.PaymentStatusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Count {
+                get {
+                    try {
+                        return ((int)(this[this.tablePaymentSuccessFailureDataSet.CountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Count\' in table \'PaymentSuccessFailureDataSet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePaymentSuccessFailureDataSet.CountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsPaymentStatusNull() {
+                return this.IsNull(this.tablePaymentSuccessFailureDataSet.PaymentStatusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetPaymentStatusNull() {
+                this[this.tablePaymentSuccessFailureDataSet.PaymentStatusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCountNull() {
+                return this.IsNull(this.tablePaymentSuccessFailureDataSet.CountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCountNull() {
+                this[this.tablePaymentSuccessFailureDataSet.CountColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class ChargebackRateDataSetRow : global::System.Data.DataRow {
+            
+            private ChargebackRateDataSetDataTable tableChargebackRateDataSet;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal ChargebackRateDataSetRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableChargebackRateDataSet = ((ChargebackRateDataSetDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal ChargebackRatePercent {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableChargebackRateDataSet.ChargebackRatePercentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ChargebackRatePercent\' in table \'ChargebackRateDataSet\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableChargebackRateDataSet.ChargebackRatePercentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsChargebackRatePercentNull() {
+                return this.IsNull(this.tableChargebackRateDataSet.ChargebackRatePercentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetChargebackRatePercentNull() {
+                this[this.tableChargebackRateDataSet.ChargebackRatePercentColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SuccessfulRateDataSetRow : global::System.Data.DataRow {
+            
+            private SuccessfulRateDataSetDataTable tableSuccessfulRateDataSet;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal SuccessfulRateDataSetRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSuccessfulRateDataSet = ((SuccessfulRateDataSetDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal CompletedPercent {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSuccessfulRateDataSet.CompletedPercentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'CompletedPercent\' in table \'SuccessfulRateDataSet\' is DBNul" +
                                 "l.", e);
                     }
                 }
                 set {
-                    this[this.tableAbandonmentRateDataSet.AbandonmentRateColumn] = value;
+                    this[this.tableSuccessfulRateDataSet.CompletedPercentColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsAbandonmentRateNull() {
-                return this.IsNull(this.tableAbandonmentRateDataSet.AbandonmentRateColumn);
+            public bool IsCompletedPercentNull() {
+                return this.IsNull(this.tableSuccessfulRateDataSet.CompletedPercentColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetAbandonmentRateNull() {
-                this[this.tableAbandonmentRateDataSet.AbandonmentRateColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class CommonReasonsDataSetRow : global::System.Data.DataRow {
-            
-            private CommonReasonsDataSetDataTable tableCommonReasonsDataSet;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal CommonReasonsDataSetRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableCommonReasonsDataSet = ((CommonReasonsDataSetDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string CancellationReason {
-                get {
-                    try {
-                        return ((string)(this[this.tableCommonReasonsDataSet.CancellationReasonColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CancellationReason\' in table \'CommonReasonsDataSet\' is DBNu" +
-                                "ll.", e);
-                    }
-                }
-                set {
-                    this[this.tableCommonReasonsDataSet.CancellationReasonColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int CancellationCount {
-                get {
-                    try {
-                        return ((int)(this[this.tableCommonReasonsDataSet.CancellationCountColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CancellationCount\' in table \'CommonReasonsDataSet\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tableCommonReasonsDataSet.CancellationCountColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsCancellationReasonNull() {
-                return this.IsNull(this.tableCommonReasonsDataSet.CancellationReasonColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetCancellationReasonNull() {
-                this[this.tableCommonReasonsDataSet.CancellationReasonColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsCancellationCountNull() {
-                return this.IsNull(this.tableCommonReasonsDataSet.CancellationCountColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetCancellationCountNull() {
-                this[this.tableCommonReasonsDataSet.CancellationCountColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class RevenueLossDataSetRow : global::System.Data.DataRow {
-            
-            private RevenueLossDataSetDataTable tableRevenueLossDataSet;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal RevenueLossDataSetRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableRevenueLossDataSet = ((RevenueLossDataSetDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal PotentialRevenueLoss {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableRevenueLossDataSet.PotentialRevenueLossColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PotentialRevenueLoss\' in table \'RevenueLossDataSet\' is DBNu" +
-                                "ll.", e);
-                    }
-                }
-                set {
-                    this[this.tableRevenueLossDataSet.PotentialRevenueLossColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsPotentialRevenueLossNull() {
-                return this.IsNull(this.tableRevenueLossDataSet.PotentialRevenueLossColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetPotentialRevenueLossNull() {
-                this[this.tableRevenueLossDataSet.PotentialRevenueLossColumn] = global::System.Convert.DBNull;
+            public void SetCompletedPercentNull() {
+                this[this.tableSuccessfulRateDataSet.CompletedPercentColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1267,22 +1266,22 @@ namespace dbfinalproject_interfaces {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class AbandonmentRateDataSetRowChangeEvent : global::System.EventArgs {
+        public class PaymentSuccessFailureDataSetRowChangeEvent : global::System.EventArgs {
             
-            private AbandonmentRateDataSetRow eventRow;
+            private PaymentSuccessFailureDataSetRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AbandonmentRateDataSetRowChangeEvent(AbandonmentRateDataSetRow row, global::System.Data.DataRowAction action) {
+            public PaymentSuccessFailureDataSetRowChangeEvent(PaymentSuccessFailureDataSetRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public AbandonmentRateDataSetRow Row {
+            public PaymentSuccessFailureDataSetRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1301,22 +1300,22 @@ namespace dbfinalproject_interfaces {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class CommonReasonsDataSetRowChangeEvent : global::System.EventArgs {
+        public class ChargebackRateDataSetRowChangeEvent : global::System.EventArgs {
             
-            private CommonReasonsDataSetRow eventRow;
+            private ChargebackRateDataSetRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public CommonReasonsDataSetRowChangeEvent(CommonReasonsDataSetRow row, global::System.Data.DataRowAction action) {
+            public ChargebackRateDataSetRowChangeEvent(ChargebackRateDataSetRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public CommonReasonsDataSetRow Row {
+            public ChargebackRateDataSetRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1335,22 +1334,22 @@ namespace dbfinalproject_interfaces {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class RevenueLossDataSetRowChangeEvent : global::System.EventArgs {
+        public class SuccessfulRateDataSetRowChangeEvent : global::System.EventArgs {
             
-            private RevenueLossDataSetRow eventRow;
+            private SuccessfulRateDataSetRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RevenueLossDataSetRowChangeEvent(RevenueLossDataSetRow row, global::System.Data.DataRowAction action) {
+            public SuccessfulRateDataSetRowChangeEvent(SuccessfulRateDataSetRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public RevenueLossDataSetRow Row {
+            public SuccessfulRateDataSetRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1366,7 +1365,7 @@ namespace dbfinalproject_interfaces {
         }
     }
 }
-namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
+namespace dbfinalproject_interfaces.PaymentReport_DataSetTableAdapters {
     
     
     /// <summary>
@@ -1378,7 +1377,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class AbandonmentRateDataSetTableAdapter : global::System.ComponentModel.Component {
+    public partial class PaymentSuccessFailureDataSetTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1392,7 +1391,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public AbandonmentRateDataSetTableAdapter() {
+        public PaymentSuccessFailureDataSetTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1489,8 +1488,9 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "AbandonmentRateDataSet";
-            tableMapping.ColumnMappings.Add("AbandonmentRate", "AbandonmentRate");
+            tableMapping.DataSetTable = "PaymentSuccessFailureDataSet";
+            tableMapping.ColumnMappings.Add("PaymentStatus", "PaymentStatus");
+            tableMapping.ColumnMappings.Add("Count", "Count");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1507,7 +1507,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT 76.5432098765432 AS AbandonmentRate";
+            this._commandCollection[0].CommandText = "SELECT \'Success\' as PaymentStatus, 4 as Count";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1515,7 +1515,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BookingReportData.AbandonmentRateDataSetDataTable dataTable) {
+        public virtual int Fill(PaymentReport_DataSet.PaymentSuccessFailureDataSetDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1528,9 +1528,9 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BookingReportData.AbandonmentRateDataSetDataTable GetData() {
+        public virtual PaymentReport_DataSet.PaymentSuccessFailureDataSetDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            BookingReportData.AbandonmentRateDataSetDataTable dataTable = new BookingReportData.AbandonmentRateDataSetDataTable();
+            PaymentReport_DataSet.PaymentSuccessFailureDataSetDataTable dataTable = new PaymentReport_DataSet.PaymentSuccessFailureDataSetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1545,7 +1545,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class CommonReasonsDataSetTableAdapter : global::System.ComponentModel.Component {
+    public partial class ChargebackRateDataSetTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1559,7 +1559,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public CommonReasonsDataSetTableAdapter() {
+        public ChargebackRateDataSetTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1656,9 +1656,8 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "CommonReasonsDataSet";
-            tableMapping.ColumnMappings.Add("CancellationReason", "CancellationReason");
-            tableMapping.ColumnMappings.Add("CancellationCount", "CancellationCount");
+            tableMapping.DataSetTable = "ChargebackRateDataSet";
+            tableMapping.ColumnMappings.Add("ChargebackRatePercent", "ChargebackRatePercent");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1675,7 +1674,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT \'Other\' AS CancellationReason, 4 AS CancellationCount\r\n";
+            this._commandCollection[0].CommandText = "SELECT 8.771929824561 AS ChargebackRatePercent";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1683,7 +1682,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BookingReportData.CommonReasonsDataSetDataTable dataTable) {
+        public virtual int Fill(PaymentReport_DataSet.ChargebackRateDataSetDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1696,9 +1695,9 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BookingReportData.CommonReasonsDataSetDataTable GetData() {
+        public virtual PaymentReport_DataSet.ChargebackRateDataSetDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            BookingReportData.CommonReasonsDataSetDataTable dataTable = new BookingReportData.CommonReasonsDataSetDataTable();
+            PaymentReport_DataSet.ChargebackRateDataSetDataTable dataTable = new PaymentReport_DataSet.ChargebackRateDataSetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1713,7 +1712,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class RevenueLossDataSetTableAdapter : global::System.ComponentModel.Component {
+    public partial class SuccessfulRateDataSetTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1727,7 +1726,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public RevenueLossDataSetTableAdapter() {
+        public SuccessfulRateDataSetTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1824,8 +1823,8 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "RevenueLossDataSet";
-            tableMapping.ColumnMappings.Add("PotentialRevenueLoss", "PotentialRevenueLoss");
+            tableMapping.DataSetTable = "SuccessfulRateDataSet";
+            tableMapping.ColumnMappings.Add("CompletedPercent", "CompletedPercent");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1842,7 +1841,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT 41559.00 AS PotentialRevenueLoss";
+            this._commandCollection[0].CommandText = "SELECT 71.929824561403 AS CompletedPercent";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1850,7 +1849,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BookingReportData.RevenueLossDataSetDataTable dataTable) {
+        public virtual int Fill(PaymentReport_DataSet.SuccessfulRateDataSetDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1863,9 +1862,9 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BookingReportData.RevenueLossDataSetDataTable GetData() {
+        public virtual PaymentReport_DataSet.SuccessfulRateDataSetDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            BookingReportData.RevenueLossDataSetDataTable dataTable = new BookingReportData.RevenueLossDataSetDataTable();
+            PaymentReport_DataSet.SuccessfulRateDataSetDataTable dataTable = new PaymentReport_DataSet.SuccessfulRateDataSetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1939,7 +1938,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateUpdatedRows(BookingReportData dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(PaymentReport_DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1949,7 +1948,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateInsertedRows(BookingReportData dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(PaymentReport_DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1959,7 +1958,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateDeletedRows(BookingReportData dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(PaymentReport_DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -1993,7 +1992,7 @@ namespace dbfinalproject_interfaces.BookingReportDataTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public virtual int UpdateAll(BookingReportData dataSet) {
+        public virtual int UpdateAll(PaymentReport_DataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

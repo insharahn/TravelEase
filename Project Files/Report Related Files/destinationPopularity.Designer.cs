@@ -98,6 +98,7 @@
             this.label1.Size = new System.Drawing.Size(253, 40);
             this.label1.TabIndex = 38;
             this.label1.Text = "Destination Analytics";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // destinationPopularity
             // 
