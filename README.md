@@ -1,8 +1,7 @@
 # TravelEase
-Database Systems final project files.
+Database Systems final project files. Incomplete README.
 
 ## Traveler
-for u guys, here's what ive done so far
 
 ### sign up form & login
 - enter all info AND inserts in table so be careful
@@ -42,6 +41,11 @@ for u guys, here's what ive done so far
 - Performance Reports Tab: Visualizes metrics via charts (pie for seat occupancy and on-time arrivals, bar for ratings, line for revenue), with a ComboBox to switch chart types.
 - Exit and Logout Buttons
 
+
+# Contributers
+  - <a href=https://github.com/AabiaAli>Aabia Ali</a>
+  - <a href=https://github.com/insharahn>Insharah Irfan Nazir</a>
+  - <a href=https://github.com/ZaraHEREhehe>Zara Noor Qazi</a>
 
 
 
