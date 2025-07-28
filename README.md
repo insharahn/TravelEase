@@ -3,7 +3,7 @@
 ## Project Overview
 TravelEase is a centralized platform designed for planning, booking, and managing travel experiences. It connects travelers, tour operators, hotels, local guides, and transport providers, offering robust functionality for trip customization, booking management, resource coordination, payments, and reviews. The platform supports diverse travel types (adventure, cultural, leisure, etc.) and caters to solo travelers, groups, and more.
 
-## Features
+## Interfaces
 
 ### 1. Traveler Interface
 - **Registration and Login**: Secure sign-up with personal details and authentication.
