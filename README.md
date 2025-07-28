@@ -29,8 +29,15 @@ TravelEase is a centralized platform designed for planning, booking, and managin
 - **Platform Analytics**: Monitor user traffic, booking trends, and revenue.
 - **Review Moderation**: Filter inappropriate reviews to maintain platform integrity.
 
-## 4. Hotel & Transport Interfaces
-### Login and Signup
+### 4. Tour Guide Interface
+- **Guide Registration and Login**: Create and manage profiles with qualifications and availability using ASP.NET Identity.
+- **Service Assignment**: Accept or reject guide assignments for specific trips from tour operators.
+- **Schedule Management**: View and manage assigned trips, including dates, locations, and traveler details.
+- **Feedback and Ratings**: Access traveler reviews and ratings specific to guide services.
+- **Performance Reports**: Analyze performance metrics, such as average ratings and number of trips guided.
+
+### 5 & 6. Hotel & Transport Interfaces
+#### Login and Signup
 - Enter required info and insertions handled in table accordingly
 - Destination is dropdown: destination name, city (does autofill if you type in the first few characters but kinda wonky)
 - Entry is first added to ServiceProvider table then to Hotel table
@@ -38,21 +45,21 @@ TravelEase is a centralized platform designed for planning, booking, and managin
 - Validation checks for everything: email, password, numRooms, AvgPrices
 - If you just signed up, you can't actually login after that (admin hasn't approved you yet)
 
-### Hotel Dashboard Features
+#### Hotel Dashboard Features
 - Service Integration Tab: Displays pending accommodation assignments (room description, capacity, price in USD) in a DataGridView that you can approve or reject.
 - Service Listing Tab: Lists all hotel accommodations (room details, price in USD, destination) in a DataGridView, you can edit room Description and Price
 - Booking Management Tab: Shows booking details (request ID, booking date, total cost in USD, payment status) in a DataGridView, can confirm and cancel pending confirmations (occupied rooms updated accordingly).
 - Performance Reports Tab: Visualizes metrics via charts (pie for occupancy, bar for ratings, line for revenue), with a ComboBox to switch chart types.
 - Exit and Logout Buttons
   
-### Transport Dashboard Features
+#### Transport Dashboard Features
 - Trip Integration Tab: Displays pending ride requests (origin, destination, price in USD) in a DataGridView that you can accept or reject.
 - Trip Listing Tab: Lists all transport rides (origin, destination, price in USD, arrival time) in a DataGridView, you can edit arrival time and price.
 - Booking Management Tab: Shows booking details (request ID, booking date, total cost in USD, payment status) in a DataGridView, can confirm and cancel payments (occupied seats updated accordingly).
 - Performance Reports Tab: Visualizes metrics via charts (pie for seat occupancy and on-time arrivals, bar for ratings, line for revenue), with a ComboBox to switch chart types.
 - Exit and Logout Buttons
 
-### 6. Reports
+## Reports
 The platform includes eight comprehensive reports with visualizations (bar/pie charts) to provide insights into system performance:
 1. **Trip Booking and Revenue Report**: Tracks booking trends, revenue by trip type, cancellation rates, peak periods, and average booking value.
 2. **Traveler Demographics and Preferences Report**: Analyzes user demographics, preferred trip types, destinations, and spending habits.
@@ -66,13 +73,6 @@ The platform includes eight comprehensive reports with visualizations (bar/pie c
 These reports have been integrated into the relevant interfaces e.g. travelers can view the Traveler Demographics and Preferences Report while admins monitor the Platform Growth Report.
 
 All of the reports' data and information are **dynamically fetched** and hence updated upon every insertion, update, or deletion.
-
-## Tech Stack
-- **Frontend/Backend**: C# (Desktop/Web application built in Visual Studio 2019)
-- **Database**: SQL Server
-- **Development Environment**: Visual Studio 2019 or above
-- **Data Import**: CSV/Excel for populating mock data
-- **Visualizations**: Bar and pie charts for reports
 
 ## Tech Stack
 - **Frontend**: WinForms (.NET Framework)
