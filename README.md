@@ -1,24 +1,35 @@
-# TravelEase
-Database Systems final project files. Incomplete README.
+# TravelEase - Comprehensive Travel Management Platform
 
-## Traveler
+## Project Overview
+TravelEase is a centralized platform designed for planning, booking, and managing travel experiences. It connects travelers, tour operators, hotels, local guides, and transport providers, offering robust functionality for trip customization, booking management, resource coordination, payments, and reviews. The platform supports diverse travel types (adventure, cultural, leisure, etc.) and caters to solo travelers, groups, and more.
 
-### sign up form & login
-- enter all info AND inserts in table so be careful
-- age is now DOB
-- validation checks for email format, password length, username uniqueness, contact number all digits [all of our ddl commands]
-- preferences are concatenated and inserted comma seperated
-- location is inserted like city (country) based on existing location ids -> i do plan on adding more
-- in the nationality dropdown, typing the city actually brings that result to the top
-- really ugly formatting im sorry guys i cant make the form any longer its not letting me and i have no space
-- added features like password show/hide
+## Features
 
-### home
-- displays 10 packages at a time
-- i will have to figure out the pages thing
-- adds to wishlist when u click wishlist (if u logged in), but you cant see the wislist seperately yet
+### 1. Traveler Interface
+- **Registration and Login**: Secure sign-up with personal details and authentication.
+- **Trip Search and Booking With Advanced Filters**: Filter trips by destination, date, price, activity type, and group size. Book trips or accommodations seamlessly.
+- **Trip Dashboard**: View upcoming trips and itineraries by navigating paginated results with highlighted keywords and detailed trip cards (destination image, title, cost, ratings, availability, and action buttons like "Book Now" and "Save to Wishlist").
+- **Custom Trip Creation**: Create custom trip packages according to personal needs with detailed transport, accommodation, and itinerary booking.
+- **Digital Travel Pass**: Access e-tickets, hotel vouchers, and activity passes.
+- **Reviews and Ratings**: Rate trips, accommodations, and services.
+- **Profile Management**: Update preferences and view travel history.
+- **Wishlist**: View saved trips and book them quickly if need be.
 
-## Hotel & Transport
+### 2. Tour Operator Interface
+- **Operator Registration and Login**: Create and manage company profiles.
+- **Trip Creation and Management**: Design, update, and delete trips with details like itineraries, pricing, inclusions, duration, and capacity.
+- **Trips Listing**: View and edit all existing trips created by the operator.
+- **Resource Coordination**: Assign services (hotels, guides, transport) to travelers.
+- **Booking Management**: Track reservations, send reminders, and handle cancellations/refunds.
+- **Performance Analytics**: View booking rates, revenue, and review summaries.
+
+### 3. Admin Interface
+- **User and Operator Management**: Approve or reject registrations for travelers and operators.
+- **Tour Categories Management**: Oversee and manage tour categories.
+- **Platform Analytics**: Monitor user traffic, booking trends, and revenue.
+- **Review Moderation**: Filter inappropriate reviews to maintain platform integrity.
+
+## 4. Hotel & Transport Interfaces
 ### Login and Signup
 - Enter required info and insertions handled in table accordingly
 - Destination is dropdown: destination name, city (does autofill if you type in the first few characters but kinda wonky)
@@ -41,11 +52,37 @@ Database Systems final project files. Incomplete README.
 - Performance Reports Tab: Visualizes metrics via charts (pie for seat occupancy and on-time arrivals, bar for ratings, line for revenue), with a ComboBox to switch chart types.
 - Exit and Logout Buttons
 
+### 6. Reports
+The platform includes eight comprehensive reports with visualizations (bar/pie charts) to provide insights into system performance:
+1. **Trip Booking and Revenue Report**: Tracks booking trends, revenue by trip type, cancellation rates, peak periods, and average booking value.
+2. **Traveler Demographics and Preferences Report**: Analyzes user demographics, preferred trip types, destinations, and spending habits.
+3. **Tour Operator Performance Report**: Evaluates operators based on ratings, revenue, and response times.
+4. **Service Provider Efficiency Report**: Measures hotel occupancy, guide ratings, and transport punctuality.
+5. **Destination Popularity Report**: Highlights trending destinations, seasonal trends, satisfaction scores, and emerging locations.
+6. **Abandoned Booking Analysis Report**: Investigates incomplete bookings, reasons for abandonment, recovery rates, and potential revenue loss.
+7. **Platform Growth Report**: Monitors user registrations, active users, partnership growth, and regional expansion.
+8. **Payment Transaction and Fraud Report**: Tracks payment success/failure rates and chargeback rates.
+
+These reports have been integrated into the relevant interfaces e.g. travelers can view the Traveler Demographics and Preferences Report while admins monitor the Platform Growth Report.
+
+All of the reports' data and information are **dynamically fetched** and hence updated upon every insertion, update, or deletion.
+
+## Tech Stack
+- **Frontend/Backend**: C# (Desktop/Web application built in Visual Studio 2019)
+- **Database**: SQL Server
+- **Development Environment**: Visual Studio 2019 or above
+- **Data Import**: CSV/Excel for populating mock data
+- **Visualizations**: Bar and pie charts for reports
+
+## Tech Stack
+- **Frontend**: WinForms (.NET Framework)
+- **Backend**: C# with .NET Framework
+- **Database**: MS SQL Server 2019
+- **Development Environment**: Visual Studio 2019 or above
+- **Reporting**: RDLC reports 
 
 # Contributers
   - <a href=https://github.com/AabiaAli>Aabia Ali</a>
   - <a href=https://github.com/insharahn>Insharah Irfan Nazir</a>
   - <a href=https://github.com/ZaraHEREhehe>Zara Noor Qazi</a>
-
-
 
