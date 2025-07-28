@@ -74,6 +74,10 @@ These reports have been integrated into the relevant interfaces e.g. travelers c
 
 All of the reports' data and information are **dynamically fetched** and hence updated upon every insertion, updation, or deletion.
 
+## Extended Entity-Relationship Diagram
+
+![Extended Entity-Relationship Diagram](./EERD.drawio.png)
+
 ## Tech Stack
 - **Frontend**: WinForms (.NET Framework)
 - **Backend**: C# with .NET Framework
