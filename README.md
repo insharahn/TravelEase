@@ -72,7 +72,7 @@ The platform includes eight comprehensive reports with visualizations (bar/pie c
 
 These reports have been integrated into the relevant interfaces e.g. travelers can view the Traveler Demographics and Preferences Report while admins monitor the Platform Growth Report.
 
-All of the reports' data and information are **dynamically fetched** and hence updated upon every insertion, update, or deletion.
+All of the reports' data and information are **dynamically fetched** and hence updated upon every insertion, updatation, or deletion.
 
 ## Tech Stack
 - **Frontend**: WinForms (.NET Framework)
